@@ -178,7 +178,7 @@ a:visited {
 .title {
   color: var(--Text-text-primary, #111);
   font-family: Pretendard;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-style: normal;
   font-weight: 500;
   line-height: 140%; /* 4.2rem */
@@ -186,8 +186,8 @@ a:visited {
 }
 .big-circle {
   position: relative;
-  width: 50rem;
-  height: 50rem;
+  width: 37.5rem;
+  height: 37.5rem;
   flex-shrink: 0;
   border-radius: 50rem;
   border: 0.0625rem solid rgba(0, 0, 0, 0.01);
