@@ -206,6 +206,11 @@ a:visited {
   height: 95vh;
   background: url('./asset/main\ showreel.png') center center / cover no-repeat;
 }
+.main-2-1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 /* main-3 구분선 */
 .main-3 {
   position: relative;
