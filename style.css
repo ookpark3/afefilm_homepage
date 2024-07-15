@@ -186,8 +186,8 @@ a:visited {
 }
 .big-circle {
   position: relative;
-  width: 37.5rem;
-  height: 37.5rem;
+  width: 30%;
+  min-width: 50rem;
   flex-shrink: 0;
   border-radius: 50rem;
   border: 0.0625rem solid rgba(0, 0, 0, 0.01);
