@@ -8,6 +8,7 @@
     <title>AFE | Home</title>
   </head>
   <body>
+    <!-- 헤더 페이지 -->  
     <div class="header" aria-label="헤더 페이지">
       <div class="header-logo"></div>
       <div class="header-menu">
@@ -30,8 +31,10 @@
         </div>
       </div>
     </div>
+    <!-- 메인 페이지 -->
     <main aria-label="메인 페이지">
-      <section class="main-1" aria-label="랜딩 요소 디자인 페이지">
+      <!-- 랜딩 요소 디자인 페이지 1 메인 타이틀 -->
+      <section class="main-1 section" aria-label="랜딩 요소 디자인 페이지">
         <div class="big-circle">
           <h1 class="title">alien from earth</h1>
           <div class="orbit">
@@ -40,11 +43,13 @@
             <div class="sky-circle orbital"></div>
           </div>
         </div>
-      </section>
-      <section class="main-2" aria-label="영상 쇼릴 페이지">
+      </section>  
+      <!-- 랜딩 요소 디자인 페이지 2 영상 쇼릴등장 -->
+      <section class="main-2 section" aria-label="영상 쇼릴 페이지">
         <!-- 영상 들어갈 예정 -->
       </section>
-      <section class="main-3" aria-label="What we do? 페이지">
+      <!-- 랜딩 요소 디자인 페이지 3 what we do? 페이지 -->
+      <section class="main-3 section" aria-label="What we do? 페이지">
         <div class="main-3-1">
           <h2 class="main-3-1-1">What we do?</h2>
           <p class="main-3-1-2">
@@ -59,7 +64,8 @@
         </div>
       </section>
       <hr class="section-divider" aria-label="섹션 구분선" />
-      <section class="main-4" aria-label="Our Services 페이지">
+      <!-- 랜딩 요소 디자인 페이지 4 Our Services 페이지 -->
+      <section class="main-4 section" aria-label="Our Services 페이지">
         <h2 class="main-4-1">Our Services</h2>
         <div class="main-4-2">
           <div class="main-4-2-1">film production</div>
@@ -69,7 +75,8 @@
         </div>
       </section>
       <hr class="section-divider" aria-label="섹션 구분선" />
-      <section class="main-5" aria-label="Our Work 페이지">
+      <!-- 랜딩 요소 디자인 페이지 5 Our Work 페이지 -->
+      <section class="main-5 section" aria-label="Our Work 페이지">
         <div class="main-5-1">
           <h2 class="main-5-1-1">Our Work</h2>
           <div class="main-5-1-2"> 
@@ -82,12 +89,13 @@
             <img src="./asset/Ellipse 6.svg" alt="2번이미지" />
           </div>
           <div class="main-5-1-4">
-           View more
+           <p>View more</p>
           </div>
         </div>
       </section>
       <hr class="section-divider" aria-label="섹션 구분선" />
-      <section class="main-6" aria-label="Client 페이지">
+      <!-- 랜딩 요소 디자인 페이지 6 Client 페이지 -->
+      <section class="main-6 section" aria-label="Client 페이지">
         <h2 class="main-6-1">Client</h2>
         <div class="main-6-2">
           <div class="main-6-2-1">
@@ -120,7 +128,7 @@
         </div>
       </section>
     </main>
-
+    <!-- 푸터 페이지 -->
     <div class="footer" aria-label="푸터 페이지">
       <div class="footer-1">
         <div class="footer-1-1">
@@ -145,6 +153,23 @@
     </div>
   </body>
   <script>
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
+    }
+  });
+}, {
+  threshold: 0.1 // 10% 이상 보일 때 활성화
+});
+
+document.querySelectorAll('.section').forEach((section) => {
+  observer.observe(section);
+});
+
     const orbitals = document.querySelectorAll('.orbital');
     const bigCircle = document.querySelector('.big-circle');
 
@@ -170,22 +195,30 @@
 
 
     function setupInfiniteSlide() {
-    const rows = document.querySelectorAll('.main-6-2-1, .main-6-2-2');
-    rows.forEach(row => {
-      // 로고 세트를 여러 번 복제하여 더 긴 시퀀스 생성
-      const originalContent = row.innerHTML;
-      row.innerHTML = originalContent + originalContent + originalContent;
-      
-      // 애니메이션 속도 계산 및 적용
-      const totalWidth = row.scrollWidth;
-      const duration = totalWidth / 50; // 픽셀당 50ms로 속도 조정
-      row.style.animationDuration = `${duration}s`;
-    });
-  }
+  const rows = document.querySelectorAll('.main-6-2-1, .main-6-2-2');
+  rows.forEach(row => {
+    // 기존 내용 복제
+    const originalContent = row.innerHTML;
+    row.innerHTML = originalContent + originalContent;
 
-  // 페이지 로드 및 리사이즈 시 무한 슬라이드 설정
-  window.addEventListener('load', setupInfiniteSlide);
-  window.addEventListener('resize', setupInfiniteSlide);
+    // 애니메이션 속도 계산 및 적용
+    const totalWidth = row.scrollWidth / 2; // 원본 너비
+    const duration = totalWidth / 50; // 픽셀당 50ms로 속도 조정
+    row.style.animationDuration = `${duration}s`;
+
+    // 애니메이션 종료 시 요소 재배치
+    row.addEventListener('animationiteration', () => {
+      // 첫 번째 세트를 끝으로 이동
+      const firstSet = row.children[0];
+      row.appendChild(firstSet);
+    });
+  });
+}
+
+
+// 페이지 로드 및 리사이즈 시 무한 슬라이드 설정
+window.addEventListener('load', setupInfiniteSlide);
+window.addEventListener('resize', setupInfiniteSlide);
   </script>
 
 
