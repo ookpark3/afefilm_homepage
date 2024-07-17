@@ -1,0 +1,13 @@
+.contact-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.contact-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #a53e3e6e;
+}
