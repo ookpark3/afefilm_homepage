@@ -1,6 +1,6 @@
 .about-1 {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   padding-top: 5vh;
   display: flex;
   justify-content: center;
@@ -191,11 +191,13 @@
 }
 .about-3 {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   padding-top: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 3rem;
 }
 .about-3-1 {
   width: 50%;
@@ -257,6 +259,39 @@
   margin-bottom: 0;
   /* 필요한 경우 추가 스타일 */
 }
+.about-3-1-2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.about-3-1-2-1 {
+  padding: 0 30rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./asset/about/about-3-1-2-1.jpeg) 0px -570px / 100% 320% no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 25rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+.about-3-1-2-2 {
+  padding: 0 30rem;
+  background-size: cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./asset/about/about-3-1-2-2.jpeg) center -400px / 100% auto no-repeat;
+  height: 25rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
 .about-4 {
   width: 100%;
   height: 70vh;
@@ -264,5 +299,115 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #296964;
+  flex-direction: column;
+  text-align: center;
+  gap: 3rem;
+}
+.about-4-1 {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.about-4-1-1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.about-4-1-1 p:nth-child(1) {
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 2.5rem */
+  letter-spacing: -0.0625rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-4-1-1 p:nth-child(2) {
+  color: var(--Text-text-secondary, #969696);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 100%; /* 1.5rem */
+  letter-spacing: -0.0375rem;
+  margin-bottom: 2rem;
+}
+
+.about-4-1-1 p:nth-child(3) {
+  color: var(--Text-text-primary, #111);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%; /* 1.5rem */
+  letter-spacing: -0.05rem;
+  margin-bottom: 1rem;
+}
+.about-4-1-2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #111;
+  border-radius: 1.5rem;
+}
+.about-4-2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.about-4-2-1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 1.75rem */
+  letter-spacing: -0.0625rem;
+  gap: 1rem;
+}
+.about-4-2-2-1-img {
+  width: 6.25rem;
+  height: 6.25rem;
+}
+
+.about-4-2-2 {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 3rem 5rem;
+  border-radius: 1.5rem;
+  border: 1px solid;
+}
+.about-4-2-2-1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.about-4-2-2-2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.about-4-2-2-2 p {
+  width: 6.25rem;
 }
