@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -9,48 +9,96 @@
     <title>AFE | Contact</title>
   </head>
   <body>
-    <!-- 헤더 페이지 -->  
-      <div class="header" aria-label="헤더 페이지">
-        <div class="header-logo">
-          <a href="./index.html">
-            <img src="./asset/main/AFE logo.png" alt="AFE logo" />
+    <!-- 헤더 페이지 -->
+    <header class="header" aria-label="헤더 페이지">
+      <div class="header-logo">
+        <a href="./index.html">
+          <img src="./asset/main/AFE logo.png" alt="AFE logo" />
+        </a>
+      </div>
+      <div class="header-menu">
+        <div class="header-menu-item-1">
+          <div class="header-menu-item-1-1">
+            <a href="./about.html">About</a>
+          </div>
+          <div class="header-menu-item-1-2">
+            <a href="./work.html">Work</a>
+          </div>
+          <div class="header-menu-item-1-3">
+            <a href="./contact.html">Contact</a>
+          </div>
+        </div>
+        <div class="header-menu-item-2">
+          <a href="https://bit.ly/3yJX7NL" class="header-menu-item-2-2">
+            <span class="header-menu-item-2-1">회사소개서</span>
+            <img
+              src="./asset/main/material-symbols-light_download.svg"
+              alt="Vector"
+            />
           </a>
         </div>
-        <div class="header-menu">
-          <div class="header-menu-item-1">
-            <div class="header-menu-item-1-1">
-              <a href="./about.html">About</a>
-            </div>
-            <div class="header-menu-item-1-2">
-              <a href="./work.html">Work</a>
-            </div>
-            <div class="header-menu-item-1-3">
-              <a href="./contact.html">Contact</a>
-            </div>
-          </div>
-          <div class="header-menu-item-2">
-            <a href="https://bit.ly/3yJX7NL" class="header-menu-item-2-2">
-            <span class="header-menu-item-2-1">회사소개서</span>
-              <img src="./asset/main/material-symbols-light_download.svg" alt="Vector" />
-            </a>
-          </div>
-        </div>
       </div>
+    </header>
     <!-- 메인 페이지 -->
-<main>
-  <section class="contact-1 section" aria-label="연락처 페이지">
-    <div class="contact-1">
-      <p>CONTACT US</p>
-    </div>
-  </section>
-  <section class="contact-2 section" aria-label="연락처 페이지">
-    <div class="contact-2-1">
-      <p>ADDRESS</p>
-    </div>
-  </section>
-</main>
-    <!-- 푸 페이지 -->
-    <div class="footer" aria-label="푸터 페이지">
+    <main>
+      <!-- 섹션 1 -->
+      <section class="contact-1 section" aria-label="연락처 페이지">
+        <div class="contact-1-1">
+          <p>CONTACT US</p>
+          <p>제작 문의 및 질문을 남겨주세요</p>
+        </div>
+        <div class="contact-1-2" aria-label="form">
+          <form class="contact-1-2-form">
+            <div class="contact-1-2-form-checkbox">
+              <label><input type="checkbox" /> 제작 견적 문의</label>
+              <label><input type="checkbox" /> 협업 및 제휴</label>
+              <label><input type="checkbox" /> 가벼운 질문</label>
+              <label><input type="checkbox" /> 기타</label>
+            </div>
+            <div class="contact-1-2-form-input">
+              <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" class="full-width" />
+              </div>
+              <div class="form-group">
+                <label for="company">기관명 or 업체명</label>
+                <input type="text" id="company" class="full-width" />
+              </div>
+              <div class="form-group">
+                <label for="video-type">영상 유형</label>
+                <input type="text" id="video-type" class="full-width" />
+              </div>
+              <div class="form-group">
+                <label for="reference">레퍼런스</label>
+                <input type="text" id="reference" class="full-width" />
+              </div>
+              <div class="form-group">
+                <label for="contact">연락처</label>
+                <input type="text" id="contact" class="full-width" />
+              </div>
+              <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" id="email" class="full-width" />
+              </div>
+              <div class="form-group">
+                <label for="details">자세한 내용 기입</label>
+                <textarea id="details"></textarea>
+              </div>
+              <button type="submit" class="submit-btn">문의하기</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <hr class="section-divider" aria-label="섹션 구분선" />
+      <!-- 섹션 2 -->
+      <section class="contact-2 section" aria-label="연락처 페이지">
+        <div class="contact-2-1">
+          <p>ADDRESS</p>
+        </div>
+      </section>
+    </main>
+    <!-- 푸터 페이지 -->
+    <footer class="footer" aria-label="푸터 페이지">
       <div class="footer-1">
         <div class="footer-1-1">
           <p>에이에프이 (AFE)</p>
@@ -58,93 +106,96 @@
           <p>사업자번호 : 133-16-01692</p>
           <p>메일 : afefilm82@gmail.com</p>
           <p>대표전화 : 070-8800-0401</p>
-      </div>
-      <div class="footer-1-2">
-        <div class="footer-1-2-1">
-          <p>부산광역시 해운대구 세실로 33 B1</br>
-          서울특별시 강남구 테헤란로25길 46 서울빌딩 2층 (파이브스팟 역삼)</p>
-        <p>33, Sesil-ro, Haeundae-gu, Busan, Republic of Korea 46,</br>
-        Teheran-ro 25-gil, Gangnam-gu, Seoul, Republic of Korea</p>
         </div>
-        <div class="footer-1-2-2">
-          <p>copyright 2024. AFE. All rights reserved</p>
+        <div class="footer-1-2">
+          <div class="footer-1-2-1">
+            <p>
+              부산광역시 해운대구 세실로 33 B1<br />
+              서울특별시 강남구 테헤란로25길 46 서울빌딩 2층 (파이브스팟 역삼)
+            </p>
+            <p>
+              33, Sesil-ro, Haeundae-gu, Busan, Republic of Korea 46,<br />
+              Teheran-ro 25-gil, Gangnam-gu, Seoul, Republic of Korea
+            </p>
+          </div>
+          <div class="footer-1-2-2">
+            <p>copyright 2024. AFE. All rights reserved</p>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
-  </body>
-  <script>
+    </footer>
+    <!-- 스크립트 -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            } else {
+              entry.target.classList.remove('visible');
+            }
+          });
+        },
+        {
+          threshold: 0.1, // 10% 이상 보일 때 활성화
+        },
+      );
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    } else {
-      entry.target.classList.remove('visible');
-    }
-  });
-}, {
-  threshold: 0.1 // 10% 이상 보일 때 활성화
-});
-
-document.querySelectorAll('.section').forEach((section) => {
-  observer.observe(section);
-});
-
-    const orbitals = document.querySelectorAll('.orbital');
-    const bigCircle = document.querySelector('.big-circle');
-
-    function animate(time) {
-      const radius = bigCircle.offsetWidth / 2;
-
-      orbitals.forEach((orbital, index) => {
-        const angle = (time * 0.0003 + index * ((Math.PI * 2) / 3)) % (Math.PI * 2);
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * radius;
-
-        const offsetX = orbital.offsetWidth / 2;
-        const offsetY = orbital.offsetHeight / 2;
-
-        orbital.style.transform = `translate(${x}px, ${y}px) translate(-${offsetX}px, -${offsetY}px)`;
+      document.querySelectorAll('.section').forEach((section) => {
+        observer.observe(section);
       });
 
+      const orbitals = document.querySelectorAll('.orbital');
+      const bigCircle = document.querySelector('.big-circle');
+
+      function animate(time) {
+        const radius = bigCircle.offsetWidth / 2;
+
+        orbitals.forEach((orbital, index) => {
+          const angle =
+            (time * 0.0003 + index * ((Math.PI * 2) / 3)) % (Math.PI * 2);
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+
+          const offsetX = orbital.offsetWidth / 2;
+          const offsetY = orbital.offsetHeight / 2;
+
+          orbital.style.transform = `translate(${x}px, ${y}px) translate(-${offsetX}px, -${offsetY}px)`;
+        });
+
+        requestAnimationFrame(animate);
+      }
+
       requestAnimationFrame(animate);
-    }
 
-    requestAnimationFrame(animate);
+      function setupInfiniteScroll() {
+        const container = document.querySelector('.scroll-container');
+        const images = container.querySelectorAll('.scroll-image');
 
+        if (images.length !== 2) {
+          console.error('Infinite scroll requires exactly two images');
+          return;
+        }
 
-function setupInfiniteScroll() {
-  const container = document.querySelector('.scroll-container');
-  const images = container.querySelectorAll('.scroll-image');
-  
-  if (images.length !== 2) {
-    console.error('Infinite scroll requires exactly two images');
-    return;
-  }
+        const imageWidth = images[0].offsetWidth;
+        let scrollPosition = 0;
 
-  const imageWidth = images[0].offsetWidth;
-  let scrollPosition = 0;
+        function scroll() {
+          scrollPosition -= 1; // 스크롤 속도 조절 (숫자를 변경하여 속도 조절 가능)
 
-  function scroll() {
-    scrollPosition -= 1; // 스크롤 속도 조절 (숫자를 변경하여 속도 조절 가능)
-    
-    if (scrollPosition <= -imageWidth) {
-      scrollPosition += imageWidth;
-    }
-    
-    container.style.transform = `translateX(${scrollPosition}px)`;
-    requestAnimationFrame(scroll);
-  }
+          if (scrollPosition <= -imageWidth) {
+            scrollPosition += imageWidth;
+          }
 
-  requestAnimationFrame(scroll);
-}
+          container.style.transform = `translateX(${scrollPosition}px)`;
+          requestAnimationFrame(scroll);
+        }
 
-// 페이지 로드 시 함수 실행
-window.addEventListener('load', setupInfiniteScroll);
+        requestAnimationFrame(scroll);
+      }
 
-
-  </script>
-
-
+      // 페이지 로드 시 함수 실행
+      window.addEventListener('load', setupInfiniteScroll);
+    </script>
+  </body>
 </html>
