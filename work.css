@@ -15,7 +15,6 @@
   display: flex;
   justify-content: end;
   flex-direction: column;
-
   gap: 2.5rem;
 }
 .work-1-1 p {

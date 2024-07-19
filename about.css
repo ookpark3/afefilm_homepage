@@ -168,16 +168,19 @@
   font-weight: 400;
   line-height: 140%; /* 1.75rem */
   letter-spacing: -0.0625rem;
+  flex-shrink: 1;
 }
 .about-2-1-3-1 {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
 }
 .about-2-1-3-1-img {
   width: 6.25rem;
   height: 6.25rem;
+  box-sizing: border-box;
 }
 
 .about-2-1-3-2 {
@@ -197,6 +200,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex-shrink: 1;
   gap: 3rem;
 }
 .about-3-1 {
@@ -269,7 +273,8 @@
 }
 .about-3-1-2-1 {
   padding: 0 30rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(./asset/about/about-3-1-2-1.jpeg) 0px -570px / 100% 320% no-repeat;
   background-position: center;
   background-repeat: no-repeat;
@@ -283,7 +288,8 @@
 .about-3-1-2-2 {
   padding: 0 30rem;
   background-size: cover;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(./asset/about/about-3-1-2-2.jpeg) center -400px / 100% auto no-repeat;
   height: 25rem;
   width: 100%;
