@@ -33,7 +33,7 @@
 }
 .work-1-1-1 button {
   background-color: #ffffff;
-  font-family: Pretendard;
+  font-family: Pretendard Variable;
   text-align: center;
   font-size: 1.25rem;
   font-style: normal;
@@ -81,7 +81,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: Pretendard;
+  font-family: Pretendard Variable;
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
