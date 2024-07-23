@@ -437,11 +437,11 @@
         },
         search: {
           images: [
-            './asset/about/search/search-1.png',
-            './asset/about/search/search-2.png',
-            './asset/about/search/search-3.png',
-            './asset/about/search/search-4.png',
-            './asset/about/search/search-5.png',
+            './asset/about/planning/planning-1.png',
+            './asset/about/planning/planning-2.png',
+            './asset/about/planning/planning-3.png',
+            './asset/about/planning/planning-4.png',
+            './asset/about/planning/planning-5.png',
           ],
           texts: [
             '목표 분석',
@@ -468,6 +468,16 @@
           ],
         },
       };
+
+      // 이미지 미리 로드
+      function preloadImages() {
+        Object.values(tabContents).forEach((content) => {
+          content.images.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+          });
+        });
+      }
 
       function updateContent(tab, containerId) {
         const content = tabContents[tab];
@@ -520,9 +530,12 @@
           });
         });
 
-      // 초기 컨텐츠 설정
-      updateContent('planning', 'process-content');
-      updateContent('search', 'marketing-content');
+      // 초기 컨텐츠 설정 및 이미지 미리 로드
+      window.addEventListener('load', () => {
+        preloadImages();
+        updateContent('planning', 'process-content');
+        updateContent('search', 'marketing-content');
+      });
     </script>
   </body>
 </html>
