@@ -475,17 +475,49 @@
   letter-spacing: -0.0625rem;
   gap: 1rem;
 }
+.about-4-2-1 .tab {
+  color: #969696;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+.about-4-2-1 .tab.active {
+  color: #111;
+}
+.about-4-2-1 .tab.active::after {
+  width: 100%;
+}
 .about-4-2-2-1-img {
   width: 6.25rem;
   height: 6.25rem;
 }
+.about-4-2-2-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+.about-4-2-2-item p {
+  margin-top: 10px; /* 이미지와 텍스트 사이 여백 조정 */
+  text-align: center;
+}
 
+.about-4-2-2-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 .about-4-2-2 {
   width: 70%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
   gap: 1.5rem;
   padding: 3rem 5rem;
   border-radius: 1.5rem;
