@@ -113,6 +113,7 @@
   max-height: 50vh;
   object-fit: cover;
   object-position: center 40%;
+  aspect-ratio: 16 / 9;
 }
 
 /* 2번째 섹션 */
@@ -217,7 +218,8 @@
 }
 .about-3 {
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
+  height: auto;
   padding-top: 5vh;
   display: flex;
   justify-content: center;
@@ -326,6 +328,7 @@
   justify-content: space-around;
   align-items: center;
   color: white;
+  gap: 2rem;
 }
 .about-3-1-2-2 {
   padding: 0 30rem;
@@ -341,10 +344,12 @@
   justify-content: space-around;
   align-items: center;
   color: white;
+  gap: 2rem;
 }
 .about-4 {
   width: 100%;
-  height: 70vh;
+  min-height: 70vh;
+  height: auto;
   padding-top: 5vh;
   display: flex;
   justify-content: center;
