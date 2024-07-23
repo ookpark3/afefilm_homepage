@@ -163,7 +163,7 @@
   letter-spacing: -0.0375rem;
 }
 .about-2-1-2 {
-  width: 50%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -201,10 +201,17 @@
   align-items: center;
   box-sizing: border-box;
 }
+
 .about-2-1-3-1-img {
-  width: 6.25rem;
-  height: 6.25rem;
-  box-sizing: border-box;
+  width: calc((100% - 4rem) / 5); /* 5개 이미지를 균등하게 배치 */
+  max-width: 6.25rem; /* 최대 너비 설정 */
+  aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
+  object-fit: contain; /* 이미지 비율 유지 */
+}
+.arrow {
+  max-width: 3rem; /* 최대 너비 설정 */
+  aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
+  object-fit: contain; /* 이미지 비율 유지 */
 }
 
 .about-2-1-3-2 {
@@ -329,6 +336,7 @@
   align-items: center;
   color: white;
   gap: 2rem;
+  font-size: 1.25rem;
 }
 .about-3-1-2-2 {
   padding: 0 30rem;
@@ -345,6 +353,12 @@
   align-items: center;
   color: white;
   gap: 2rem;
+  font-size: 1.25rem;
+}
+
+.about-3-1-2-1 p:first-child,
+.about-3-1-2-2 p:first-child {
+  font-size: 1.5rem;
 }
 .about-4 {
   width: 100%;
