@@ -3,7 +3,8 @@
   position: relative;
   width: 100%;
   padding-top: 5vh;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   flex-shrink: 0;
   display: flex;
   justify-content: center;

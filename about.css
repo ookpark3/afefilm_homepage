@@ -1,6 +1,7 @@
 .about-1 {
   width: 100%;
-  height: 90vh;
+  min-height: 100vh;
+  height: auto;
   padding-top: 5vh;
   display: flex;
   justify-content: center;
@@ -18,7 +19,7 @@
   flex-direction: column;
 }
 
-.about-1-1 p:nth-child(1) {
+.about-1-1 > p:nth-child(1) {
   text-align: center;
   font-family: Pretendard Variable;
   font-size: 2.5rem;
@@ -54,29 +55,50 @@
 }
 
 .about-1-1-button {
-  width: 8rem;
-  background-color: var(--button-default, #ffffff);
+  font-family: Pretendard Variable;
   display: flex;
-  padding: 0.5rem 1rem;
   align-items: center;
-  justify-content: space-around;
-  border: 1px solid var(--button-stroke, #111);
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #111111;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none; /* 하이퍼링크 밑줄 제거 */
 }
 
-.about-1-1 > button.about-1-1-button > p {
+.about-1-1-button:hover {
+  background-color: #111111;
+}
+
+.about-1-1-button:hover p {
+  color: #ffffff;
+}
+
+.about-1-1-button:hover svg path {
+  stroke: #ffffff;
+}
+
+.about-1-1-button p {
   color: var(--button-default, #111);
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 100%; /* 1rem */
+  line-height: 100%;
   letter-spacing: -0.05rem;
-  margin-bottom: 0;
-  /* 필요한 경우 추가 스타일 */
+  margin: 0;
 }
 
-.about-1-1-button svg {
-  width: 22px;
-  height: 6px;
+.about-1-1-button:hover {
+  background-color: #111111;
+}
+
+.about-1-1-button:hover p {
+  color: #ffffff;
+}
+
+.about-1-1-button:hover svg path {
+  stroke: #ffffff;
 }
 
 .about-1-2 {
@@ -88,15 +110,16 @@
 }
 .about-1-2 img {
   width: 50%;
-  height: 100%;
+  max-height: 5ㄴ0vh;
   object-fit: cover;
+  object-position: center 40%;
 }
 
 /* 2번째 섹션 */
 
 .about-2 {
   width: 100%;
-  height: 60vh;
+  min-height: 60vh;
   padding-top: 5vh;
   display: flex;
   justify-content: center;
@@ -213,7 +236,7 @@
   font-family: Pretendard Variable;
 }
 
-.about-3-1 p:nth-child(1) {
+.about-3-1 > p:nth-child(1) {
   text-align: center;
   font-family: Pretendard Variable;
   font-size: 2.5rem;
@@ -247,23 +270,38 @@
   margin-bottom: 1rem;
 }
 .about-3-1-button {
-  width: 10rem;
-  background-color: var(--button-default, #ffffff);
+  font-family: Pretendard Variable;
   display: flex;
-  padding: 0.5rem 1rem;
   align-items: center;
-  justify-content: space-around;
-  border: 1px solid var(--button-stroke, #111);
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #111111;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
-.about-3-1 > button.about-3-1-button > p {
+
+.about-3-1-button p {
   color: var(--button-default, #111);
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 100%; /* 1rem */
+  line-height: 100%;
   letter-spacing: -0.05rem;
-  margin-bottom: 0;
-  /* 필요한 경우 추가 스타일 */
+  margin: 0;
+}
+
+.about-3-1-button:hover {
+  background-color: #111111;
+}
+
+.about-3-1-button:hover p {
+  color: #ffffff;
+}
+
+.about-3-1-button:hover svg path {
+  stroke: #ffffff;
 }
 .about-3-1-2 {
   width: 100%;
@@ -281,7 +319,9 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 25rem;
+  min-height: 25rem;
+  height: auto;
+  padding: 2rem 30rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -293,7 +333,9 @@
   background:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(./asset/about/about-3-1-2-2.jpeg) center -400px / 100% auto no-repeat;
-  height: 25rem;
+  min-height: 25rem;
+  height: auto;
+  padding: 2rem 30rem;
   width: 100%;
   display: flex;
   justify-content: space-around;

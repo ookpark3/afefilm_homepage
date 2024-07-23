@@ -3,7 +3,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   padding: 15vh 60px;
   font-family: Pretendard Variable;
 }
@@ -165,7 +166,8 @@
   flex-direction: column;
   padding: 5vh 60px;
   gap: 2rem;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   font-family: Pretendard Variable;
 }
 .contact-2-1 {
