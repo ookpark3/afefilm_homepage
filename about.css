@@ -1,6 +1,6 @@
 .about-1 {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   height: auto;
   padding-top: 5vh;
   display: flex;
@@ -120,7 +120,7 @@
 
 .about-2 {
   width: 100%;
-  min-height: 80vh;
+  min-height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
