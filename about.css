@@ -121,6 +121,8 @@
 .about-2 {
   width: 100%;
   min-height: 80vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -252,6 +254,7 @@
   min-height: 90vh;
   height: auto;
   padding-top: 5vh;
+  padding-bottom: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -386,9 +389,10 @@
 }
 .about-4 {
   width: 100%;
-  min-height: 70vh;
+  min-height: 80vh;
   height: auto;
   padding-top: 5vh;
+  padding-bottom: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
