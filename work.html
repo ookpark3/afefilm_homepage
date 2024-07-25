@@ -71,14 +71,23 @@
         </div>
       </section>
       <hr class="section-divider" aria-label="섹션 구분선" />
-      <!-- 사진 섹션 -->
+      <!-- 영상 썸네일 섹션 -->
       <section class="work-1-2 section">
-        <div
-          class="work-1-2-1"
-          onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-        >
-          <img src="./asset/work/1.png" alt="사진" />
-          <img src="./asset/work/2.png" alt="사진" />
+        <div class="work-1-2-1" id="thumbnails">
+          <img
+            src="./asset/work/1.png"
+            alt="사진"
+            data-video-id="VIDEO_ID_1"
+            data-title="영상 제목 1"
+            data-description="영상 설명 1"
+          />
+          <img
+            src="./asset/work/2.png"
+            alt="사진"
+            data-video-id="VIDEO_ID_2"
+            data-title="영상 제목 2"
+            data-description="영상 설명 2"
+          />
           <img src="./asset/work/3.png" alt="사진" />
           <img src="./asset/work/4.png" alt="사진" />
           <img src="./asset/work/5.png" alt="사진" />
@@ -121,6 +130,21 @@
         </div>
       </section>
     </main>
+    <!-- 모달 영상 -->
+    <div id="videoModal" class="modal">
+      <div class="modal-content">
+        <span class="close">
+          <img src="./asset/work/modal/close.svg" alt="닫기" />
+        </span>
+        <h2 id="videoTitle"></h2>
+        <div id="videoPlayer"></div>
+        <div class="videoDescription">
+          <p id="productionDate"></p>
+          <p id="client"></p>
+          <p id="type"></p>
+        </div>
+      </div>
+    </div>
     <!-- 푸터 페이지 -->
     <footer class="footer" aria-label="푸터 페이지">
       <div class="footer-1">
@@ -220,6 +244,75 @@
 
       // 페이지 로드 시 함수 실행
       window.addEventListener('load', setupInfiniteScroll);
+    </script>
+
+    <!-- 비디오 정보 모달창 -->
+    <script>
+      const videos = [
+        {
+          id: 'AT_7ZDDNQ9M?si=wGOohLt2HkbzC_TC',
+          title: '2030 부산월드엑스포 릴레이 인터뷰 - 금난새',
+          productionDate: '2023',
+          client: '부산광역시청',
+          type: '인터뷰',
+        },
+        {
+          id: 'AT_7ZDDNQ9M?si=wGOohLt2HkbzC_TC',
+          title: '2030 부산월드엑스포 릴레이 인터뷰 - 금난새',
+          productionDate: '2023',
+          client: '부산광역시청',
+          type: '인터뷰',
+        },
+        // 나머지 비디오 정보...
+      ];
+
+      const thumbnails = document.querySelectorAll('#thumbnails img');
+      const modal = document.getElementById('videoModal');
+      const closeBtn = document.querySelector('.close');
+      const videoTitle = document.getElementById('videoTitle');
+      const videoPlayer = document.getElementById('videoPlayer');
+      const productionDate = document.getElementById('productionDate');
+      const client = document.getElementById('client');
+      const type = document.getElementById('type');
+
+      // 모달 열기
+      function openModal() {
+        const modal = document.querySelector('.modal');
+        modal.classList.add('show');
+      }
+
+      // 모달 닫기
+      function closeModal() {
+        const modal = document.querySelector('.modal');
+        modal.classList.remove('show');
+      }
+
+      thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', () => {
+          const video = videos[index];
+          videoTitle.textContent = video.title;
+          videoPlayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${video.id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+          productionDate.textContent = `${video.productionDate}`;
+          client.textContent = `CLIENT　${video.client}`;
+          type.textContent = `TYPE　${video.type}`;
+          openModal();
+        });
+      });
+
+      closeBtn.onclick = closeModal;
+
+      window.onclick = (event) => {
+        if (event.target == modal) {
+          closeModal();
+        }
+      };
+
+      // ESC 키를 눌러 모달 닫기
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeModal();
+        }
+      });
     </script>
   </body>
 </html>
