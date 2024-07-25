@@ -74,27 +74,56 @@
       <!-- 영상 썸네일 섹션 -->
       <section class="work-1-2 section">
         <div class="work-1-2-1" id="thumbnails">
-          <img
-            src="./asset/work/1.png"
-            alt="사진"
-            data-video-id="VIDEO_ID_1"
-            data-title="영상 제목 1"
-            data-description="영상 설명 1"
-          />
-          <img
-            src="./asset/work/2.png"
-            alt="사진"
-            data-video-id="VIDEO_ID_2"
-            data-title="영상 제목 2"
-            data-description="영상 설명 2"
-          />
-          <img src="./asset/work/3.png" alt="사진" />
-          <img src="./asset/work/4.png" alt="사진" />
-          <img src="./asset/work/5.png" alt="사진" />
-          <img src="./asset/work/6.png" alt="사진" />
-          <img src="./asset/work/7.png" alt="사진" />
-          <img src="./asset/work/8.png" alt="사진" />
-          <img src="./asset/work/9.png" alt="사진" />
+          <div class="thumbnail-container" data-video-id="xqHydADF4II">
+            <img src="./asset/work/1.png" alt="사진" />
+            <div class="thumbnail-title">
+              2030 부산월드엑스포 릴레이 인터뷰 - 강승윤
+            </div>
+          </div>
+          <div class="thumbnail-container" data-video-id="AT_7ZDDNQ9M">
+            <img src="./asset/work/2.png" alt="사진" />
+            <div class="thumbnail-title">
+              2030 부산월드엑스포 릴레이 인터뷰 - 금난새
+            </div>
+          </div>
+          <div class="thumbnail-container" data-video-id="ffi9doPmkmY">
+            <img src="./asset/work/3.png" alt="사진" />
+            <div class="thumbnail-title">
+              2030 부산월드엑스포 릴레이 인터뷰 - 엄홍길
+            </div>
+          </div>
+          <div class="thumbnail-container" data-video-id="xqHydADF4II">
+            <img src="./asset/work/4.png" alt="사진" />
+            <div class="thumbnail-title">
+              2030 부산월드엑스포 릴레이 인터뷰 - 천종호
+            </div>
+          </div>
+          <div class="thumbnail-container" data-video-id="CUHeQgnl97s">
+            <img src="./asset/work/5.png" alt="사진" />
+            <div class="thumbnail-title">
+              2030 부산월드엑스포 릴레이 인터뷰 - 이창용
+            </div>
+          </div>
+          <div class="thumbnail-container" data-video-id="2SR6SACcOFU">
+            <img src="./asset/work/6.png" alt="사진" />
+            <div class="thumbnail-title">
+              2030 부산월드엑스포 릴레이 인터뷰 - 타일러
+            </div>
+          </div>
+          <div class="thumbnail-container" data-video-id="aQCfPSpyLuo">
+            <img src="./asset/work/7.png" alt="사진" />
+            <div class="thumbnail-title">
+              2030 부산월드엑스포 릴레이 인터뷰 - 손경식
+            </div>
+          </div>
+          <div class="thumbnail-container" data-video-id="4fhckpc0HOw">
+            <img src="./asset/work/8.png" alt="사진" />
+            <div class="thumbnail-title">2022 청년의날 하이라이트 영상</div>
+          </div>
+          <div class="thumbnail-container" data-video-id="CsVPZHUebD0">
+            <img src="./asset/work/9.png" alt="사진" />
+            <div class="thumbnail-title">15분도시 플랫폼 광고</div>
+          </div>
         </div>
         <div class="work-1-2-2">
           <button
@@ -250,23 +279,71 @@
     <script>
       const videos = [
         {
-          id: 'AT_7ZDDNQ9M?si=wGOohLt2HkbzC_TC',
+          id: 'xqHydADF4II',
+          title: '2030 부산월드엑스포 릴레이 인터뷰 - 강승윤',
+          productionDate: '2023',
+          client: '부산광역시청',
+          type: '인터뷰',
+        },
+        {
+          id: 'AT_7ZDDNQ9M',
           title: '2030 부산월드엑스포 릴레이 인터뷰 - 금난새',
           productionDate: '2023',
           client: '부산광역시청',
           type: '인터뷰',
         },
         {
-          id: 'AT_7ZDDNQ9M?si=wGOohLt2HkbzC_TC',
-          title: '2030 부산월드엑스포 릴레이 인터뷰 - 금난새',
+          id: 'ffi9doPmkmY',
+          title: '2030 부산월드엑스포 릴레이 인터뷰 - 엄홍길',
           productionDate: '2023',
           client: '부산광역시청',
           type: '인터뷰',
         },
-        // 나머지 비디오 정보...
+        {
+          id: 'xqHydADF4II',
+          title: '2030 부산월드엑스포 릴레이 인터뷰 - 천종호',
+          productionDate: '2023',
+          client: '부산광역시청',
+          type: '인터뷰',
+        },
+        {
+          id: 'CUHeQgnl97s',
+          title: '2030 부산월드엑스포 릴레이 인터뷰 - 이창용',
+          productionDate: '2023',
+          client: '부산광역시청',
+          type: '인터뷰',
+        },
+        {
+          id: '2SR6SACcOFU',
+          title: '2030 부산월드엑스포 릴레이 인터뷰 - 타일러',
+          productionDate: '2023',
+          client: '부산광역시청',
+          type: '인터뷰',
+        },
+        {
+          id: 'aQCfPSpyLuo',
+          title: '2030 부산월드엑스포 릴레이 인터뷰 - 손경식',
+          productionDate: '2023',
+          client: '부산광역시청',
+          type: '인터뷰',
+        },
+        {
+          id: '4fhckpc0HOw',
+          title: '2022 청년의날 하이라이트 영상',
+          productionDate: '2022',
+          client: '청년과 미래',
+          type: '스케치',
+        },
+        {
+          id: 'CsVPZHUebD0',
+          title: '15분도시 플랫폼 광고',
+          productionDate: '2024',
+          client: '부산광역시청',
+          type: '광고',
+        },
       ];
 
-      const thumbnails = document.querySelectorAll('#thumbnails img');
+      const thumbnails = document.querySelectorAll('.thumbnail-container');
       const modal = document.getElementById('videoModal');
       const closeBtn = document.querySelector('.close');
       const videoTitle = document.getElementById('videoTitle');
