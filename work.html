@@ -285,6 +285,10 @@
       function closeModal() {
         const modal = document.querySelector('.modal');
         modal.classList.remove('show');
+
+        // 영상 플레이어 초기화
+        const videoPlayer = document.getElementById('videoPlayer');
+        videoPlayer.innerHTML = '';
       }
 
       thumbnails.forEach((thumbnail, index) => {
