@@ -284,7 +284,7 @@
 }
 
 .about-3-1 p:nth-child(2) {
-  color: var(--Text-text-secondary, #969696);
+  color: #969696;
   text-align: center;
   font-family: Pretendard Variable;
   font-size: 1.5rem;
@@ -295,7 +295,7 @@
   margin-bottom: 2rem;
 }
 .about-3-1 p:nth-child(3) {
-  color: var(--Text-text-primary, #111);
+  color: #111;
   text-align: center;
   font-family: Pretendard Variable;
   font-size: 1rem;
