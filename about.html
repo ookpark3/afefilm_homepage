@@ -205,6 +205,7 @@
       </section>
       <!-- 마케팅 색션 -->
       <section id="marketing" class="about-4 section">
+        <div id="marketing-anchor" style="position: absolute; top: -80px"></div>
         <div class="about-4-1">
           <div class="about-4-1-1">
             <p>마케팅</p>
@@ -536,6 +537,19 @@
         preloadImages();
         updateContent('planning', 'process-content');
         updateContent('search', 'marketing-content');
+      });
+    </script>
+
+    <!-- 앵커 스크롤 스크립트 -->
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth',
+          });
+        });
       });
     </script>
   </body>
