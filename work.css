@@ -112,18 +112,18 @@
 /* 모달 */
 .modal {
   display: flex;
-  position: fixed; /* 변경: fixed로 설정하여 뷰포트 기준으로 위치 고정 */
-  opacity: 0; /* 초기에는 투명하게 */
-  visibility: hidden; /* 초기에는 보이지 않게 */
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
   z-index: 9999;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center; /* 추가: 수평 중앙 정렬 */
-  align-items: center; /* 추가: 수직 중앙 정렬 */
-  overflow: hidden; /* 추가: 모달 내부 스크롤 숨기기 */
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   font-family: Pretendard Variable;
   transition:
     opacity 0.3s ease,
@@ -135,13 +135,16 @@
 }
 
 .modal-content {
-  padding: 20px;
+  padding: 5vh;
   width: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   color: #ffffff;
   gap: 1.5rem;
+  flex-shrink: 0;
+  margin: auto; /* 추가: 상하좌우 중앙 정렬 */
 }
 
 .close {
