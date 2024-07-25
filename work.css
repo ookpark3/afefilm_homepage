@@ -33,6 +33,7 @@
 }
 .work-1-1-1 button {
   background-color: #ffffff;
+  color: #000000;
   font-family: Pretendard Variable;
   text-align: center;
   font-size: 1.25rem;
@@ -44,6 +45,14 @@
   padding: 0.5rem 1.5rem;
   border-radius: 1.25rem;
   cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.work-1-1-1 button:hover {
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .work-1-2 {

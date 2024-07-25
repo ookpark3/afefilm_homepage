@@ -88,6 +88,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Pretendard Variable;
 }
 
 .main-3-1 {
@@ -139,16 +140,16 @@
 .main-4 {
   position: relative;
   width: 100%;
-  min-height: 50vh;
+  min-height: 60vh;
   height: auto;
   padding: 3.125%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 2.5rem;
+  font-family: Pretendard Variable;
 }
 .main-4-1 {
-  font-family: Pretendard Variable;
   font-size: 6rem;
   font-style: normal;
   font-weight: 400;
@@ -163,10 +164,7 @@
   align-content: center;
   gap: 1.5rem;
 }
-.main-4-2-1,
-.main-4-2-2,
-.main-4-2-3,
-.main-4-2-4 {
+.main-4-2 a {
   width: 25%;
   padding: 0.625rem;
   border-radius: 2.5rem;
@@ -181,6 +179,16 @@
   font-style: normal;
   font-weight: 300;
   line-height: 140%; /* 2.1rem */
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.main-4-2 a:hover {
+  background-color: #111;
+  color: #fff;
 }
 /* main-5 구분선 */
 .main-5 {
@@ -248,8 +256,14 @@
   padding: 0 2.5rem; /* 변경: 좌우 패딩만 유지 */
   flex-shrink: 0;
   cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
-
+.main-5-1-4:hover {
+  background-color: #111;
+  color: #fff;
+}
 .main-5-1-4 p {
   margin: 0; /* 추가: p 태그의 기본 마진 제거 */
   font-size: 1rem; /* 추가: 원하는 폰트 크기 설정 */
