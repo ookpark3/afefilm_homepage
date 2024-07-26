@@ -356,12 +356,14 @@
       function openModal() {
         const modal = document.querySelector('.modal');
         modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // body 스크롤 막기
       }
 
       // 모달 닫기
       function closeModal() {
         const modal = document.querySelector('.modal');
         modal.classList.remove('show');
+        document.body.style.overflow = ''; // body 스크롤 복원
 
         // 영상 플레이어 초기화
         const videoPlayer = document.getElementById('videoPlayer');
