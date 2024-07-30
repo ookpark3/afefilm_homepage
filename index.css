@@ -1,77 +1,9 @@
-/* main-1 구분선 */
-.main-1 {
-  position: relative;
-  width: 100%;
-  padding-top: 5vh;
-  min-height: 100vh;
-  height: auto;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.title {
-  color: var(--Text-text-primary, #111);
-  font-family: Pretendard Variable;
-  font-size: 2.5rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 140%; /* 4.2rem */
-  text-transform: uppercase;
-}
-.big-circle {
-  position: relative;
-  width: 40%;
-  min-width: 40rem;
-  flex-shrink: 0;
-  border-radius: 50rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.green-circle {
-  width: 3rem;
-  height: 3rem;
-  flex-shrink: 0;
-  filter: blur(0rem);
-  background-color: #0f6;
-}
-.purple-circle {
-  width: 1.5rem;
-  height: 1.5rem;
-  flex-shrink: 0;
-  filter: blur(0rem);
-  background-color: #bd00ff;
-}
-.sky-circle {
-  width: 4rem;
-  height: 4rem;
-  flex-shrink: 0;
-  filter: blur(0rem);
-  background-color: #00d1ff;
-}
-.orbit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-.orbital {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  transform-origin: center center;
-}
 /* main2 구분선 */
 .main-2 {
   width: 100%;
-  min-height: 95vh;
   height: auto;
   background: url('./asset/main/showreel.png') center center / cover no-repeat;
+  margin-bottom: 5vh;
 }
 .main-2-1 {
   width: 100%;

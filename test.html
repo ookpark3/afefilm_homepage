@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>AFE 검색하기</title>
+  </head>
+  <body>
+    <button onclick="searchAFE()">AFE 검색</button>
+    <pre id="result"></pre>
+
+    <script>
+      function searchAFE() {
+        const apiKey = 'f8b783bfa64e5cc32ed2943dd0482356'; // 여기에 실제 REST API 키를 입력하세요
+        const query = '패스트파이브 역삼4호점';
+        const url = `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(query)}`;
+
+        fetch(url, {
+          headers: {
+            Authorization: `KakaoAK ${apiKey}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('result').textContent = JSON.stringify(
+              data,
+              null,
+              2,
+            );
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            document.getElementById('result').textContent =
+              '검색 중 오류가 발생했습니다.';
+          });
+      }
+    </script>
+  </body>
+</html>

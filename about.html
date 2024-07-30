@@ -318,78 +318,45 @@
       </div>
     </footer>
 
-    <!-- 섹션 등장 스크립트 -->
+    <!-- 섹션 스크립트 -->
     <script>
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
       const observer = new IntersectionObserver(
-        (entries) => {
+        debounce((entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (
+              entry.isIntersecting &&
+              !entry.target.classList.contains('visible')
+            ) {
               entry.target.classList.add('visible');
-            } else {
+            } else if (
+              !entry.isIntersecting &&
+              entry.target.classList.contains('visible')
+            ) {
               entry.target.classList.remove('visible');
             }
           });
-        },
+        }, 50), // 50ms 디바운스
         {
-          threshold: 0.1, // 10% 이상 보일 때 활성화
+          threshold: [0.1, 0.2, 0.3],
+          rootMargin: '-10% 0px -10% 0px',
         },
       );
 
       document.querySelectorAll('.section').forEach((section) => {
         observer.observe(section);
       });
-
-      const orbitals = document.querySelectorAll('.orbital');
-      const bigCircle = document.querySelector('.big-circle');
-
-      function animate(time) {
-        const radius = bigCircle.offsetWidth / 2;
-
-        orbitals.forEach((orbital, index) => {
-          const angle =
-            (time * 0.0003 + index * ((Math.PI * 2) / 3)) % (Math.PI * 2);
-          const x = Math.cos(angle) * radius;
-          const y = Math.sin(angle) * radius;
-
-          const offsetX = orbital.offsetWidth / 2;
-          const offsetY = orbital.offsetHeight / 2;
-
-          orbital.style.transform = `translate(${x}px, ${y}px) translate(-${offsetX}px, -${offsetY}px)`;
-        });
-
-        requestAnimationFrame(animate);
-      }
-
-      requestAnimationFrame(animate);
-
-      function setupInfiniteScroll() {
-        const container = document.querySelector('.scroll-container');
-        const images = container.querySelectorAll('.scroll-image');
-
-        if (images.length !== 2) {
-          console.error('Infinite scroll requires exactly two images');
-          return;
-        }
-
-        const imageWidth = images[0].offsetWidth;
-        let scrollPosition = 0;
-
-        function scroll() {
-          scrollPosition -= 1; // 스크롤 속도 조절 (숫자를 변경하여 속도 조절 가능)
-
-          if (scrollPosition <= -imageWidth) {
-            scrollPosition += imageWidth;
-          }
-
-          container.style.transform = `translateX(${scrollPosition}px)`;
-          requestAnimationFrame(scroll);
-        }
-
-        requestAnimationFrame(scroll);
-      }
-
-      // 페이지 로드 시 함수 실행
-      window.addEventListener('load', setupInfiniteScroll);
     </script>
 
     <!-- 프로세스 콘텐츠 변경시키는 코드(기획, 촬영, 편집) -->
@@ -553,4 +520,6 @@
       });
     </script>
   </body>
+  <!-- 로딩 스크립트 -->
+  <script src="./loading.js"></script>
 </html>

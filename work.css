@@ -229,7 +229,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: filter 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .thumbnail-title {
@@ -250,6 +250,8 @@
 
 .thumbnail-container:hover img {
   filter: brightness(0.4) blur(5px);
+  transform: scale(1.02); /* Slightly scale up the image */
+  transition: all 0.3s;
 }
 
 .thumbnail-container:hover .thumbnail-title {

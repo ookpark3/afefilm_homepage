@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="./asset/main/main/AFE logo.png" />
+    <link rel="icon" href="./asset/main/AFE logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./index.css" />
@@ -15,6 +15,17 @@
     <title>AFE | Home</title>
   </head>
   <body>
+    <!-- 로딩페이지 -->
+    <div id="loading-page" class="loading-page">
+      <div class="big-circle">
+        <h1 class="title">alien from earth</h1>
+        <div class="orbit">
+          <div class="green-circle orbital"></div>
+          <div class="purple-circle orbital"></div>
+          <div class="sky-circle orbital"></div>
+        </div>
+      </div>
+    </div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">
@@ -47,17 +58,8 @@
     </header>
     <!-- 메인 페이지 -->
     <main aria-label="메인 페이지">
-      <!-- 랜딩 요소 디자인 페이지 1 메인 타이틀 -->
-      <section class="main-1 section" aria-label="랜딩 요소 디자인 페이지">
-        <div class="big-circle">
-          <h1 class="title">alien from earth</h1>
-          <div class="orbit">
-            <div class="green-circle orbital"></div>
-            <div class="purple-circle orbital"></div>
-            <div class="sky-circle orbital"></div>
-          </div>
-        </div>
-      </section>
+      <!-- 랜딩 요소 디자인 페이지 1 메인 타이틀, 로딩페이지로 통합 -->
+
       <!-- 랜딩 요소 디자인 페이지 2 영상 쇼릴등장 -->
       <section class="main-2 section" aria-label="영상 쇼릴 페이지">
         <!-- 영상 들어갈 예정 -->
@@ -89,7 +91,7 @@
       </section>
       <hr class="section-divider" aria-label="섹션 구분선" />
       <!-- 랜딩 요소 디자인 페이지 4 Our Services 페이지 -->
-      <section class="main-4 section" aria-label="Our Services 페이지">
+      <section class="main-4 section" aria-label="Our Services 페지">
         <h2 class="main-4-1">Our Services</h2>
         <div class="main-4-2">
           <a href="./about.html#film-production" class="main-4-2-1"
@@ -185,50 +187,83 @@
         </div>
       </div>
     </footer>
-    <!-- 스크립트 -->
+    <!-- 로딩 스크립트 -->
     <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const loadingPage = document.getElementById('loading-page');
+        const orbitals = document.querySelectorAll('.orbital');
+        const bigCircle = document.querySelector('.big-circle');
+        const body = document.body;
+
+        // 초기에 body에 no-scroll 클래스 추가
+        body.classList.add('no-scroll');
+
+        function animate(time) {
+          const radius = bigCircle.offsetWidth / 2;
+
+          orbitals.forEach((orbital, index) => {
+            const angle =
+              (time * 0.0003 + index * ((Math.PI * 2) / 3)) % (Math.PI * 2);
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
+            const offsetX = orbital.offsetWidth / 2;
+            const offsetY = orbital.offsetHeight / 2;
+
+            orbital.style.transform = `translate(${x}px, ${y}px) translate(-${offsetX}px, -${offsetY}px)`;
+          });
+
+          requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+
+        // 1초 후 로딩 페이지 숨기기 및 섹션 표시
+        setTimeout(() => {
+          loadingPage.classList.add('hidden');
+          // no-scroll 클래스 제거하여 스크롤 허용
+          body.classList.remove('no-scroll');
+        }, 1000);
+      });
+    </script>
+    <!-- 섹션 스크립트 -->
+    <script>
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
       const observer = new IntersectionObserver(
-        (entries) => {
+        debounce((entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (
+              entry.isIntersecting &&
+              !entry.target.classList.contains('visible')
+            ) {
               entry.target.classList.add('visible');
-            } else {
-              entry.target.classList.remove('visible');
+              observer.unobserve(entry.target); // 한 번 보이면 관찰 중지
             }
           });
-        },
+        }, 50), // 50ms 디바운스
         {
-          threshold: 0.1, // 10% 이상 보일 때 활성화
+          threshold: [0, 0.5, 1],
+          rootMargin: '-20% 0px -20% 0px',
         },
       );
 
       document.querySelectorAll('.section').forEach((section) => {
         observer.observe(section);
       });
-
-      const orbitals = document.querySelectorAll('.orbital');
-      const bigCircle = document.querySelector('.big-circle');
-
-      function animate(time) {
-        const radius = bigCircle.offsetWidth / 2;
-
-        orbitals.forEach((orbital, index) => {
-          const angle =
-            (time * 0.0003 + index * ((Math.PI * 2) / 3)) % (Math.PI * 2);
-          const x = Math.cos(angle) * radius;
-          const y = Math.sin(angle) * radius;
-
-          const offsetX = orbital.offsetWidth / 2;
-          const offsetY = orbital.offsetHeight / 2;
-
-          orbital.style.transform = `translate(${x}px, ${y}px) translate(-${offsetX}px, -${offsetY}px)`;
-        });
-
-        requestAnimationFrame(animate);
-      }
-
-      requestAnimationFrame(animate);
-
+    </script>
+    <!-- 로고 가로로 무한스크롤 -->
+    <script>
       function setupInfiniteScroll() {
         const container = document.querySelector('.scroll-container');
         const images = container.querySelectorAll('.scroll-image');
@@ -257,6 +292,45 @@
 
       // 페이지 로드 시 함수 실행
       window.addEventListener('load', setupInfiniteScroll);
+    </script>
+    <!-- 헤더 스크롤되면 배경색 변경 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const header = document.querySelector('.header');
+        const main = document.querySelector('main');
+        let lastScrollY = 0;
+
+        function updateHeader(scrollY) {
+          const headerHeight = header.offsetHeight;
+          const mainTop = main.offsetTop;
+          const scrollDistance = window.innerHeight * 0.5; // 뷰포트 높이를 사용
+
+          // 스크롤 진행도를 0에서 1 사이의 값으로 계산
+          const scrollProgress = Math.max(
+            0,
+            Math.min(scrollY / scrollDistance, 1),
+          );
+
+          // 배경색의 알파값을 설정
+          const alpha = scrollProgress.toFixed(2);
+          header.style.backgroundColor = `rgba(17, 17, 17, ${alpha})`;
+
+          console.log(
+            `Scroll position: ${scrollY}px, Progress: ${scrollProgress.toFixed(2)}, Alpha: ${alpha}`,
+          );
+        }
+
+        // 초기 로드 시 헤더 배경을 투명하게 설정
+        header.style.backgroundColor = 'rgba(17, 17, 17, 0)';
+
+        // 스크롤 이벤트 리스너
+        window.addEventListener('scroll', function () {
+          updateHeader(window.scrollY);
+        });
+
+        // 초기 상태 설정
+        updateHeader(window.scrollY);
+      });
     </script>
   </body>
 </html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Kakao 지도 시작하기</title>
+    <style>
+      .wrap {
+        position: absolute;
+        left: 0;
+        bottom: 40px;
+        width: 288px;
+        height: 132px;
+        margin-left: -144px;
+        text-align: left;
+        overflow: hidden;
+        font-size: 12px;
+        font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+        line-height: 1.5;
+      }
+      .wrap * {
+        padding: 0;
+        margin: 0;
+      }
+      .wrap .info {
+        width: 286px;
+        height: 120px;
+        border-radius: 5px;
+        border-bottom: 2px solid #ccc;
+        border-right: 1px solid #ccc;
+        overflow: hidden;
+        background: #fff;
+      }
+      .wrap .info:nth-child(1) {
+        border: 0;
+        box-shadow: 0px 1px 2px #888;
+      }
+      .info .title {
+        padding: 5px 0 0 10px;
+        height: 30px;
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .info .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #888;
+        width: 17px;
+        height: 17px;
+        background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+      }
+      .info .close:hover {
+        cursor: pointer;
+      }
+      .info .body {
+        position: relative;
+        overflow: hidden;
+      }
+      .info .desc {
+        position: relative;
+        margin: 13px 0 0 90px;
+        height: 75px;
+      }
+      .desc .ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .desc .jibun {
+        font-size: 11px;
+        color: #888;
+        margin-top: -2px;
+      }
+      .info .img {
+        position: absolute;
+        top: 6px;
+        left: 5px;
+        width: 73px;
+        height: 71px;
+        border: 1px solid #ddd;
+        color: #888;
+        overflow: hidden;
+      }
+      .info:after {
+        content: '';
+        position: absolute;
+        margin-left: -12px;
+        left: 50%;
+        bottom: 0;
+        width: 22px;
+        height: 12px;
+        background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
+      }
+      .info .link {
+        color: #5085bb;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style="width: 100vw; height: 100vh"></div>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=61196221f4f443671c8963de1d46660e"
+    ></script>
+    <script>
+      var afeinfo = {
+        address_name: '부산 해운대구 좌동 1485-5',
+        category_group_code: '',
+        category_group_name: '',
+        category_name: '서비스,산업 > 제조업 > 전기,전자 > 영상,음향기기제조',
+        distance: '',
+        id: '2015496563',
+        phone: '010-2578-6322',
+        place_name: 'AFE',
+        place_url: 'http://place.map.kakao.com/2015496563',
+        road_address_name: '부산 해운대구 세실로 33',
+        x: '129.17896249910305',
+        y: '35.168011425787924',
+      };
+      var container = document.getElementById('map');
+      var options = {
+        center: new kakao.maps.LatLng(afeinfo.y, afeinfo.x),
+        level: 3,
+      };
+
+      var map = new kakao.maps.Map(container, options);
+
+      // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+      var mapTypeControl = new kakao.maps.MapTypeControl();
+
+      // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+      // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+      map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+      // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
+      var zoomControl = new kakao.maps.ZoomControl();
+      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+      // 마커가 표시될 위치입니다
+      var markerPosition = new kakao.maps.LatLng(afeinfo.y, afeinfo.x);
+
+      // 마커를 생성합니다
+      var marker = new kakao.maps.Marker({
+        position: markerPosition,
+      });
+
+      // 마커가 지도 위에 표시되도록 설정합니다
+      marker.setMap(map);
+
+      // 커스텀 오버레이에 표시할 컨텐츠 입니다
+      var content =
+        '<div class="wrap">' +
+        '    <div class="info">' +
+        '        <div class="title">' +
+        '            ' +
+        afeinfo.place_name +
+        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+        '        </div>' +
+        '        <div class="body">' +
+        '            <div class="desc">' +
+        '                <div class="ellipsis">' +
+        afeinfo.road_address_name +
+        '</div>' +
+        '                <div class="jibun ellipsis">' +
+        afeinfo.address_name +
+        '</div>' +
+        '                <div><a href="' +
+        afeinfo.place_url +
+        '" target="_blank" class="link">홈페이지</a></div>' +
+        '            </div>' +
+        '        </div>' +
+        '    </div>' +
+        '</div>';
+
+      // 마커 위에 커스텀오버레이를 표시합니다
+      var overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: map,
+        position: marker.getPosition(),
+      });
+
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, 'click', function () {
+        overlay.setMap(map);
+      });
+
+      // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+      function closeOverlay() {
+        overlay.setMap(null);
+      }
+    </script>
+  </body>
+</html>

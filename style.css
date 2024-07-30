@@ -73,13 +73,15 @@ textarea {
   padding: 0.5rem 3.90625%; /* 3.75rem / 1920px * 100 */
   justify-content: space-between;
   align-items: center;
-  background: var(--Background-bg-secondary, #111);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   font-family: Pretendard Variable;
+  background-color: #111;
+  transition: all 0.3s ease;
 }
+
 .header a {
   color: #fff;
   text-decoration: none;
@@ -271,8 +273,100 @@ textarea {
     opacity 0.6s ease-out,
     transform 0.6s ease-out;
   font-family: Pretendard Variable;
+  will-change: opacity, transform;
 }
 .section.visible {
   opacity: 1;
   transform: translateY(0);
+}
+/* 로딩페이지 */
+
+.loading-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.loading-page.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.main-1 {
+  position: relative;
+  width: 100%;
+  padding-top: 5vh;
+  min-height: 100vh;
+  height: auto;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  color: var(--Text-text-primary, #ffffff);
+  font-family: Pretendard Variable;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 4.2rem */
+  text-transform: uppercase;
+}
+.big-circle {
+  position: relative;
+  width: 40%;
+  min-width: 40rem;
+  flex-shrink: 0;
+  border-radius: 50rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.green-circle {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  filter: blur(0rem);
+  background-color: #0f6;
+}
+.purple-circle {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  filter: blur(0rem);
+  background-color: #bd00ff;
+}
+.sky-circle {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  filter: blur(0rem);
+  background-color: #00d1ff;
+}
+.orbit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.orbital {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform-origin: center center;
+}
+.no-scroll {
+  overflow: hidden;
 }
