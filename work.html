@@ -203,46 +203,42 @@
         </div>
       </div>
     </footer>
-  <!-- 섹션 스크립트 -->
-  <script>
-    function debounce(func, wait) {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => {
+    <!-- 섹션 스크립트 -->
+    <script>
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
           clearTimeout(timeout);
-          func(...args);
+          timeout = setTimeout(later, wait);
         };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    }
+      }
 
-    const observer = new IntersectionObserver(
-      debounce((entries) => {
-        entries.forEach((entry) => {
-          if (
-            entry.isIntersecting &&
-            !entry.target.classList.contains('visible')
-          ) {
-            entry.target.classList.add('visible');
-          } else if (
-            !entry.isIntersecting &&
-            entry.target.classList.contains('visible')
-          ) {
-            entry.target.classList.remove('visible');
-          }
-        });
-      }, 50), // 50ms 디바운스
-      {
-        threshold: [0.1, 0.2, 0.3],
-        rootMargin: '-10% 0px -10% 0px',
-      },
-    );
+      const observer = new IntersectionObserver(
+        debounce((entries) => {
+          entries.forEach((entry) => {
+            if (
+              entry.isIntersecting &&
+              !entry.target.classList.contains('visible')
+            ) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target); // 한 번 보이면 관찰 중지
+            }
+          });
+        }, 25), // 50ms 디바운스
+        {
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+          rootMargin: '-20% 0px -20% 0px',
+        },
+      );
 
-    document.querySelectorAll('.section').forEach((section) => {
-      observer.observe(section);
-    });
-  </script>
+      document.querySelectorAll('.section').forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
 
     <!-- 비디오 정보 모달창 -->
     <script>

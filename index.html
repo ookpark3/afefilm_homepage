@@ -251,9 +251,9 @@
               observer.unobserve(entry.target); // 한 번 보이면 관찰 중지
             }
           });
-        }, 50), // 50ms 디바운스
+        }, 25), // 50ms 디바운스
         {
-          threshold: [0, 0.5, 1],
+          threshold: [0, 0.25, 0.5, 0.75, 1],
           rootMargin: '-20% 0px -20% 0px',
         },
       );
