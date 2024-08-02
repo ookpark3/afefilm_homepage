@@ -131,7 +131,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   overflow: hidden;
 }
 .main-5-1 {
@@ -155,17 +154,77 @@
   letter-spacing: -0.3rem;
 }
 .main-5-1-2 {
-  width: 100%;
-  aspect-ratio: 2.25 / 1;
-  border-radius: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  height: 80%;
   overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 함 */
+  gap: 1.5rem;
 }
-
-.main-5-1-2 iframe {
+.main-5-1-2-1 {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 이미지가 컨테이너를 채우도록 함 */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 비율 */
+  overflow: hidden;
+}
+
+.video-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  transition: opacity 0.25s ease-out;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 3;
+  transition: opacity 0.25s ease-out;
+}
+.video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 1;
+}
+.play-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.play-icon circle {
+  transition: fill 0.3s ease;
+}
+
+.play-icon path {
+  transition: fill 0.3s ease;
+}
+
+.play-button:hover .play-icon path {
+  fill: white; /* 호버 시 재생 버튼 색상 변경 */
+}
+
 .main-5-1-3 {
   display: inline-flex;
   align-items: center;
