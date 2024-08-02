@@ -177,7 +177,7 @@
 }
 
 .contact-2-1 {
-  align-self: flex-start;
+  align-self: center;
   color: var(--Text-text-primary, #111);
   font-size: 2.5rem;
   font-style: normal;
@@ -190,7 +190,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
 }
 
@@ -200,7 +200,7 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  width: 50%;
+  width: 35%;
   gap: 1.5rem;
 }
 
@@ -213,15 +213,6 @@
   max-height: 80%;
 }
 
-.contact-2-2-1 img,
-.contact-2-2-2 img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  max-height: 60vh;
-  object-fit: cover;
-  object-position: center;
-  vertical-align: middle;
-}
 .contact-2-2-1-1 p,
 .contact-2-2-2-2 p {
   color: var(--Text-text-primary, #111);
@@ -240,9 +231,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: 2.5rem; /* 200% */
+  letter-spacing: 0;
 }
 .contact-2-3 {
-  color: var(--Text-text-primary, #111);
+  color: #111;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 400;
@@ -257,104 +249,12 @@
   gap: 0.5rem;
 }
 /* 지도관련 */
-.wrap {
-  position: absolute;
-  left: 0;
-  bottom: 40px;
-  width: 288px;
-  height: 132px;
-  margin-left: -144px;
-  text-align: left;
-  overflow: hidden;
-  font-size: 12px;
-  font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-  line-height: 1.5;
-}
-.wrap * {
-  padding: 0;
-  margin: 0;
-}
-.wrap .info {
-  width: 286px;
-  height: 120px;
-  border-radius: 5px;
-  border-bottom: 2px solid #ccc;
-  border-right: 1px solid #ccc;
-  overflow: hidden;
-  background: #fff;
-}
-.wrap .info:nth-child(1) {
-  border: 0;
-  box-shadow: 0px 1px 2px #888;
-}
-.info .title {
-  padding: 5px 0 0 10px;
-  height: 30px;
-  background: #eee;
-  border-bottom: 1px solid #ddd;
-  font-size: 18px;
-  font-weight: bold;
-  color: #000;
-}
-.info .close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #888;
-  width: 17px;
-  height: 17px;
-  background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
-}
-.info .close:hover {
-  cursor: pointer;
-}
-.info .body {
-  position: relative;
-  overflow: hidden;
-}
-.info .desc {
-  position: relative;
-  margin: 13px 0 0 90px;
-  height: 75px;
-}
-.desc .ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.desc .jibun {
-  font-size: 11px;
-  color: #888;
-  margin-top: -2px;
-}
-.info .img {
-  position: absolute;
-  top: 6px;
-  left: 5px;
-  width: 73px;
-  height: 71px;
-  border: 1px solid #ddd;
-  color: #888;
-  overflow: hidden;
-}
-.info:after {
-  content: '';
-  position: absolute;
-  margin-left: -12px;
-  left: 50%;
-  bottom: 0;
-  width: 22px;
-  height: 12px;
-  background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
-}
-.info .link {
-  color: #5085bb;
-}
 
 .map-container {
   width: 100%;
-  padding-top: 75%; /* 4:3 비율 (3/4 = 0.75) */
+  padding-top: 75%;
   position: relative;
+  transition: filter 0.3s;
 }
 
 .map-container > div {
@@ -364,27 +264,7 @@
   bottom: 0;
   right: 0;
 }
-.wrap {
-  z-index: 1000 !important;
-}
-.info {
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-}
-.title {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.close {
-  float: right;
-  cursor: pointer;
-}
-.desc {
-  font-size: 12px;
-}
-.link {
-  color: blue;
-  text-decoration: underline;
+.contact-2-2-1 img,
+.contact-2-2-2 img {
+  width: 5rem;
 }

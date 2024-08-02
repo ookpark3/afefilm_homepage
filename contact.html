@@ -272,51 +272,31 @@
           level: 3,
         };
 
-        var map = new kakao.maps.Map(container.querySelector('div'), mapOption);
+        var map = new kakao.maps.Map(container.querySelector('div'), {
+          center: new kakao.maps.LatLng(position.y, position.x),
+          level: 3,
+          mapTypeId: kakao.maps.MapTypeId.GRAY,
+        });
 
         var markerPosition = new kakao.maps.LatLng(position.y, position.x);
         var marker = new kakao.maps.Marker({
           position: markerPosition,
         });
 
-        marker.setMap(map);
-
         var content =
-          '<div class="wrap">' +
-          '    <div class="info">' +
-          '        <div class="title">' +
-          '            ' +
-          info.place_name +
-          '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-          '        </div>' +
-          '        <div class="body">' +
-          '            <div class="desc">' +
-          '                <div class="ellipsis">' +
-          info.road_address_name +
-          '</div>' +
-          '                <div class="jibun ellipsis">' +
-          info.address_name +
-          '</div>' +
-          '                <div><a href="' +
+          '<a href="' +
           info.place_url +
-          '" target="_blank" class="link">홈페이지</a></div>' +
-          '            </div>' +
-          '        </div>' +
-          '    </div>' +
-          '</div>';
-
+          '" target="_blank">' +
+          '<img src="asset/contact/picker.png" id="picker" alt="Location Marker" style="cursor:pointer; width: 67px; height: 81px; filter: none !important; position: relative; z-index: 1;">' +
+          '</a>';
         var overlay = new kakao.maps.CustomOverlay({
           content: content,
           position: markerPosition,
           xAnchor: 0.5,
-          yAnchor: 1.5,
+          yAnchor: 1,
         });
+        overlay.setMap(map);
 
-        kakao.maps.event.addListener(marker, 'click', function () {
-          overlay.setMap(map);
-        });
-
-        //줌 컨트롤 추가
         var zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
@@ -326,7 +306,6 @@
       var busanMapContainer = document.getElementById('map-busan');
       var seoulMapContainer = document.getElementById('map-seoul');
 
-      // 지도 컨테이너에 내부 div 추가
       busanMapContainer.innerHTML = '<div></div>';
       seoulMapContainer.innerHTML = '<div></div>';
 
@@ -338,11 +317,9 @@
         seoulMapInfo.overlay.setMap(null);
       }
 
-      // 디버깅을 위해 콘솔에 로그 출력
       console.log('Busan Map Info:', busanMapInfo);
       console.log('Seoul Map Info:', seoulMapInfo);
 
-      // 마커 클릭 이벤트 테스트
       kakao.maps.event.trigger(busanMapInfo.marker, 'click');
       kakao.maps.event.trigger(seoulMapInfo.marker, 'click');
     </script>
