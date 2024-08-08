@@ -55,7 +55,26 @@
           </a>
         </div>
       </div>
+      <!-- 햄버거 메뉴 버튼 -->
+      <button class="hamburger-menu" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
+    <!-- 모바일 메뉴 -->
+    <nav class="mobile-menu">
+      <a href="./about.html">About</a>
+      <a href="./work.html">Work</a>
+      <a href="./contact.html">Contact</a>
+      <a href="https://bit.ly/3yJX7NL" class="company-intro">
+        <span>회사소개서</span>
+        <img
+          src="./asset/main/material-symbols-light_download.svg"
+          alt="Download"
+        />
+      </a>
+    </nav>
     <!-- 메인 페이지 -->
     <main aria-label="메인 페이지">
       <!-- 랜딩 요소 페이지 1 메인 타이틀, 로딩페이지로 통합 -->
@@ -154,10 +173,7 @@
             <img src="./asset/main/Ellipse 6.svg" alt="2번이미지" />
           </div>
 
-          <div
-            class="main-5-1-4"
-            onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-          >
+          <div class="main-5-1-4">
             <p>View more</p>
           </div>
         </div>
@@ -253,6 +269,10 @@
 
         requestAnimationFrame(animate);
 
+        //임시 테스트용
+        loadingPage.classList.add('hidden');
+        body.classList.remove('no-scroll');
+
         // 최소 1초 대기를 위한 Promise
         const minWaitPromise = new Promise((resolve) =>
           setTimeout(resolve, 1000),
@@ -268,10 +288,67 @@
         });
 
         // 두 Promise가 모두 완료될 때까지 대기
-        Promise.all([minWaitPromise, videoLoadPromise]).then(() => {
-          loadingPage.classList.add('hidden');
-          // no-scroll 클래스 제거하여 스크롤 허용
-          body.classList.remove('no-scroll');
+        // Promise.all([minWaitPromise, videoLoadPromise]).then(() => {
+        //   loadingPage.classList.add('hidden');
+        //   // no-scroll 클래스 제거하여 스크롤 허용
+        //   body.classList.remove('no-scroll');
+        // });
+      });
+    </script>
+    <!-- 햄버거 메뉴 스크립트 -->
+    <script>
+      // 문서가 완전히 로드된 후 스크립트 실행
+      document.addEventListener('DOMContentLoaded', function () {
+        // 필요한 요소들을 선택
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const body = document.body;
+
+        // 햄버거 메뉴 클릭 이벤트 리스너
+        hamburgerMenu.addEventListener('click', function () {
+          // 햄버거 메뉴와 모바일 메뉴의 활성화 상태를 토글
+          this.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+
+          // 모바일 메뉴가 활성화되었을 때
+          if (mobileMenu.classList.contains('active')) {
+            // 모바일 메뉴를 보이게 함
+            mobileMenu.style.display = 'flex';
+            // 약간의 지연 후 메뉴를 오른쪽에서 슬라이드인
+            setTimeout(() => {
+              mobileMenu.style.right = '0';
+            }, 10); // 10ms 지연으로 트랜지션 효과 적용
+            // 배경 스크롤 방지
+            body.style.overflow = 'hidden';
+          } else {
+            // 모바일 메뉴가 비활성화되었을 때
+            // 메뉴를 오른쪽으로 슬라이드아웃
+            mobileMenu.style.right = '-100%';
+            // 트랜지션 완료 후 메뉴를 숨김
+            setTimeout(() => {
+              mobileMenu.style.display = 'none';
+            }, 300); // 300ms는 CSS 트랜지션 시간과 일치해야 함
+            // 배경 스크롤 허용
+            body.style.overflow = '';
+          }
+        });
+
+        // 햄버거 메뉴 아이콘 애니메이션
+        hamburgerMenu.addEventListener('click', function () {
+          // 햄버거 메뉴의 각 막대를 선택
+          const spans = this.querySelectorAll('span');
+          // 메뉴가 활성화되었을 때
+          if (this.classList.contains('active')) {
+            // X 모양으로 변형
+            spans[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+          } else {
+            // 원래 햄버거 모양으로 복귀
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+          }
         });
       });
     </script>

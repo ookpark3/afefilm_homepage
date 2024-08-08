@@ -339,7 +339,7 @@
               !entry.target.classList.contains('visible')
             ) {
               entry.target.classList.add('visible');
-              observer.unobserve(entry.target); // 한 번 보이면 관찰 중지
+              observer.unobserve(entry.target);
             }
           });
         }, 25), // 50ms 디바운스
@@ -443,6 +443,49 @@
         });
       }
 
+      function updateTabUnderline(tabElement) {
+        const tabsContainer = tabElement.closest('.about-2-1-2, .about-4-2-1');
+        const tabs = Array.from(tabsContainer.querySelectorAll('.tab'));
+        const activeTabIndex = tabs.indexOf(tabElement);
+
+        // 탭의 너비와 위치를 계산
+        const tabWidth = tabElement.offsetWidth;
+        const tabLeft = tabElement.offsetLeft;
+
+        // 하단 바의 너비와 위치를 설정
+        tabsContainer.style.setProperty('--underline-width', `${tabWidth}px`);
+        tabsContainer.style.setProperty('--underline-left', `${tabLeft}px`);
+
+        tabsContainer.style.setProperty('--active-tab-index', activeTabIndex);
+      }
+
+      document
+        .querySelectorAll('.about-2-1-2 .tab, .about-4-2-1 .tab')
+        .forEach((tab) => {
+          tab.addEventListener('click', function () {
+            document
+              .querySelectorAll('.about-2-1-2 .tab, .about-4-2-1 .tab')
+              .forEach((t) => t.classList.remove('active'));
+            this.classList.add('active');
+            updateTabUnderline(this);
+            updateContent(
+              this.dataset.tab,
+              this.closest('.about-2, .about-4').querySelector(
+                '.about-2-1-3, .about-4-2-2',
+              ).id,
+            );
+          });
+        });
+
+      // 초기 설정
+      window.addEventListener('load', () => {
+        preloadImages();
+        updateContent('planning', 'process-content');
+        updateContent('search', 'marketing-content');
+        updateTabUnderline(document.querySelector('.about-2-1-2 .tab.active'));
+        updateTabUnderline(document.querySelector('.about-4-2-1 .tab.active'));
+      });
+
       function updateContent(tab, containerId) {
         const content = tabContents[tab];
         const processContent = document.getElementById(containerId);
@@ -461,8 +504,12 @@
           );
           items.forEach((item, index) => {
             if (index % 2 === 0) {
-              item.querySelector('img').src = content.images[index / 2];
-              item.querySelector('p').textContent = content.texts[index / 2];
+              const img = item.querySelector('img');
+              const p = item.querySelector('p');
+              if (img && p) {
+                img.src = content.images[index / 2];
+                p.textContent = content.texts[index / 2];
+              }
             }
           });
 
@@ -476,30 +523,6 @@
           }, 10); // 약간의 지연을 줘서 transition이 적용되도록 함
         }, 250); // 기존 콘텐츠가 사라지는 시간을 고려하여 지연
       }
-
-      document
-        .querySelectorAll('.about-2-1-2 .tab, .about-4-2-1 .tab')
-        .forEach((tab) => {
-          tab.addEventListener('click', function () {
-            document
-              .querySelectorAll('.about-2-1-2 .tab, .about-4-2-1 .tab')
-              .forEach((t) => t.classList.remove('active'));
-            this.classList.add('active');
-            updateContent(
-              this.dataset.tab,
-              this.closest('.about-2, .about-4').querySelector(
-                '.about-2-1-3, .about-4-2-2',
-              ).id,
-            );
-          });
-        });
-
-      // 초기 컨텐츠 설정 및 이미지 미리 로드
-      window.addEventListener('load', () => {
-        preloadImages();
-        updateContent('planning', 'process-content');
-        updateContent('search', 'marketing-content');
-      });
     </script>
 
     <!-- 앵커 스크롤 스크립트 -->
