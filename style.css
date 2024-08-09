@@ -456,7 +456,6 @@ textarea {
   filter: invert(0);
 }
 
-/* 모바일 화면에서 햄버거 메뉴 표시 */
 @media (max-width: 768px) {
   .header-menu {
     display: none;
@@ -464,5 +463,22 @@ textarea {
 
   .hamburger-menu {
     display: block;
+  }
+  .footer {
+    font-size: 0.7rem;
+    & .footer-1-1 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0rem;
+    }
+    & .footer-1-2 {
+      flex-direction: column;
+    }
+    & .footer-1-2-1 {
+      width: 100%;
+    }
+    & .footer-1-2-2 {
+      width: 100%;
+    }
   }
 }
