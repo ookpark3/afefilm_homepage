@@ -324,6 +324,9 @@
   }
 }
 @media (max-width: 768px) {
+  .main-2 {
+    margin-top: 5rem;
+  }
   .main-3 {
     padding: 1.25rem;
     & .main-3-1 {
@@ -332,6 +335,7 @@
     }
     & .main-3-1-1 {
       font-size: 3rem;
+      letter-spacing: -0.15rem;
     }
     & .main-3-1-2 {
       font-size: 0.8rem;
@@ -367,6 +371,7 @@
     }
     & .main-5-1-1 {
       font-size: 3rem;
+      letter-spacing: -0.15rem;
     }
     & .main-5-1-2 {
       width: 100%;

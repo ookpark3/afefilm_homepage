@@ -457,6 +457,9 @@ textarea {
 }
 
 @media (max-width: 768px) {
+  .header {
+    height: 5rem;
+  }
   .header-menu {
     display: none;
   }
@@ -468,6 +471,7 @@ textarea {
   .footer {
     padding: 1.25rem;
     font-size: 0.75rem;
+    border-top: none;
     & .footer-1 {
       width: 100%;
       gap: 1rem;
