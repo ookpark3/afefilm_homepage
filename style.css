@@ -438,26 +438,26 @@ textarea {
   border: 1px solid #111;
   font-size: 1rem;
   width: fit-content;
-
-  a {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    color: #111;
-    font-family: Pretendard, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%; /* 1rem */
-    letter-spacing: -0.05rem;
-  }
-  a > svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-left: 0.25rem;
-  }
 }
 
+.mobile-menu-2 a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #111;
+  font-family: Pretendard, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 1rem */
+  letter-spacing: -0.05rem;
+}
+
+.mobile-menu-2 svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 0.25rem;
+}
 @media (max-width: 768px) {
   .header {
     height: 5rem;
