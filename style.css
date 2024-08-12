@@ -403,57 +403,59 @@ textarea {
   justify-content: center;
   transition: right 0.3s ease-in-out; /* 애니메이션 효과 추가 */
   z-index: 10;
+  padding: 1.25rem;
+  font-family: Pretendard Variable;
 }
 .mobile-menu.active {
   right: 0; /* 활성화 시 화면을 덮도록 이동 */
 }
 
-.mobile-menu a {
-  color: #000000;
-  font-size: 4rem;
-  margin: 20px 0;
-  font-weight: 500;
-  color: var(--Text-text-primary, #111);
-  font-family: Pretendard;
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 500;
-  text-decoration: none;
-  font-family: Pretendard Variable;
-}
-
-.mobile-menu .company-intro {
+.mobile-menu-1 {
   display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+  a {
+    color: #000;
+    font-size: 4rem;
+    margin: 20px 0;
+    font-weight: 500;
+    font-family: Pretendard;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -0.025rem;
+    line-height: 140%;
+    font-family: Pretendard Variable;
+  }
+}
+.mobile-menu-2 {
+  display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
   padding: 0.25rem 1rem;
   border-radius: 1.875rem;
-  border: 0.0325rem solid #f8f9fa;
-  transition: all 0.3s;
-}
-
-.mobile-menu .company-intro span {
-  font-family: Pretendard Variable;
+  border: 1px solid #111;
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  letter-spacing: -0.05rem;
-  color: #000;
-  transition: all 0.3s;
-}
-.mobile-menu .company-intro img {
-  filter: invert(1);
-  transition: filter 0.3s;
-}
-.mobile-menu .company-intro:hover {
-  background-color: #000;
-}
-.mobile-menu .company-intro:hover span {
-  color: #fff;
-}
-.mobile-menu .company-intro:hover img {
-  filter: invert(0);
+  width: fit-content;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #111;
+    font-family: Pretendard, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 1rem */
+    letter-spacing: -0.05rem;
+  }
+  a > svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 0.25rem;
+  }
 }
 
 @media (max-width: 768px) {
