@@ -314,6 +314,17 @@
         const mobileMenu = document.querySelector('.mobile-menu');
         const body = document.body;
 
+        // 초기 상태 설정
+        mobileMenu.style.transition = 'none';
+        mobileMenu.style.right = '-100%';
+        mobileMenu.style.display = 'none';
+
+        // 강제로 리플로우를 발생시켜 초기 스타일을 적용
+        mobileMenu.offsetHeight;
+
+        // 트랜지션 다시 활성화
+        mobileMenu.style.transition = 'right 0.3s ease-in-out';
+
         // 햄버거 메뉴 클릭 이벤트 리스너
         hamburgerMenu.addEventListener('click', function () {
           // 햄버거 메뉴와 모바일 메뉴의 활성화 상태를 토글

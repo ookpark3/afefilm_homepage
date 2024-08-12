@@ -388,7 +388,7 @@ textarea {
   transition: 0.4s;
 }
 .hamburger-menu.active span {
-  background-color: #000;
+  background-color: #ffffff;
 }
 .mobile-menu {
   display: none;
