@@ -268,3 +268,69 @@
 .contact-2-2-2 img {
   width: 5rem;
 }
+
+@media screen and (max-width: 768px) {
+  .contact-1 {
+    padding: 7rem 1.25rem;
+  }
+  .contact-1-1 {
+    > p:first-child {
+      font-size: 2.5rem;
+    }
+    > p:last-child {
+      display: none;
+    }
+  }
+
+  .contact-1-2 {
+    width: 100%;
+  }
+  .contact-1-2-form {
+    width: 100%;
+  }
+  .contact-1-2-form-checkbox {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    line-height: 150%; /* 1.5rem */
+  }
+  .contact-1-2-form-checkbox label {
+    width: 35%; /* 약간의 여백을 두고 2열로 배치 */
+  }
+  .contact-1-2-form-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .contact-1-2-form-input > * {
+    width: 100%;
+  }
+  .contact-2 {
+    padding: 0 1.25rem;
+    & .contact-2-2 {
+      flex-direction: column;
+      & .contact-2-2-1,
+      & .contact-2-2-2 {
+        width: 100%;
+      }
+      & .contact-2-2-1-1 p,
+      & .contact-2-2-2-2 p {
+        font-size: 1rem;
+      }
+      & .contact-2-2-1-1 p:nth-child(2),
+      & .contact-2-2-2-2 p:nth-child(2) {
+        font-size: 0.85rem;
+      }
+    }
+    & .contact-2-3 {
+      font-size: 1rem;
+      letter-spacing: -0.025rem;
+    }
+  }
+  .section-divider {
+    display: none;
+  }
+}

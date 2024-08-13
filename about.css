@@ -547,3 +547,41 @@
 .about-4-2-2-2 p {
   width: 6.25rem;
 }
+
+@media (max-width: 768px) {
+  .about-1 {
+    padding: 0 1.25rem;
+  }
+  .about-1-1 {
+    width: 100%;
+  }
+  .about-2 {
+    padding: 0 1.25rem;
+  }
+  .about-2-1 {
+    width: 100%;
+  }
+  .about-2-1-2 {
+    width: 100%;
+  }
+  .about-2-1-3 {
+    flex-direction: column;
+  }
+  .about-3-1-2-1,
+  .about-3-1-2-2 {
+    width: 100%;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-3-1-2-1 p,
+  .about-3-1-2-2 p {
+    text-align: center;
+  }
+  .about-4-2-2 {
+    flex-direction: column;
+  }
+}

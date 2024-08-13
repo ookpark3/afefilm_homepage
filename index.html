@@ -280,8 +280,8 @@
         requestAnimationFrame(animate);
 
         //임시 테스트용
-        loadingPage.classList.add('hidden');
-        body.classList.remove('no-scroll');
+        // loadingPage.classList.add('hidden');
+        // body.classList.remove('no-scroll');
 
         // 최소 1초 대기를 위한 Promise
         const minWaitPromise = new Promise((resolve) =>
@@ -298,11 +298,11 @@
         });
 
         // 두 Promise가 모두 완료될 때까지 대기
-        // Promise.all([minWaitPromise, videoLoadPromise]).then(() => {
-        //   loadingPage.classList.add('hidden');
-        //   // no-scroll 클래스 제거하여 스크롤 허용
-        //   body.classList.remove('no-scroll');
-        // });
+        Promise.all([minWaitPromise, videoLoadPromise]).then(() => {
+          loadingPage.classList.add('hidden');
+          // no-scroll 클래스 제거하여 스크롤 허용
+          body.classList.remove('no-scroll');
+        });
       });
     </script>
     <!-- 햄버거 메뉴 스크립트 -->

@@ -378,6 +378,10 @@
       height: 100%;
       border-radius: 0.6rem;
     }
+    & .play-icon {
+      width: 4rem;
+      height: 4rem;
+    }
   }
   .main-6 {
     padding: 1.25rem;
