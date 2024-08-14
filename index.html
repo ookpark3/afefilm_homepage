@@ -93,17 +93,21 @@
 
       <!-- 랜딩 요소 페이지 2 영상 쇼릴등장 -->
       <section class="main-2 section" aria-label="영상 쇼릴 페이지">
-        <video
-          class="main-2-1"
-          muted
-          playsinline
-          webkit-playsinline
-          preload="auto"
-          poster="./path/to/poster-image.jpg"
-        >
-          <source src="/asset/main/AFE Promotion.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div style="padding: 56.25% 0 0 0; position: relative">
+          <iframe
+            src="https://player.vimeo.com/video/998620428?background=1&autoplay=1&loop=1&byline=0&title=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            "
+            title="AFE Promotion"
+          ></iframe>
+        </div>
       </section>
       <!-- 랜딩 요소 페이지 3 what we do? 페이지 -->
       <section class="main-3 section" aria-label="What we do? 페이지">
@@ -255,46 +259,25 @@
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const loadingPage = document.getElementById('loading-page');
-        const orbitals = document.querySelectorAll('.orbital');
-        const bigCircle = document.querySelector('.big-circle');
         const body = document.body;
-        const mainVideo = document.querySelector('.main-2-1');
+        const vimeoIframe = document.querySelector('iframe');
 
         // 초기에 body에 no-scroll 클래스 추가
         body.classList.add('no-scroll');
 
-        function animate(time) {
-          const radius = bigCircle.offsetWidth / 2;
-
-          orbitals.forEach((orbital, index) => {
-            const angle =
-              (time * 0.0003 + index * ((Math.PI * 2) / 3)) % (Math.PI * 2);
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
-
-            const offsetX = orbital.offsetWidth / 2;
-            const offsetY = orbital.offsetHeight / 2;
-
-            orbital.style.transform = `translate(${x}px, ${y}px) translate(-${offsetX}px, -${offsetY}px)`;
-          });
-
-          requestAnimationFrame(animate);
-        }
-
-        requestAnimationFrame(animate);
+        // Vimeo Player 인스턴스 생성
+        const player = new Vimeo.Player(vimeoIframe);
 
         // 최소 1초 대기를 위한 Promise
         const minWaitPromise = new Promise((resolve) =>
           setTimeout(resolve, 1000),
         );
 
-        // 비디오 로딩 완료를 위한 Promise
+        // Vimeo 영상 로딩 완료를 위한 Promise
         const videoLoadPromise = new Promise((resolve) => {
-          if (mainVideo.readyState >= 3) {
+          player.ready().then(() => {
             resolve();
-          } else {
-            mainVideo.addEventListener('canplay', resolve, { once: true });
-          }
+          });
         });
 
         // 타임아웃을 위한 Promise
@@ -310,7 +293,6 @@
           .then(() => {
             loadingPage.classList.add('hidden');
             body.classList.remove('no-scroll');
-            playVideo();
           })
           .catch((error) => {
             console.error('Error loading video:', error);
@@ -319,48 +301,9 @@
             // 에러 발생 시 대체 콘텐츠 표시 또는 다른 처리
           });
 
-        function playVideo() {
-          mainVideo.play().catch((error) => {
-            console.error('비디오 재생 중 오류 발생:', error);
-            // 자동 재생이 실패한 경우, 사용자 상호작용을 기다립니다.
-            document.addEventListener('touchstart', () => mainVideo.play(), {
-              once: true,
-            });
-          });
-        }
-
-        // iOS에서의 인라인 재생을 위한 추가 설정
-        mainVideo.playsInline = true;
-        mainVideo.webkitPlaysInline = true;
-
-        // 비디오 루프 설정
-        mainVideo.loop = true;
-
-        // 비디오 음소거 설정 (자동 재생을 위해 필요)
-        mainVideo.muted = true;
-
-        // 비디오 재생 상태 모니터링
-        mainVideo.addEventListener('play', () => {
-          console.log('비디오 재생 시작');
-        });
-
-        mainVideo.addEventListener('pause', () => {
-          console.log('비디오 일시 정지');
-          // 일시 정지 시 재생 재시도
-          setTimeout(playVideo, 1000);
-        });
-
-        mainVideo.addEventListener('ended', () => {
-          console.log('비디오 재생 종료');
-          // 재생 종료 시 다시 재생
-          playVideo();
-        });
-
         // 비디오 로딩 오류 처리
-        mainVideo.addEventListener('error', (e) => {
-          console.error('비디오 로딩 오류:', e);
-          console.error('비디오 오류 코드:', mainVideo.error.code);
-          console.error('비디오 오류 메시지:', mainVideo.error.message);
+        player.on('error', (error) => {
+          console.error('비디오 로딩 오류:', error);
           // 오류 발생 시 대체 콘텐츠 표시 또는 다른 처리
         });
       });
