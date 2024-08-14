@@ -209,6 +209,7 @@ textarea {
   font-family: Pretendard Variable;
   user-select: text;
   margin-top: 5rem;
+  text-decoration: none;
 }
 .footer-1 {
   display: flex;

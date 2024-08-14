@@ -608,7 +608,7 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    display: flex; /* 추가 */
+    display: flex;
     scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
