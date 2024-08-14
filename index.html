@@ -98,10 +98,11 @@
           muted
           playsinline
           webkit-playsinline
-          poster="./path/to/poster-image.jpg"
           preload="auto"
+          poster="./path/to/poster-image.jpg"
         >
-          <source src="./asset/main/AFE Promotion.mp4" type="video/mp4" />
+          <source src="/asset/main/AFE Promotion.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
       </section>
       <!-- 랜딩 요소 페이지 3 what we do? 페이지 -->
@@ -289,29 +290,40 @@
 
         // 비디오 로딩 완료를 위한 Promise
         const videoLoadPromise = new Promise((resolve) => {
-          if (mainVideo.readyState >= 4) {
+          if (mainVideo.readyState >= 3) {
             resolve();
           } else {
-            mainVideo.addEventListener('canplaythrough', resolve, {
-              once: true,
-            });
+            mainVideo.addEventListener('canplay', resolve, { once: true });
           }
         });
 
-        // 두 Promise가 모두 완료될 때까지 대기
-        Promise.all([minWaitPromise, videoLoadPromise]).then(() => {
-          loadingPage.classList.add('hidden');
-          // no-scroll 클래스 제거하여 스크롤 허용
-          body.classList.remove('no-scroll');
-          // 비디오 재생 시작
-          playVideo();
+        // 타임아웃을 위한 Promise
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Video loading timeout')), 10000); // 10초 타임아웃
         });
+
+        // Promise.race를 사용하여 타임아웃 처리
+        Promise.race([
+          Promise.all([minWaitPromise, videoLoadPromise]),
+          timeoutPromise,
+        ])
+          .then(() => {
+            loadingPage.classList.add('hidden');
+            body.classList.remove('no-scroll');
+            playVideo();
+          })
+          .catch((error) => {
+            console.error('Error loading video:', error);
+            loadingPage.classList.add('hidden');
+            body.classList.remove('no-scroll');
+            // 에러 발생 시 대체 콘텐츠 표시 또는 다른 처리
+          });
 
         function playVideo() {
           mainVideo.play().catch((error) => {
             console.error('비디오 재생 중 오류 발생:', error);
             // 자동 재생이 실패한 경우, 사용자 상호작용을 기다립니다.
-            document.addEventListener('click', () => mainVideo.play(), {
+            document.addEventListener('touchstart', () => mainVideo.play(), {
               once: true,
             });
           });
@@ -342,6 +354,14 @@
           console.log('비디오 재생 종료');
           // 재생 종료 시 다시 재생
           playVideo();
+        });
+
+        // 비디오 로딩 오류 처리
+        mainVideo.addEventListener('error', (e) => {
+          console.error('비디오 로딩 오류:', e);
+          console.error('비디오 오류 코드:', mainVideo.error.code);
+          console.error('비디오 오류 메시지:', mainVideo.error.message);
+          // 오류 발생 시 대체 콘텐츠 표시 또는 다른 처리
         });
       });
     </script>
