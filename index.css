@@ -8,6 +8,7 @@
 .main-2-1 {
   width: 100%;
   height: 100%;
+  background-color: #000;
   object-fit: cover;
 }
 /* main-3 구분선 */
