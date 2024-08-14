@@ -68,7 +68,6 @@
 .work-1-2-1 {
   display: grid;
   width: 100%;
-  height: 90%;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   gap: 0.5rem;
@@ -214,7 +213,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   gap: 0.5rem;
-  aspect-ratio: 16 / 9;
+  /* aspect-ratio: 16 / 9; */
 }
 
 .thumbnail-container {
@@ -222,6 +221,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .thumbnail-container img {
@@ -295,11 +295,14 @@
   .work-1-1-1 button {
     flex-shrink: 0; /* 버튼이 줄어들지 않도록 설정 */
   }
-  .work-1-2-1 {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
   .work-1-2 {
     padding: 1rem 1.25rem;
+    & .work-1-2-1 {
+      grid-template-columns: repeat(2, 1fr);
+      /* aspect-ratio: auto; */
+      grid-auto-rows: minmax(8rem, auto);
+    }
   }
   .section-divider {
     display: none;
