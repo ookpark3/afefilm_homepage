@@ -93,21 +93,15 @@
 
       <!-- 랜딩 요소 페이지 2 영상 쇼릴등장 -->
       <section class="main-2 section" aria-label="영상 쇼릴 페이지">
-        <div style="padding: 56.25% 0 0 0; position: relative">
-          <iframe
-            src="https://player.vimeo.com/video/998620428?background=1&autoplay=1&loop=1&byline=0&title=0"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-            style="
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            "
-            title="AFE Promotion"
-          ></iframe>
-        </div>
+        <!-- <video
+          class="main-2-1"
+          src="./asset/main/AFE Promotion.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+        ></video> -->
       </section>
       <!-- 랜딩 요소 페이지 3 what we do? 페이지 -->
       <section class="main-3 section" aria-label="What we do? 페이지">
@@ -259,52 +253,57 @@
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const loadingPage = document.getElementById('loading-page');
+        const orbitals = document.querySelectorAll('.orbital');
+        const bigCircle = document.querySelector('.big-circle');
         const body = document.body;
-        const vimeoIframe = document.querySelector('iframe');
+        const mainVideo = document.querySelector('.main-2-1');
 
         // 초기에 body에 no-scroll 클래스 추가
         body.classList.add('no-scroll');
 
-        // Vimeo Player 인스턴스 생성
-        const player = new Vimeo.Player(vimeoIframe);
+        function animate(time) {
+          const radius = bigCircle.offsetWidth / 2;
+
+          orbitals.forEach((orbital, index) => {
+            const angle =
+              (time * 0.0003 + index * ((Math.PI * 2) / 3)) % (Math.PI * 2);
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
+            const offsetX = orbital.offsetWidth / 2;
+            const offsetY = orbital.offsetHeight / 2;
+
+            orbital.style.transform = `translate(${x}px, ${y}px) translate(-${offsetX}px, -${offsetY}px)`;
+          });
+
+          requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+
+        //임시 테스트용
+        // loadingPage.classList.add('hidden');
+        // body.classList.remove('no-scroll');
 
         // 최소 1초 대기를 위한 Promise
         const minWaitPromise = new Promise((resolve) =>
           setTimeout(resolve, 1000),
         );
 
-        // Vimeo 영상 로딩 완료를 위한 Promise
+        // 비디오 로딩 완료를 위한 Promise
         const videoLoadPromise = new Promise((resolve) => {
-          player.ready().then(() => {
+          if (mainVideo.readyState >= 3) {
             resolve();
-          });
+          } else {
+            mainVideo.addEventListener('canplay', resolve);
+          }
         });
 
-        // 타임아웃을 위한 Promise
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Video loading timeout')), 10000); // 10초 타임아웃
-        });
-
-        // Promise.race를 사용하여 타임아웃 처리
-        Promise.race([
-          Promise.all([minWaitPromise, videoLoadPromise]),
-          timeoutPromise,
-        ])
-          .then(() => {
-            loadingPage.classList.add('hidden');
-            body.classList.remove('no-scroll');
-          })
-          .catch((error) => {
-            console.error('Error loading video:', error);
-            loadingPage.classList.add('hidden');
-            body.classList.remove('no-scroll');
-            // 에러 발생 시 대체 콘텐츠 표시 또는 다른 처리
-          });
-
-        // 비디오 로딩 오류 처리
-        player.on('error', (error) => {
-          console.error('비디오 로딩 오류:', error);
-          // 오류 발생 시 대체 콘텐츠 표시 또는 다른 처리
+        // 두 Promise가 모두 완료될 때까지 대기
+        Promise.all([minWaitPromise, videoLoadPromise]).then(() => {
+          loadingPage.classList.add('hidden');
+          // no-scroll 클래스 제거하여 스크롤 허용
+          body.classList.remove('no-scroll');
         });
       });
     </script>
