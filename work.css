@@ -277,34 +277,33 @@
 @media (max-width: 768px) {
   .work-1 {
     padding: 5rem 0 0 0;
+  }
+  .work-1-1 p {
+    padding-left: 1.25rem;
+    font-size: 3rem;
+    letter-spacing: -0.09rem;
+  }
+  .work-1-1-1 button {
+    font-size: 1rem;
+  }
+  .work-1-1-1 {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 지원 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+    -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+    padding-bottom: 10px; /* 스크롤바를 위한 여백 */
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    scroll-behavior: smooth;
+  }
 
-    & .work-1-1 p {
-      padding-left: 1.25rem;
-      font-size: 3rem;
-      letter-spacing: -0.09rem;
-    }
+  .work-1-1-1::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera에서 스크롤바 숨기기 */
+  }
 
-    & .work-1-1-1 {
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 지원 */
-      scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
-      -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
-      padding-bottom: 10px; /* 스크롤바를 위한 여백 */
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
-      scroll-behavior: smooth;
-      gap: 0.5rem;
-
-      & button {
-        font-size: 1rem;
-        flex-shrink: 0; /* 버튼이 줄어들지 않도록 설정 */
-      }
-
-      &::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera에서 스크롤바 숨기기 */
-      }
-    }
+  .work-1-1-1 button {
+    flex-shrink: 0; /* 버튼이 줄어들지 않도록 설정 */
   }
 
   .work-1-2 {
