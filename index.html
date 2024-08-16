@@ -191,7 +191,7 @@
           <a class="main-5-1-4" href="work.html">View more</a>
         </div>
       </section>
-      <hr class="section-divider" aria-label="섹션 구분선" />
+      <hr class="section-divider mobile" aria-label="섹션 구분선" />
       <!-- 랜딩 요소 디자인 페이지 6 Client 페이지 -->
       <section class="main-6 section" aria-label="Client 페이지">
         <h2 class="main-6-1">Client</h2>
@@ -250,9 +250,9 @@
         </div>
       </div>
     </footer>
-    <!-- 로딩 스크립트 -->
+    <!-- 로딩 및 자동재생 스크립트 -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', async function () {
         // 요소 선택
         const loadingPage = document.getElementById('loading-page');
         const orbitals = document.querySelectorAll('.orbital');
@@ -285,51 +285,53 @@
         requestAnimationFrame(animate);
 
         // 최소 1초 대기를 위한 Promise
-        const minWaitPromise = new Promise((resolve) =>
-          setTimeout(resolve, 1000),
-        );
+        const minWait = () =>
+          new Promise((resolve) => setTimeout(resolve, 1000));
 
         // 비디오 로딩 완료를 위한 Promise
-        const videoLoadPromise = new Promise((resolve) => {
-          if (mainVideo.readyState >= 3) {
-            resolve();
-          } else {
-            mainVideo.addEventListener('canplay', resolve);
-          }
-        });
+        const videoLoad = () =>
+          new Promise((resolve) => {
+            // 비디오의 readyState가 3 이상인 경우 (비디오가 충분히 로드된 경우)
+            if (mainVideo.readyState >= 3) {
+              resolve();
+            } else {
+              // 비디오가 로드되지 않은 경우 canplay 이벤트를 기다림
+              mainVideo.addEventListener('canplay', resolve);
+            }
+          });
 
         // 비디오 자동 재생 및 사용자 상호작용 처리 함수
-        function handleUserInteraction() {
+        const handleUserInteraction = async () => {
+          // mainVideo가 존재하고 비디오가 일시 중지된 경우
           if (mainVideo && mainVideo.paused) {
-            mainVideo.play().catch((error) => {
+            try {
+              // 비디오 재생 시도
+              await mainVideo.play();
+            } catch (error) {
+              // 비디오 재생 실패 시 에러 로그 출력
               console.error('Video playback failed:', error);
-            });
+            }
           }
-        }
-
-        // 비디오 자동 재생 시도
-        mainVideo.play().catch((error) => {
-          console.log('Autoplay failed, waiting for user interaction:', error);
-        });
+        };
 
         // 사용자 상호작용 이벤트 리스너 추가
         document.body.addEventListener('click', handleUserInteraction);
         document.body.addEventListener('touchstart', handleUserInteraction);
 
-        // 두 Promise가 모두 완료될 때까지 대기
-        Promise.all([minWaitPromise, videoLoadPromise]).then(() => {
+        try {
+          // 두 Promise가 모두 완료될 때까지 대기
+          await Promise.all([minWait(), videoLoad()]);
+
+          // 로딩 페이지를 숨김
           loadingPage.classList.add('hidden');
           // no-scroll 클래스 제거하여 스크롤 허용
           body.classList.remove('no-scroll');
-        });
-
-        // 정리 함수 (필요시 호출)
-        function cleanup() {
-          document.body.removeEventListener('click', handleUserInteraction);
-          document.body.removeEventListener(
-            'touchstart',
-            handleUserInteraction,
-          );
+        } catch (error) {
+          // 로딩 중 에러 발생 시 에러 로그 출력
+          console.error('Error during loading:', error);
+          // 에러 발생 시 로딩 페이지 숨김 및 스크롤 허용
+          loadingPage.classList.add('hidden');
+          body.classList.remove('no-scroll');
         }
       });
     </script>

@@ -416,6 +416,7 @@ textarea {
   flex-direction: column;
   gap: 1.5rem;
   margin-bottom: 5rem;
+  text-decoration: none;
   a {
     color: #000;
     font-size: 4rem;
