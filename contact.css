@@ -298,7 +298,7 @@
     line-height: 150%; /* 1.5rem */
   }
   .contact-1-2-form-checkbox label {
-    width: 35%; /* 약간의 여백을 두고 2열로 배치 */
+    width: 40%; /* 약간의 여백을 두고 2열로 배치 */
   }
   .contact-1-2-form-input {
     display: flex;
