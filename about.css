@@ -559,7 +559,7 @@
   width: 6.25rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .about-1 {
     padding: 7rem 0;
   }
