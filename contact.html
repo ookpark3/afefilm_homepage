@@ -85,29 +85,53 @@
           <p>제작 문의 및 질문을 남겨주세요</p>
         </div>
         <div class="contact-1-2" aria-label="form">
-          <form class="contact-1-2-form">
-            <div
-              class="contact-1-2-form-checkbox"
-              onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-            >
-              <label><input type="checkbox" /> 제작 견적 문의</label>
-              <label><input type="checkbox" /> 협업 및 제휴</label>
-              <label><input type="checkbox" /> 가벼운 질문</label>
-              <label><input type="checkbox" /> 기타</label>
+          <form class="contact-1-2-form" id="contactForm">
+            <div class="contact-1-2-form-checkbox">
+              <label
+                ><input
+                  type="checkbox"
+                  name="inquiry_type"
+                  value="제작 견적 문의"
+                />
+                제작 견적 문의</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="inquiry_type"
+                  value="협업 및 제휴"
+                />
+                협업 및 제휴</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="inquiry_type"
+                  value="가벼운 질문"
+                />
+                가벼운 질문</label
+              >
+              <label
+                ><input type="checkbox" name="inquiry_type" value="기타" />
+                기타</label
+              >
             </div>
             <div class="contact-1-2-form-input">
               <div class="form-group">
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   class="full-width"
                   placeholder="이름"
+                  required
                 />
               </div>
               <div class="form-group">
                 <input
                   type="text"
                   id="company"
+                  name="company"
                   class="full-width"
                   placeholder="기관명 or 업체명"
                 />
@@ -116,6 +140,7 @@
                 <input
                   type="text"
                   id="video-type"
+                  name="video_type"
                   class="full-width"
                   placeholder="영상 유형"
                 />
@@ -124,6 +149,7 @@
                 <input
                   type="text"
                   id="reference"
+                  name="reference"
                   class="full-width"
                   placeholder="레퍼런스"
                 />
@@ -132,32 +158,32 @@
                 <input
                   type="text"
                   id="contact"
+                  name="contact"
                   class="full-width"
                   placeholder="연락처"
+                  required
                 />
               </div>
               <div class="form-group">
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   class="full-width"
                   placeholder="이메일"
+                  required
                 />
               </div>
               <div class="form-group">
                 <textarea
                   id="details"
+                  name="details"
                   placeholder="자세한 내용 기입"
+                  required
                 ></textarea>
               </div>
               <div class="form-group">
-                <button
-                  type="submit"
-                  class="submit-btn"
-                  onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-                >
-                  문의하기
-                </button>
+                <button type="submit" class="submit-btn">문의하기</button>
               </div>
             </div>
           </form>
@@ -421,6 +447,88 @@
           }
         });
       });
+    </script>
+    <!-- 문의 전송 스크립트 -->
+    <!-- 문의 전송 스크립트 -->
+    <script>
+      document
+        .getElementById('contactForm')
+        .addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          // 로딩 인디케이터 표시
+          const submitButton = this.querySelector('button[type="submit"]');
+          const originalButtonText = submitButton.textContent;
+          const originalButtonStyle = {
+            color: submitButton.style.color,
+            backgroundColor: submitButton.style.backgroundColor,
+            border: submitButton.style.border,
+            fontWeight: submitButton.style.fontWeight,
+            cursor: submitButton.style.cursor,
+            backgroundImage: submitButton.style.backgroundImage,
+          };
+
+          submitButton.disabled = true;
+          submitButton.style.color = '#ffffff'; // 흰색 텍스트
+          submitButton.style.backgroundColor = '#4a4a4a'; // 중립적인 회색 배경
+          submitButton.style.border = '2px solid #4a4a4a';
+          submitButton.style.fontWeight = 'bold';
+          submitButton.style.cursor = 'wait';
+
+          let progress = 0;
+          const loadingInterval = setInterval(() => {
+            progress += 1;
+            if (progress <= 100) {
+              submitButton.textContent = `전송 중... ${progress}%`;
+              submitButton.style.backgroundImage = `linear-gradient(to right, #6a6a6a ${progress}%, #4a4a4a ${progress}%)`;
+            } else {
+              clearInterval(loadingInterval);
+            }
+          }, 30); // 30ms마다 업데이트, 총 3초 동안 진행
+
+          try {
+            var formData = new FormData(this);
+
+            // inquiry_type 체크박스 처리
+            var inquiryTypes = [];
+            document
+              .querySelectorAll('input[name="inquiry_type"]:checked')
+              .forEach(function (checkbox) {
+                inquiryTypes.push(checkbox.value);
+              });
+
+            // FormData에서 기존 inquiry_type 제거 후 새로운 배열 추가
+            formData.delete('inquiry_type');
+            formData.append('inquiry_type', inquiryTypes.join(', '));
+
+            var queryString = new URLSearchParams(formData).toString();
+
+            // 앱스크립트 웹 앱 URL
+            var scriptUrl =
+              'https://script.google.com/macros/s/AKfycbwfqJu2E8v0M9fqZl3Tv1SGkki7LCoWa2v_BbGddrHZ9CfwK5pGDpdbck2RUt0H1S-TFQ/exec';
+
+            const response = await fetch(scriptUrl + '?' + queryString);
+            const data = await response.text();
+
+            if (data === 'Success') {
+              alert('문의가 성공적으로 전송되었습니다.');
+              this.reset(); // 폼 초기화
+            } else {
+              throw new Error('서버 응답 오류');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('문의 전송에 실패했습니다. 다시 시도해주세요.');
+          } finally {
+            // 로딩 인디케이터 제거 및 버튼 상태 복원
+            clearInterval(loadingInterval);
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+            Object.assign(submitButton.style, originalButtonStyle);
+            // linear-gradient 제거
+            submitButton.style.backgroundImage = 'none';
+          }
+        });
     </script>
   </body>
 </html>
