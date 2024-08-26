@@ -364,7 +364,7 @@
   padding: 0 30rem;
   background:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url(./asset/about/about-3-1-2-1.jpeg) 0px -570px / 100% 320% no-repeat;
+    url(./public/asset/about/about-3-1-2-1.jpeg) 0px -570px / 100% 320% no-repeat;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
@@ -387,7 +387,7 @@
   background-size: cover;
   background:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url(./asset/about/about-3-1-2-2.jpeg) center -400px / 100% auto no-repeat;
+    url(./public/asset/about/about-3-1-2-2.jpeg) center -400px / 100% auto no-repeat;
   min-height: 25rem;
   height: auto;
   padding: 2rem 30rem;
