@@ -717,12 +717,12 @@
   .about-3-1-2-1 {
     background:
       linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-      url(./asset/about/about-3-1-2-1.png) center / cover no-repeat;
+      url(./public/asset/about/about-3-1-2-1.png) center / cover no-repeat;
   }
   .about-3-1-2-2 {
     background:
       linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-      url(./asset/about/about-3-1-2-2.png) center / cover no-repeat;
+      url(./public/asset/about/about-3-1-2-2.png) center / cover no-repeat;
   }
   .about-3-1-2-1 p,
   .about-3-1-2-2 p {
