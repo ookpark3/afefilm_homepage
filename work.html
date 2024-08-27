@@ -7,38 +7,44 @@
     <!-- SEO 메타 태그 -->
     <meta
       name="description"
-      content="AFE의 다양한 영상 작업물을 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 다양한 프로젝트를 소개합니다."
+      content="AFE의 작품 포트폴리오를 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 다양한 프로젝트를 소개합니다."
     />
     <meta
       name="keywords"
-      content="AFE, 영상 프로덕션, 광고, 홍보 영상, 다큐멘터리, 아트필름, 포트폴리오"
+      content="AFE, 영상 프로덕션, 광고, 홍보 영상, 다큐멘터리, 아트필름, 포트폴리오, 작품"
     />
     <meta name="author" content="AFE" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.afefilm.com/work" />
+    <meta property="og:url" content="https://www.afefilm.com/work.html" />
     <meta property="og:title" content="AFE | Work" />
     <meta
       property="og:description"
-      content="AFE의 다양한 영상 작업물을 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 다양한 프로젝트를 소개합니다."
+      content="AFE의 다양한 작품을 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 창의적이고 혁신적인 영상 프로젝트를 소개합니다."
     />
     <meta
       property="og:image"
-      content="https://www.afefilm.com/asset/work/work-thumbnail.jpg"
+      content="https://www.afefilm.com/asset/work/work-cover.jpg"
     />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="AFE Film" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:image:alt" content="AFE Film Work Portfolio" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.afefilm.com/work" />
-    <meta property="twitter:title" content="AFE | Work" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@AFEfilm" />
+    <meta name="twitter:url" content="https://www.afefilm.com/work.html" />
+    <meta name="twitter:title" content="AFE | Work" />
     <meta
-      property="twitter:description"
-      content="AFE의 다양한 영상 작업물을 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 다양한 프로젝트를 소개합니다."
+      name="twitter:description"
+      content="AFE의 다양한 작품을 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 창의적이고 혁신적인 영상 프로젝트를 소개합니다."
     />
     <meta
-      property="twitter:image"
-      content="https://www.afefilm.com/asset/work/work-thumbnail.jpg"
+      name="twitter:image"
+      content="https://www.afefilm.com/asset/work/work-cover.jpg"
     />
 
     <!-- 파비콘 -->
@@ -52,7 +58,7 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./public/asset/afefavicon-32x32.png"
+      href="./asset/afefavicon-32x32.png"
     />
     <link rel="apple-touch-icon" href="./asset/main/AFE logo.png" />
 
@@ -67,7 +73,7 @@
     />
 
     <!-- 캐노니컬 URL -->
-    <link rel="canonical" href="https://www.afefilm.com/work" />
+    <link rel="canonical" href="https://www.afefilm.com/work.html" />
 
     <!-- 언어 설정 -->
     <meta name="language" content="Korean" />
@@ -78,25 +84,92 @@
     <!-- 뷰포트 설정 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- 페이지 언어 설정 -->
+    <meta http-equiv="content-language" content="ko-KR" />
+
+    <!-- 검색 엔진 최적화를 위한 추가 메타 태그 -->
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+
     <!-- 구조화된 데이터 (JSON-LD) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "AFE | Work",
-        "description": "AFE의 다양한 영상 작업물을 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 다양한 프로젝트를 소개합니다.",
-        "url": "https://www.afefilm.com/work",
-        "image": "https://www.afefilm.com/asset/work/work-thumbnail.jpg",
+        "name": "AFE Film Work Portfolio",
+        "description": "AFE의 다양한 작품을 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 창의적이고 혁신적인 영상 프로젝트를 소개합니다.",
+        "url": "https://www.afefilm.com/work.html",
+        "image": "https://www.afefilm.com/asset/work/work-cover.jpg",
         "publisher": {
           "@type": "Organization",
-          "name": "AFE",
+          "name": "AFE film",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://www.afefilm.com/asset/main/AFE logo.png"
+            "url": "https://afefilm.com/img/AfeLogo.jpg"
           }
         }
       }
     </script>
+
+    <!-- 프리로드 및 프리커넥트 설정 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://player.vimeo.com" />
+    <link rel="preconnect" href="https://i.vimeocdn.com" />
+
+    <!-- DNS 프리페치 설정 -->
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+
+    <!-- 성능 최적화를 위한 리소스 힌트 -->
+    <link rel="preload" href="./asset/work/1.png" as="image" type="image/png" />
+    <link rel="preload" href="./asset/work/2.png" as="image" type="image/png" />
+    <link rel="preload" href="./asset/work/3.png" as="image" type="image/png" />
+
+    <!-- 웹 폰트 최적화 -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+      as="style"
+      crossorigin
+    />
+
+    <!-- 추가 SEO 메타 태그 -->
+    <meta name="geo.region" content="KR" />
+    <meta name="geo.placename" content="Busan" />
+
+    <!-- 웹 앱 매니페스트 링크 (PWA 지원을 위해) -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- 브라우저 테마 색상 설정 -->
+    <meta name="theme-color" content="#111111" />
+
+    <!-- 검색엔진 색인 갱신 주기 설정 -->
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- 저작권 정보 -->
+    <meta
+      name="copyright"
+      content="Copyright © 2024 AFE Film. All rights reserved."
+    />
+
+    <!-- 추가 보안 헤더 -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta
+      http-equiv="Referrer-Policy"
+      content="strict-origin-when-cross-origin"
+    />
+
+    <!-- 구글 사이트 확인 (Google Search Console) -->
+    <meta
+      name="google-site-verification"
+      content="mM_pk11JzdPn57nwq2YpowNEZuK8ud5eWrLGI3mstUI"
+    />
+
+    <!-- 네이버 사이트 확인 (Naver Webmaster Tools) -->
+    <meta
+      name="naver-site-verification"
+      content="cbd32824735aa41ebb724a227ebad682017619aa"
+    />
   </head>
   <body>
     <!-- 헤더 페이지 -->
@@ -185,6 +258,7 @@
           </div>
         </div>
       </section>
+
       <hr class="section-divider" aria-label="섹션 구분선" />
       <!-- 영상 썸네일 섹션 -->
       <section class="work-1-2 section">
