@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+Sitemap: https://www.afefilm.com/sitemap.xml
+
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
