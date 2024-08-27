@@ -1,0 +1,21 @@
+{
+  "name": "AFE Film",
+  "short_name": "AFE",
+  "description": "AFE는 트렌디한 영상미를 기반으로 광고, 홍보 영상, 다큐멘터리, 아트필름을 제작하는 영상 프로덕션입니다.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "/asset/afefavicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/asset/afefavicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
