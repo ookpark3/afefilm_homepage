@@ -262,6 +262,18 @@
 .thumbnail-container:hover .thumbnail-title {
   opacity: 1;
 }
+.section-divider.section {
+  opacity: 0;
+  transform: translateX(-50%) translateY(40px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+.section-divider.section.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 @media (min-aspect-ratio: 16/9) {
   .modal-content {
     width: calc(80vh * 16 / 9); /* 높이를 기준으로 너비 계산 */
