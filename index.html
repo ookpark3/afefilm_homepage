@@ -22,7 +22,7 @@
     <meta property="og:description" content="영상제작은 AFE" />
     <meta
       property="og:image"
-      content="https://www.afefilm.com/asset/main/AFE logo.png"
+      content="https://www.afefilm.com/asset/afe-logo-og.png"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -33,8 +33,8 @@
       content="https://www.afefilm.com/asset/main/showreel.mp4"
     />
     <meta property="og:video:type" content="video/mp4" />
-    <meta property="og:video:width" content="1280" />
-    <meta property="og:video:height" content="720" />
+    <meta property="og:video:width" content="1200" />
+    <meta property="og:video:height" content="630" />
     <meta property="og:image:alt" content="AFE Film Logo" />
 
     <!-- Twitter -->
@@ -48,7 +48,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://www.afefilm.com/asset/main/AFE logo.png"
+      content="https://www.afefilm.com/asset/afe-logo-og.png"
     />
 
     <!-- 파비콘 -->
@@ -259,16 +259,7 @@
 
       <!-- 랜딩 요소 페이지 2 영상 쇼릴등장 -->
       <section class="main-2 section" aria-label="영상 쇼릴 페이지">
-        <video
-          id="mainVideo"
-          class="main-2-1"
-          src="./asset/main/AFE Promotion.mp4"
-          autoplay
-          muted
-          loop
-          playsinline
-          webkit-playsinline
-        ></video>
+        <div class="video-container-reel"></div>
       </section>
       <!-- 랜딩 요소 페이지 3 what we do? 페이지 -->
       <section class="main-3 section" aria-label="What we do? 페이지">
@@ -419,15 +410,14 @@
     <!-- 로딩 및 자동재생 스크립트 -->
     <script>
       document.addEventListener('DOMContentLoaded', async function () {
+        // 초기에 body에 no-scroll 클래스 추가
+        document.body.classList.add('no-scroll');
+
         // 요소 선택
         const loadingPage = document.getElementById('loading-page');
         const orbitals = document.querySelectorAll('.orbital');
         const bigCircle = document.querySelector('.big-circle');
         const body = document.body;
-        const mainVideo = document.querySelector('.main-2-1');
-
-        // 초기에 body에 no-scroll 클래스 추가
-        body.classList.add('no-scroll');
 
         // 로딩 애니메이션 함수
         function animate(time) {
@@ -450,6 +440,51 @@
 
         requestAnimationFrame(animate);
 
+        // 비디오 요소 동적 생성
+        const mainVideo = document.createElement('video');
+        mainVideo.classList.add('main-2-1');
+        mainVideo.muted = true; // JavaScript로 muted 설정
+        mainVideo.playsInline = true; // JavaScript로 playsInline 설정
+        mainVideo.setAttribute('loop', '');
+        mainVideo.setAttribute('webkit-playsinline', '');
+
+        // 비디오 컨테이너에 추가 (컨테이너의 선택자를 적절히 수정해주세요)
+        const videoContainer = document.querySelector('.video-container-reel');
+        videoContainer.appendChild(mainVideo);
+
+        // 디바운스 함수
+        function debounce(func, delay) {
+          let timeoutId;
+          return function (...args) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => func.apply(this, args), delay);
+          };
+        }
+
+        // 모바일 환경 체크 함수 (화면 너비 기준)
+        function isMobile() {
+          return window.innerWidth <= 768;
+        }
+
+        // 디바이스에 따른 비디오 소스 설정
+        function setVideoSource() {
+          const videoSource = isMobile()
+            ? './asset/main/afe-reel-mobile.mp4'
+            : './asset/main/afe-reel-web.mp4';
+          if (mainVideo.src !== videoSource) {
+            mainVideo.src = videoSource;
+          }
+        }
+
+        // 디바운스된 setVideoSource 함수
+        const debouncedSetVideoSource = debounce(setVideoSource, 250);
+
+        // 초기 비디오 소스 설정
+        setVideoSource();
+
+        // 화면 크기 변경 시 비디오 소스 재설정 (디바운스 적용)
+        window.addEventListener('resize', debouncedSetVideoSource);
+
         // 최소 1초 대기를 위한 Promise
         const minWait = () =>
           new Promise((resolve) => setTimeout(resolve, 1000));
@@ -457,24 +492,19 @@
         // 비디오 로딩 완료를 위한 Promise
         const videoLoad = () =>
           new Promise((resolve) => {
-            // 비디오의 readyState가 3 이상인 경우 (비디오가 충분히 로드된 경우)
             if (mainVideo.readyState >= 3) {
               resolve();
             } else {
-              // 비디오가 로드되지 않은 경우 canplay 이벤트를 기다림
               mainVideo.addEventListener('canplay', resolve);
             }
           });
 
         // 비디오 자동 재생 및 사용자 상호작용 처리 함수
         const handleUserInteraction = async () => {
-          // mainVideo가 존재하고 비디오가 일시 중지된 경우
           if (mainVideo && mainVideo.paused) {
             try {
-              // 비디오 재생 시도
               await mainVideo.play();
             } catch (error) {
-              // 비디오 재생 실패 시 에러 로그 출력
               console.error('Video playback failed:', error);
             }
           }
@@ -492,10 +522,10 @@
           loadingPage.classList.add('hidden');
           // no-scroll 클래스 제거하여 스크롤 허용
           body.classList.remove('no-scroll');
+          // 비디오 재생 시작
+          mainVideo.play().catch(console.error);
         } catch (error) {
-          // 로딩 중 에러 발생 시 에러 로그 출력
           console.error('Error during loading:', error);
-          // 에러 발생 시 로딩 페이지 숨김 및 스크롤 허용
           loadingPage.classList.add('hidden');
           body.classList.remove('no-scroll');
         }
