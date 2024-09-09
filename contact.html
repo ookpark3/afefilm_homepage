@@ -24,6 +24,8 @@
       property="og:image"
       content="https://www.afefilm.com/asset/afe-logo-og.png"
     />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="400" />
 
     <meta property="og:site_name" content="AFE Film" />
     <meta property="og:locale" content="ko_KR" />
@@ -61,12 +63,6 @@
     <!-- 스타일시트 -->
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./contact.css" />
-    <link
-      rel="stylesheet"
-      as="style"
-      crossorigin
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
-    />
 
     <!-- 캐노니컬 URL -->
     <link rel="canonical" href="https://www.afefilm.com/contact.html" />
@@ -164,8 +160,30 @@
       name="naver-site-verification"
       content="cbd32824735aa41ebb724a227ebad682017619aa"
     />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WQM48G7TZJ"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WQM48G7TZJ');
+  </script>
   <body>
+    <!-- 노이즈효과 -->
+    <div class="noise"></div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">

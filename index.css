@@ -1,3 +1,24 @@
+/* loadingPage 스타일 설정 */
+#loading-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000; /* 또는 원하는 배경색 */
+}
+
+#loading-video {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
 /* main2 구분선 */
 .main-2 {
   width: 100%;
@@ -6,8 +27,7 @@
 }
 .main-2-1 {
   width: 100%;
-  height: 100%;
-
+  height: 100vh;
   object-fit: cover;
 }
 /* main-3 구분선 */
@@ -285,7 +305,6 @@
 .main-6-2 {
   width: 100vw;
   height: 50%;
-  background-color: #f8f9fa;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -295,7 +314,7 @@
 .scroll-container {
   display: flex;
   width: 200%; /* 이미지 두 개의 너비 */
-  background-color: #111;
+  background-color: transparent;
 }
 
 .scroll-container-1 {
@@ -325,6 +344,9 @@
 @media (max-width: 1024px) {
   .main-2 {
     margin-top: 5rem;
+    & .main-2-1 {
+      height: 100%;
+    }
   }
   .main-3 {
     padding: 1.25rem;
@@ -388,8 +410,7 @@
     & .main-6-1 {
       font-size: 3rem;
     }
-    & .main-6-2 {
-    }
+
     & .scroll-image {
       width: 120%; /* 이미지 크기를 늘림 */
       margin-left: 40px; /* 좌우 여백 조정 */

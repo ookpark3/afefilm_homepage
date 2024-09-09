@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="ko">
   <head>
+    <link
+      rel="preload"
+      href="https://d1iub2snqs2x58.cloudfront.net/afe-loading.webp"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+    />
     <meta charset="UTF-8" />
     <title>AFE | Home</title>
 
@@ -24,6 +31,8 @@
       property="og:image"
       content="https://www.afefilm.com/asset/afe-logo-og.png"
     />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="400" />
 
     <meta property="og:site_name" content="AFE Film" />
     <meta property="og:locale" content="ko_KR" />
@@ -68,12 +77,6 @@
     <!-- 스타일시트 -->
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./index.css" />
-    <link
-      rel="stylesheet"
-      as="style"
-      crossorigin
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
-    />
 
     <!-- 캐노니컬 URL -->
     <link rel="canonical" href="https://www.afefilm.com/" />
@@ -111,27 +114,12 @@
       }
     </script>
 
-    <!-- 웹 폰트 최적화 -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
-      as="style"
-      crossorigin
-    />
-
     <!-- DNS 프리페치 설정 -->
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
 
     <!-- 성능 최적화를 위한 리소스 힌트 -->
     <link rel="preconnect" href="https://player.vimeo.com" />
     <link rel="preconnect" href="https://i.vimeocdn.com" />
-    <link
-      rel="preload"
-      href="./asset/main/AFE Promotion.mp4"
-      as="video"
-      type="video/mp4"
-    />
 
     <!-- 추가 SEO 메타 태그 -->
     <meta name="geo.region" content="KR" />
@@ -171,19 +159,40 @@
       name="naver-site-verification"
       content="cbd32824735aa41ebb724a227ebad682017619aa"
     />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
   </head>
+  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics 스크립트 -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WQM48G7TZJ"
+  ></script>
+  <script>
+    // Google Analytics 설정
+    window.dataLayer = window.dataLayer || []; // dataLayer 객체 초기화 (없으면 빈 배열 생성)
+    function gtag() {
+      dataLayer.push(arguments); // gtag 함수 정의: 인자를 dataLayer에 추가
+    }
+    gtag('js', new Date()); // GA에 현재 시간 정보 전송
+
+    // Google Analytics 추적 ID 설정
+    gtag('config', 'G-WQM48G7TZJ'); // 특정 GA4 속성의 추적 ID 설정
+  </script>
   <body>
     <!-- 로딩페이지 -->
     <div id="loading-page" class="loading-page">
-      <div class="big-circle">
-        <h1 class="title">alien from earth</h1>
-        <div class="orbit">
-          <div class="green-circle orbital"></div>
-          <div class="purple-circle orbital"></div>
-          <div class="sky-circle orbital"></div>
-        </div>
-      </div>
+      <img
+        src="https://d1iub2snqs2x58.cloudfront.net/afe-loading.webp"
+        alt="Loading Image"
+      />
     </div>
+    <!-- 노이즈효과 -->
+    <div class="noise"></div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">
@@ -296,7 +305,7 @@
           <div class="main-5-1-2">
             <div class="main-5-1-2-1 video-container">
               <img
-                src="./asset/main/main-5-1-2/1.png"
+                src="/asset/main/main-5-1-2/1.jpg"
                 alt="Video thumbnail"
                 class="video-thumbnail"
               />
@@ -399,66 +408,31 @@
         </div>
       </div>
     </footer>
-    <!-- 로딩 및 자동재생 스크립트 -->
+    <!-- 로딩 및 쇼릴영상 스크립트 -->
     <script>
       document.addEventListener('DOMContentLoaded', async function () {
-        // 초기에 body에 no-scroll 클래스 추가
+        // 스크롤 방지
         document.body.classList.add('no-scroll');
 
-        // 요소 선택
+        // 필요한 요소들 선택
         const loadingPage = document.getElementById('loading-page');
-        const orbitals = document.querySelectorAll('.orbital');
-        const bigCircle = document.querySelector('.big-circle');
-        const body = document.body;
-
-        // 로딩 애니메이션 함수
-        function animate(time) {
-          const radius = bigCircle.offsetWidth / 2;
-
-          orbitals.forEach((orbital, index) => {
-            const angle =
-              (time * 0.0003 + index * ((Math.PI * 2) / 3)) % (Math.PI * 2);
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
-
-            const offsetX = orbital.offsetWidth / 2;
-            const offsetY = orbital.offsetHeight / 2;
-
-            orbital.style.transform = `translate(${x}px, ${y}px) translate(-${offsetX}px, -${offsetY}px)`;
-          });
-
-          requestAnimationFrame(animate);
-        }
-
-        requestAnimationFrame(animate);
-
-        // 비디오 요소 동적 생성
+        const loadingImage = loadingPage.querySelector('img');
         const mainVideo = document.createElement('video');
-        mainVideo.classList.add('main-2-1');
-        mainVideo.muted = true; // JavaScript로 muted 설정
-        mainVideo.playsInline = true; // JavaScript로 playsInline 설정
-        mainVideo.setAttribute('loop', '');
-        mainVideo.setAttribute('webkit-playsinline', '');
-
-        // 비디오 컨테이너에 추가 (컨테이너의 선택자를 적절히 수정해주세요)
         const videoContainer = document.querySelector('.video-container-reel');
+
+        // 메인 비디오 설정
+        mainVideo.classList.add('main-2-1');
+        mainVideo.muted = true;
+        mainVideo.playsInline = true;
+        mainVideo.loop = true;
         videoContainer.appendChild(mainVideo);
 
-        // 디바운스 함수
-        function debounce(func, delay) {
-          let timeoutId;
-          return function (...args) {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => func.apply(this, args), delay);
-          };
-        }
-
-        // 모바일 환경 체크 함수 (화면 너비 기준)
+        // 모바일 여부 확인 함수
         function isMobile() {
-          return window.innerWidth <= 768;
+          return window.innerWidth <= 1024;
         }
 
-        // 디바이스에 따른 비디오 소스 설정
+        // 비디오 소스 설정 함수
         function setVideoSource() {
           const videoSource = isMobile()
             ? './asset/main/afe-reel-mobile.mp4'
@@ -468,60 +442,104 @@
           }
         }
 
-        // 디바운스된 setVideoSource 함수
-        const debouncedSetVideoSource = debounce(setVideoSource, 250);
-
-        // 초기 비디오 소스 설정
+        // 초기 비디오 소스 설정 및 리사이즈 이벤트 리스너 추가
         setVideoSource();
+        window.addEventListener('resize', setVideoSource);
 
-        // 화면 크기 변경 시 비디오 소스 재설정 (디바운스 적용)
-        window.addEventListener('resize', debouncedSetVideoSource);
-
-        // 최소 1초 대기를 위한 Promise
-        const minWait = () =>
-          new Promise((resolve) => setTimeout(resolve, 1000));
-
-        // 비디오 로딩 완료를 위한 Promise
-        const videoLoad = () =>
-          new Promise((resolve) => {
-            if (mainVideo.readyState >= 3) {
+        // 이미지 프리로드 함수
+        function preloadImage(img) {
+          return new Promise((resolve, reject) => {
+            if (img.complete) {
               resolve();
             } else {
-              mainVideo.addEventListener('canplay', resolve);
+              img.onload = resolve;
+              img.onerror = reject;
+            }
+          });
+        }
+
+        // 로딩 페이지 닫기 함수
+        function closeLoadingPage() {
+          return new Promise((resolve) => {
+            loadingPage.style.opacity = '0';
+            // 비디오 재생 시도
+            mainVideo.play().catch(() => {});
+            setTimeout(() => {
+              loadingPage.style.display = 'none';
+              document.body.classList.remove('no-scroll');
+              resolve();
+            }, 500);
+          });
+        }
+
+        try {
+          // 이미지 프리로드
+          await preloadImage(loadingImage);
+
+          // 최소 로딩 시간 보장
+          await new Promise((resolve) => setTimeout(resolve, 3900));
+
+          // 메인 비디오 준비 상태 확인
+          const mainVideoReadyPromise = new Promise((resolve) => {
+            const checkReadyState = () => {
+              if (mainVideo.readyState >= 3) {
+                resolve();
+              } else {
+                requestAnimationFrame(checkReadyState);
+              }
+            };
+            checkReadyState();
+          });
+
+          // 타임아웃 설정
+          const timeoutPromise = new Promise((resolve) => {
+            setTimeout(resolve, 10000);
+          });
+
+          // 네트워크 상태 확인
+          const networkStatusPromise = new Promise((resolve) => {
+            if (navigator.onLine) {
+              resolve();
+            } else {
+              window.addEventListener('online', resolve, { once: true });
             }
           });
 
-        // 비디오 자동 재생 및 사용자 상호작용 처리 함수
-        const handleUserInteraction = async () => {
-          if (mainVideo && mainVideo.paused) {
-            try {
-              await mainVideo.play();
-            } catch (error) {
-              console.error('Video playback failed:', error);
-            }
-          }
-        };
+          // 비디오 준비 또는 타임아웃 대기
+          await Promise.race([
+            Promise.all([mainVideoReadyPromise, networkStatusPromise]),
+            timeoutPromise,
+          ]);
 
-        // 사용자 상호작용 이벤트 리스너 추가
-        document.body.addEventListener('click', handleUserInteraction);
-        document.body.addEventListener('touchstart', handleUserInteraction);
-
-        try {
-          // 두 Promise가 모두 완료될 때까지 대기
-          await Promise.all([minWait(), videoLoad()]);
-
-          // 로딩 페이지를 숨김
-          loadingPage.classList.add('hidden');
-          // no-scroll 클래스 제거하여 스크롤 허용
-          body.classList.remove('no-scroll');
-          // 비디오 재생 시작
-          mainVideo.play().catch(console.error);
+          // 로딩 페이지 닫기
+          await closeLoadingPage();
         } catch (error) {
-          console.error('Error during loading:', error);
-          loadingPage.classList.add('hidden');
-          body.classList.remove('no-scroll');
+          // 에러 발생 시 로딩 페이지 닫기
+          await closeLoadingPage();
         }
       });
+
+      // 사용자 상호작용 이벤트 리스너
+      document.body.addEventListener('click', () => {
+        if (mainVideo && mainVideo.paused) {
+          mainVideo.play().catch(() => {});
+        }
+      });
+
+      // 모바일 터치 이벤트 리스너
+      document.body.addEventListener(
+        'touchstart',
+        () => {
+          if (mainVideo && mainVideo.paused) {
+            mainVideo.play().catch(() => {});
+          }
+        },
+        { passive: true },
+      );
+
+      // 추가 터치 이벤트 리스너 (스크롤 관련)
+      document.addEventListener('touchstart', () => {}, { passive: true });
+      document.addEventListener('touchmove', () => {}, { passive: true });
     </script>
     <!-- 햄버거 메뉴 스크립트 -->
     <script>
@@ -721,9 +739,9 @@
           const alpha = scrollProgress.toFixed(2);
           header.style.backgroundColor = `rgba(17, 17, 17, ${alpha})`;
 
-          console.log(
-            `Scroll position: ${scrollY}px, Progress: ${scrollProgress.toFixed(2)}, Alpha: ${alpha}`,
-          );
+          // console.log(
+          //   `Scroll position: ${scrollY}px, Progress: ${scrollProgress.toFixed(2)}, Alpha: ${alpha}`,
+          // );
         }
 
         // 초기 로드 시 헤더 배경 설정

@@ -61,12 +61,6 @@
     <!-- 스타일시트 -->
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./work.css" />
-    <link
-      rel="stylesheet"
-      as="style"
-      crossorigin
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
-    />
 
     <!-- 캐노니컬 URL -->
     <link rel="canonical" href="https://www.afefilm.com/work.html" />
@@ -166,8 +160,30 @@
       name="naver-site-verification"
       content="cbd32824735aa41ebb724a227ebad682017619aa"
     />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WQM48G7TZJ"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WQM48G7TZJ');
+  </script>
   <body>
+    <!-- 노이즈효과 -->
+    <div class="noise"></div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">
@@ -258,58 +274,7 @@
       <hr class="section-divider section" aria-label="섹션 구분선" />
       <!-- 영상 썸네일 섹션 -->
       <section class="work-1-2 section">
-        <div class="work-1-2-1" id="thumbnails">
-          <div class="thumbnail-container" data-video-id="xqHydADF4II">
-            <img src="./asset/work/1.png" alt="사진" />
-            <div class="thumbnail-title">
-              2030 부산월드엑스포 릴레이 인터뷰 - 강승윤
-            </div>
-          </div>
-          <div class="thumbnail-container" data-video-id="AT_7ZDDNQ9M">
-            <img src="./asset/work/2.png" alt="사진" />
-            <div class="thumbnail-title">
-              2030 부산월드엑스포 릴레이 인터뷰 - 금난새
-            </div>
-          </div>
-          <div class="thumbnail-container" data-video-id="ffi9doPmkmY">
-            <img src="./asset/work/3.png" alt="사진" />
-            <div class="thumbnail-title">
-              2030 부산월드엑스포 릴레이 인터뷰 - 엄홍길
-            </div>
-          </div>
-          <div class="thumbnail-container" data-video-id="xqHydADF4II">
-            <img src="./asset/work/4.png" alt="사진" />
-            <div class="thumbnail-title">
-              2030 부산월드엑스포 릴레이 인터뷰 - 천종호
-            </div>
-          </div>
-          <div class="thumbnail-container" data-video-id="CUHeQgnl97s">
-            <img src="./asset/work/5.png" alt="사진" />
-            <div class="thumbnail-title">
-              2030 부산월드엑스포 릴레이 인터뷰 - 이창용
-            </div>
-          </div>
-          <div class="thumbnail-container" data-video-id="2SR6SACcOFU">
-            <img src="./asset/work/6.png" alt="사진" />
-            <div class="thumbnail-title">
-              2030 부산월드엑스포 릴레이 인터뷰 - 타일러
-            </div>
-          </div>
-          <div class="thumbnail-container" data-video-id="aQCfPSpyLuo">
-            <img src="./asset/work/7.png" alt="사진" />
-            <div class="thumbnail-title">
-              2030 부산월드엑스포 릴레이 인터뷰 - 손경식
-            </div>
-          </div>
-          <div class="thumbnail-container" data-video-id="4fhckpc0HOw">
-            <img src="./asset/work/8.png" alt="사진" />
-            <div class="thumbnail-title">2022 청년의날 하이라이트 영상</div>
-          </div>
-          <div class="thumbnail-container" data-video-id="CsVPZHUebD0">
-            <img src="./asset/work/9.png" alt="사진" />
-            <div class="thumbnail-title">15분도시 플랫폼 광고</div>
-          </div>
-        </div>
+        <div class="work-1-2-1" id="thumbnails"></div>
         <div class="work-1-2-2">
           <button
             class="work-1-2-2-nav prev"
@@ -427,73 +392,75 @@
 
     <!-- 비디오 정보 모달창 -->
     <script>
-      const videos = [
-        {
-          id: 'xqHydADF4II',
-          title: '2030 부산월드엑스포 릴레이 인터뷰 - 강승윤',
-          productionDate: '2023',
-          client: '부산광역시청',
-          type: '인터뷰',
-        },
-        {
-          id: 'AT_7ZDDNQ9M',
-          title: '2030 부산월드엑스포 릴레이 인터뷰 - 금난새',
-          productionDate: '2023',
-          client: '부산광역시청',
-          type: '인터뷰',
-        },
-        {
-          id: 'ffi9doPmkmY',
-          title: '2030 부산월드엑스포 릴레이 인터뷰 - 엄홍길',
-          productionDate: '2023',
-          client: '부산광역시청',
-          type: '인터뷰',
-        },
-        {
-          id: '-SXyd3VBZ0g',
-          title: '2030 부산월드엑스포 릴레이 인터뷰 - 천종호',
-          productionDate: '2023',
-          client: '부산광역시청',
-          type: '인터뷰',
-        },
-        {
-          id: 'CUHeQgnl97s',
-          title: '2030 부산월드엑스포 릴레이 인터뷰 - 이창용',
-          productionDate: '2023',
-          client: '부산광역시청',
-          type: '인터뷰',
-        },
-        {
-          id: '2SR6SACcOFU',
-          title: '2030 부산월드엑스포 릴레이 인터뷰 - 타일러',
-          productionDate: '2023',
-          client: '부산광역시청',
-          type: '인터뷰',
-        },
-        {
-          id: 'aQCfPSpyLuo',
-          title: '2030 부산월드엑스포 릴레이 인터뷰 - 손경식',
-          productionDate: '2023',
-          client: '부산광역시청',
-          type: '인터뷰',
-        },
-        {
-          id: '4fhckpc0HOw',
-          title: '2022 청년의날 하이라이트 영상',
-          productionDate: '2022',
-          client: '청년과 미래',
-          type: '스케치',
-        },
-        {
-          id: 'CsVPZHUebD0',
-          title: '15분도시 플랫폼 광고',
-          productionDate: '2024',
-          client: '부산광역시청',
-          type: '광고',
-        },
-      ];
+      let videos = [];
+      let currentPage = 1;
+      let itemsPerPage = 9;
 
-      const thumbnails = document.querySelectorAll('.thumbnail-container');
+      // JSON 파일에서 비디오 데이터를 가져오는 함수
+      async function fetchVideos() {
+        try {
+          const response = await fetch('./videos.json');
+          videos = await response.json();
+          setItemsPerPage();
+        } catch (error) {
+          console.error('Failed to fetch videos:', error);
+        }
+      }
+
+      // 화면 크기에 따라 itemsPerPage 설정
+      function setItemsPerPage() {
+        itemsPerPage = window.innerWidth <= 1024 ? 8 : 9;
+        createThumbnails();
+      }
+
+      // 동적으로 썸네일 생성
+      function createThumbnails() {
+        const thumbnailsContainer = document.getElementById('thumbnails');
+        thumbnailsContainer.innerHTML = ''; // 기존 썸네일 제거
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const pageVideos = videos.slice(startIndex, endIndex);
+
+        pageVideos.forEach((video, index) => {
+          const thumbnailDiv = document.createElement('div');
+          thumbnailDiv.className = 'thumbnail-container';
+          thumbnailDiv.dataset.videoId = video.id;
+
+          thumbnailDiv.innerHTML = `
+            <img src="${video.image}" alt="${video.title}" />
+            <div class="thumbnail-title">${video.title}</div>
+          `;
+
+          thumbnailDiv.addEventListener('click', () =>
+            openVideoModal(startIndex + index),
+          );
+          thumbnailsContainer.appendChild(thumbnailDiv);
+        });
+
+        updatePagination();
+      }
+
+      // 페이지네이션 업데이트
+      function updatePagination() {
+        const totalPages = Math.ceil(videos.length / itemsPerPage);
+        // 여기에 페이지네이션 UI 업데이트 로직 추가
+      }
+
+      // 페이지 변경 함수
+      function changePage(newPage) {
+        currentPage = newPage;
+        createThumbnails();
+      }
+
+      // 윈도우 리사이즈 이벤트 리스너
+      window.addEventListener('resize', setItemsPerPage);
+
+      // 페이지 로드 시 초기화
+      document.addEventListener('DOMContentLoaded', async () => {
+        await fetchVideos(); // JSON 파일에서 데이터 가져오기
+        setItemsPerPage();
+      });
+
       const modal = document.getElementById('videoModal');
       const closeBtn = document.querySelector('.close');
       const videoTitle = document.getElementById('videoTitle');
@@ -502,35 +469,31 @@
       const client = document.getElementById('client');
       const type = document.getElementById('type');
 
+      // 모달 열기 함수
+      function openVideoModal(index) {
+        const video = videos[index];
+        videoTitle.textContent = video.title;
+        videoPlayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${video.id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        productionDate.textContent = `${video.productionDate}`;
+        client.textContent = `CLIENT　${video.client}`;
+        type.textContent = `TYPE　${video.type}`;
+        openModal();
+      }
+
       // 모달 열기
       function openModal() {
-        const modal = document.querySelector('.modal');
         modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // body 스크롤 막기
+        document.body.style.overflow = 'hidden'; // body 스크롤 방지
       }
 
       // 모달 닫기
       function closeModal() {
-        const modal = document.querySelector('.modal');
         modal.classList.remove('show');
         document.body.style.overflow = ''; // body 스크롤 복원
 
         // 영상 플레이어 초기화
-        const videoPlayer = document.getElementById('videoPlayer');
         videoPlayer.innerHTML = '';
       }
-
-      thumbnails.forEach((thumbnail, index) => {
-        thumbnail.addEventListener('click', () => {
-          const video = videos[index];
-          videoTitle.textContent = video.title;
-          videoPlayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${video.id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-          productionDate.textContent = `${video.productionDate}`;
-          client.textContent = `CLIENT　${video.client}`;
-          type.textContent = `TYPE　${video.type}`;
-          openModal();
-        });
-      });
 
       closeBtn.onclick = closeModal;
 

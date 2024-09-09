@@ -115,7 +115,7 @@
   -moz-appearance: none;
   -webkit-border-radius: 0;
   appearance: none;
-  background-color: #111;
+  background-color: transparent;
   color: #fff;
 }
 .contact-1-2-form-input textarea {
@@ -131,7 +131,7 @@
   padding: 1rem 1.5rem;
   resize: none;
   font-family: Pretendard Variable;
-  background-color: #111;
+  background-color: transparent;
   color: #fff;
 }
 

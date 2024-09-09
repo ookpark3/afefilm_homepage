@@ -24,6 +24,8 @@
       property="og:image"
       content="https://www.afefilm.com/asset/afe-logo-og.png"
     />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="400" />
 
     <meta property="og:site_name" content="AFE Film" />
     <meta property="og:locale" content="ko_KR" />
@@ -61,12 +63,6 @@
     <!-- 스타일시트 -->
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./about.css" />
-    <link
-      rel="stylesheet"
-      as="style"
-      crossorigin
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
-    />
 
     <!-- 캐노니컬 URL -->
     <link rel="canonical" href="https://www.afefilm.com/about.html" />
@@ -164,8 +160,30 @@
       name="naver-site-verification"
       content="cbd32824735aa41ebb724a227ebad682017619aa"
     />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
   </head>
+  <!-- Google Analytics 스크립트 -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WQM48G7TZJ"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WQM48G7TZJ');
+  </script>
   <body>
+    <!-- 노이즈효과 -->
+    <div class="noise"></div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">
@@ -238,9 +256,9 @@
             AFE는 다양한 영상 제작 경험을 바탕으로 높은 퀄리티의 결과물을
             제공합니다. 공기관, 행사, 광고, 홍보 영상 등 여러 분야에서 성공적인
             프로젝트를 수행해왔으며,예술적 연출과 고객 맞춤형 기획으로 뛰어난
-            포트폴리오를 구축했습니다.<br />
-            또한, 해외 촬영과 대형 프로젝트를 원활하게 진행하며 유튜브 콘텐츠
-            기획 및 운영에서도 탁월한 성과를 거두고 있습니다.
+            포트폴리오를 구축했습니다. 또한, 해외 촬영과 대형 프로젝트를
+            원활하게 진행하며 유튜브 콘텐츠 기획 및 운영에서도 탁월한 성과를
+            거두고 있습니다.
           </p>
           <a href="./work.html" class="about-1-1-button">
             <p>go work</p>
@@ -344,11 +362,8 @@
         <div class="about-3-1">
           <p>렌탈</p>
           <p>Rental</p>
-          <p>
-            AFE는 풍부한 인프라를 바탕으로 렌탈 사업을 전개하고 있습니다 영상 및
-            사진촬영이 모두 가능한 AFE 내부 인력과 함께 비용과 시간에서 이점을
-            가지고 높은 퀄리티의 작업물을 위한 다양한 시도가 가능합니다
-          </p>
+          <p>자체 인프라를 바탕으로 렌탈 사업을 전개하고 있습니다</p>
+
           <a
             href="https://afestudio.kr/"
             class="about-3-1-button desktop"
@@ -374,15 +389,15 @@
           <div class="about-3-1-2-1">
             <p>호리존 스튜디오</p>
             <p>
-              25평대 대형 호리존 스튜디오는<br />
-              AFE와 함께하는 고객들에게 훨씬 다양한 선택지를 제공합니다
+              3면 화이트 1면 블랙 대형 호리존 스튜디오는 고객들에게 훨씬 다양한
+              선택지를 제공합니다.
             </p>
           </div>
           <div class="about-3-1-2-2">
             <p>촬영 장비 대여</p>
             <p>
-              SONY 및 CANON 계열 시네마 카메라를 비롯하여<br />
-              프로젝트 수행에 필요한 모든 장비를 보유·제공하고 있습니다
+              방송, 시네마 계열 카메라를 비롯하여 프로젝트 수행에 필요한 모든
+              장비를 보유·제공하고 있습니다.
             </p>
           </div>
         </div>
@@ -415,13 +430,11 @@
             <p>마케팅</p>
             <p>Marketing</p>
             <p>
-              AFE는 검색광고 분야에서 우수한 전문가를 보유하고 있어 다양한
-              전략의 마케팅 기획이 가능합니다. 또한, 유튜브, 블로그 등 다양한
-              소셜미디어 플랫폼에서 풍부한 경험을 보유하고 있으며, 이를 토대로
-              소셜미디어 마케팅 전략을 체계적으로 기획합니다. 광고주와의 긴밀한
-              상담을 통해 목표를 분석하고 설정하여, 최대 효율의 광고효과를
-              보장합니다. 광고 집행 후에도 성과를 철저하게 분석하고 관리하여
-              광고 효율을 높여 나갑니다
+              AFE는 다양한 마케팅 전략을 기획할 수 있습니다. 유튜브와 블로그 등
+              다양한 소셜미디어 플랫폼에서 풍부한 경험을 바탕으로 체계적인
+              소셜미 디어 마케팅 전략을 수립합니다. 각종 포털의 검색광고를
+              전문으로 하며, 체계적인 집행과 사후 관리 과정을 통해 효과적인 검
+              색광고 마케팅을 제공합니다.
             </p>
           </div>
         </div>
