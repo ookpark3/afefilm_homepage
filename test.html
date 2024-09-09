@@ -41,14 +41,24 @@
         width: 100%;
         height: 100%;
       }
-      #timer {
+      #log {
         position: fixed;
-        top: 10px;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         color: #fff;
-        font-size: 20px;
+        font-size: 16px;
         z-index: 9999; /* 최대한 보이도록 z-index 설정 */
+        height: 100vh;
+        overflow-y: auto;
+        width: 90%;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
       }
     </style>
   </head>
@@ -72,14 +82,24 @@
     </div>
     <!-- 비디오 컨테이너 -->
     <div class="video-container-reel"></div>
-    <div id="timer">0초 경과</div>
+    <div id="log"></div>
 
     <script>
       let secondsElapsed = 0;
       let mainVideo;
 
+      function logMessage(message) {
+        const logElement = document.getElementById('log');
+        const logEntry = document.createElement('div');
+        logEntry.textContent = message;
+        logElement.appendChild(logEntry);
+        logElement.scrollTop = logElement.scrollHeight; // 자동 스크롤
+      }
+
       document.addEventListener('DOMContentLoaded', async function () {
+        logMessage('DOMContentLoaded 이벤트 발생');
         document.body.classList.add('no-scroll');
+        logMessage('body에 no-scroll 클래스 추가');
 
         const loadingPage = document.getElementById('loading-page');
         const loadingImage = loadingPage.querySelector('img');
@@ -91,6 +111,7 @@
         mainVideo.playsInline = true;
         mainVideo.loop = true;
         videoContainer.appendChild(mainVideo);
+        logMessage('비디오 요소 생성 및 비디오 컨테이너에 추가');
 
         function isMobile() {
           return window.innerWidth <= 1024;
@@ -103,19 +124,28 @@
           if (mainVideo.src !== videoSource) {
             mainVideo.src = videoSource;
             mainVideo.load();
+            logMessage(`비디오 소스 설정: ${videoSource}`);
           }
         }
 
         setVideoSource();
         window.addEventListener('resize', setVideoSource);
+        logMessage('비디오 소스 설정 및 resize 이벤트 리스너 추가');
 
         function preloadImage(img) {
           return new Promise((resolve, reject) => {
             if (img.complete) {
               resolve();
+              logMessage('로딩 이미지 이미 로드됨');
             } else {
-              img.onload = resolve;
-              img.onerror = reject;
+              img.onload = () => {
+                resolve();
+                logMessage('로딩 이미지 로드 완료');
+              };
+              img.onerror = () => {
+                reject();
+                logMessage('로딩 이미지 로드 실패');
+              };
             }
           });
         }
@@ -128,18 +158,23 @@
               loadingPage.style.display = 'none';
               document.body.classList.remove('no-scroll');
               resolve();
+              logMessage('로딩 페이지 닫힘');
             }, 500);
           });
         }
 
         try {
+          logMessage('이미지 프리로드 시작');
           await preloadImage(loadingImage);
+          logMessage('이미지 프리로드 완료');
           await new Promise((resolve) => setTimeout(resolve, 3900));
+          logMessage('3900ms 대기 완료');
 
           const mainVideoReadyPromise = new Promise((resolve) => {
             const checkReadyState = () => {
               if (mainVideo.readyState >= 2) {
                 resolve();
+                logMessage('비디오 readyState 2 이상 준비 완료');
               } else {
                 requestAnimationFrame(checkReadyState);
               }
@@ -150,7 +185,7 @@
           let timeoutId;
           const timeoutPromise = new Promise((resolve) => {
             timeoutId = setTimeout(() => {
-              console.log('10초 타임아웃 발생'); // 디버깅용 로그 추가
+              logMessage('10초 타임아웃 발생');
               resolve();
             }, 10000);
           });
@@ -158,23 +193,35 @@
           const networkStatusPromise = new Promise((resolve) => {
             if (navigator.onLine) {
               resolve();
+              logMessage('네트워크 연결됨');
             } else {
-              window.addEventListener('online', resolve, { once: true });
+              window.addEventListener(
+                'online',
+                () => {
+                  resolve();
+                  logMessage('네트워크 연결됨 (online 이벤트)');
+                },
+                { once: true },
+              );
             }
           });
 
           await Promise.race([
             Promise.all([mainVideoReadyPromise, networkStatusPromise]).then(
               () => {
-                clearTimeout(timeoutId); // 타임아웃 취소
+                clearTimeout(timeoutId);
+                logMessage('비디오 준비 완료 및 네트워크 연결됨');
               },
             ),
             timeoutPromise,
           ]);
 
           await closeLoadingPage();
-          mainVideo.play().catch(() => {});
+          mainVideo.play().catch(() => {
+            logMessage('비디오 재생 중 오류 발생');
+          });
         } catch (error) {
+          logMessage('에러 발생: ' + error);
           await closeLoadingPage();
         }
       });
@@ -183,20 +230,21 @@
         'touchstart',
         () => {
           if (mainVideo && mainVideo.paused) {
-            mainVideo.play().catch(() => {});
+            mainVideo.play().catch(() => {
+              logMessage('터치 이벤트 중 비디오 재생 오류 발생');
+            });
           }
         },
         { passive: true },
       );
 
-      const updateTimer = () => {
-        const timerElement = document.getElementById('timer');
-        timerElement.textContent = `${secondsElapsed}초 경과`;
-      };
-
-      const timerInterval = setInterval(() => {
+      const logInterval = setInterval(() => {
         secondsElapsed++;
-        updateTimer();
+        logMessage(`${secondsElapsed}초 경과`);
+        if (secondsElapsed >= 15) {
+          clearInterval(logInterval);
+          logMessage('로그 메시지 15초 경과 후 중지');
+        }
       }, 1000);
     </script>
   </body>
