@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page</title>
+    <style>
+      /* 스크롤 방지를 위한 클래스 */
+      body.no-scroll {
+        overflow: hidden;
+      }
+      /* 로딩 페이지 스타일 */
+      .loading-page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: opacity 0.5s;
+      }
+      /* 비디오 컨테이너 스타일 */
+      .video-container-reel {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+      }
+      /* 메인 비디오 스타일 */
+      .main-2-1 {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 로딩 페이지 -->
+    <div id="loading-page" class="loading-page">
+      <picture>
+        <!-- WebP 이미지 소스 -->
+        <source
+          srcset="https://d1iub2snqs2x58.cloudfront.net/afe-loading.webp"
+          type="image/webp"
+        />
+        <!-- 대체 GIF 이미지 -->
+        <img
+          src="https://d1iub2snqs2x58.cloudfront.net/afe-loading.gif"
+          alt="Content is loading, please wait."
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </div>
+    <!-- 비디오 컨테이너 -->
+    <div class="video-container-reel"></div>
+
+    <script>
+      // 페이지 로드 완료 시 실행되는 이벤트 리스너
+      document.addEventListener('DOMContentLoaded', async function () {
+        // 초기 스크롤 방지
+        document.body.classList.add('no-scroll');
+
+        // 필요한 DOM 요소 선택
+        const loadingPage = document.getElementById('loading-page');
+        const loadingImage = loadingPage.querySelector('img');
+        const mainVideo = document.createElement('video');
+        const videoContainer = document.querySelector('.video-container-reel');
+
+        // 메인 비디오 요소 설정
+        mainVideo.classList.add('main-2-1');
+        mainVideo.muted = true;
+        mainVideo.playsInline = true;
+        mainVideo.loop = true;
+        videoContainer.appendChild(mainVideo);
+
+        // 모바일 기기 여부 확인 함수
+        function isMobile() {
+          return window.innerWidth <= 1024;
+        }
+
+        // 비디오 소스 설정 함수
+        function setVideoSource() {
+          const videoSource = isMobile()
+            ? 'https://d1iub2snqs2x58.cloudfront.net/afe-reel-mobile.mp4'
+            : 'https://d1iub2snqs2x58.cloudfront.net/afe-reel-desktop.mp4';
+          if (mainVideo.src !== videoSource) {
+            mainVideo.src = videoSource;
+          }
+        }
+
+        // 초기 비디오 소스 설정 및 리사이즈 이벤트 리스너 추가
+        setVideoSource();
+        window.addEventListener('resize', setVideoSource);
+
+        // 이미지 프리로드 함수
+        function preloadImage(img) {
+          return new Promise((resolve, reject) => {
+            if (img.complete) {
+              resolve();
+            } else {
+              img.onload = resolve;
+              img.onerror = reject;
+            }
+          });
+        }
+
+        // 로딩 페이지 닫기 함수
+        function closeLoadingPage() {
+          return new Promise((resolve) => {
+            loadingPage.style.opacity = '0';
+            // 비디오 재생 시도
+            mainVideo.play().catch(() => {});
+            setTimeout(() => {
+              loadingPage.style.display = 'none';
+              document.body.classList.remove('no-scroll');
+              resolve();
+            }, 500);
+          });
+        }
+
+        try {
+          // 로딩 이미지 프리로드
+          await preloadImage(loadingImage);
+
+          // 최소 로딩 시간 보장 (3.9초)
+          await new Promise((resolve) => setTimeout(resolve, 3900));
+
+          // 메인 비디오 준비 상태 확인
+          const mainVideoReadyPromise = new Promise((resolve) => {
+            const checkReadyState = () => {
+              if (mainVideo.readyState >= 2) {
+                console.log('Video ready');
+                resolve();
+              } else {
+                requestAnimationFrame(checkReadyState);
+              }
+            };
+            checkReadyState();
+          });
+
+          // 10초 타임아웃 설정
+          const timeoutPromise = new Promise((resolve) => {
+            setTimeout(resolve, 10000);
+          });
+
+          // 네트워크 상태 확인
+          const networkStatusPromise = new Promise((resolve) => {
+            if (navigator.onLine) {
+              resolve();
+            } else {
+              window.addEventListener('online', resolve, { once: true });
+            }
+          });
+
+          // 비디오 준비 또는 타임아웃 대기
+          await Promise.race([
+            Promise.all([mainVideoReadyPromise, networkStatusPromise]),
+            timeoutPromise,
+          ]);
+
+          // 로딩 페이지 닫기 및 비디오 재생
+          await closeLoadingPage();
+          mainVideo.play().catch(() => {
+            console.error('Error playing video');
+          });
+        } catch (error) {
+          // 에러 발생 시 로딩 페이지 닫기
+          await closeLoadingPage();
+        }
+      });
+
+      // 모바일 터치 이벤트 리스너 (비디오 재생용)
+      document.body.addEventListener(
+        'touchstart',
+        () => {
+          if (mainVideo && mainVideo.paused) {
+            mainVideo.play().catch(() => {
+              console.error('Error playing video');
+            });
+          }
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>
