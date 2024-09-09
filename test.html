@@ -44,9 +44,11 @@
       #timer {
         position: fixed;
         top: 10px;
-        left: 10px;
+        left: 50%;
+        transform: translateX(-50%);
         color: #fff;
         font-size: 20px;
+        z-index: 9999; /* 최대한 보이도록 z-index 설정 */
       }
     </style>
   </head>
@@ -148,6 +150,7 @@
           let timeoutId;
           const timeoutPromise = new Promise((resolve) => {
             timeoutId = setTimeout(() => {
+              console.log('10초 타임아웃 발생'); // 디버깅용 로그 추가
               resolve();
             }, 10000);
           });
@@ -163,7 +166,7 @@
           await Promise.race([
             Promise.all([mainVideoReadyPromise, networkStatusPromise]).then(
               () => {
-                clearTimeout(timeoutId);
+                clearTimeout(timeoutId); // 타임아웃 취소
               },
             ),
             timeoutPromise,
