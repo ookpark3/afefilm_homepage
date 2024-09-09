@@ -342,6 +342,11 @@
   }
 }
 @media (max-width: 1024px) {
+  .loading-page {
+    & img {
+      width: 50vw;
+    }
+  }
   .main-2 {
     margin-top: 5rem;
     & .main-2-1 {

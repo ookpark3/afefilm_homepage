@@ -186,10 +186,16 @@
   <body>
     <!-- 로딩페이지 -->
     <div id="loading-page" class="loading-page">
-      <img
-        src="https://d1iub2snqs2x58.cloudfront.net/afe-loading.webp"
-        alt="Loading Image"
-      />
+      <picture>
+        <source
+          srcset="https://d1iub2snqs2x58.cloudfront.net/afe-loading.webp"
+          type="image/webp"
+        />
+        <img
+          src="https://d1iub2snqs2x58.cloudfront.net/afe-loading.gif"
+          alt="Loading Image"
+        />
+      </picture>
     </div>
     <!-- 노이즈효과 -->
     <div class="noise"></div>
