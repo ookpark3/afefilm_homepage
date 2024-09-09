@@ -193,7 +193,9 @@
         />
         <img
           src="https://d1iub2snqs2x58.cloudfront.net/afe-loading.gif"
-          alt="Loading Image"
+          alt="Content is loading, please wait."
+          loading="lazy"
+          decoding="async"
         />
       </picture>
     </div>
@@ -416,24 +418,25 @@
     </footer>
     <!-- 로딩 및 쇼릴영상 스크립트 -->
     <script>
+      // 페이지 로드 완료 시 실행되는 이벤트 리스너
       document.addEventListener('DOMContentLoaded', async function () {
-        // 스크롤 방지
+        // 초기 스크롤 방지
         document.body.classList.add('no-scroll');
 
-        // 필요한 요소들 선택
+        // 필요한 DOM 요소 선택
         const loadingPage = document.getElementById('loading-page');
         const loadingImage = loadingPage.querySelector('img');
         const mainVideo = document.createElement('video');
         const videoContainer = document.querySelector('.video-container-reel');
 
-        // 메인 비디오 설정
+        // 메인 비디오 요소 설정
         mainVideo.classList.add('main-2-1');
         mainVideo.muted = true;
         mainVideo.playsInline = true;
         mainVideo.loop = true;
         videoContainer.appendChild(mainVideo);
 
-        // 모바일 여부 확인 함수
+        // 모바일 기기 여부 확인 함수
         function isMobile() {
           return window.innerWidth <= 1024;
         }
@@ -479,16 +482,17 @@
         }
 
         try {
-          // 이미지 프리로드
+          // 로딩 이미지 프리로드
           await preloadImage(loadingImage);
 
-          // 최소 로딩 시간 보장
+          // 최소 로딩 시간 보장 (3.9초)
           await new Promise((resolve) => setTimeout(resolve, 3900));
 
           // 메인 비디오 준비 상태 확인
           const mainVideoReadyPromise = new Promise((resolve) => {
             const checkReadyState = () => {
-              if (mainVideo.readyState >= 3) {
+              if (mainVideo.readyState >= 2) {
+                console.log('비디오 준비 상태 확인');
                 resolve();
               } else {
                 requestAnimationFrame(checkReadyState);
@@ -497,7 +501,7 @@
             checkReadyState();
           });
 
-          // 타임아웃 설정
+          // 10초 타임아웃 설정
           const timeoutPromise = new Promise((resolve) => {
             setTimeout(resolve, 10000);
           });
@@ -517,35 +521,29 @@
             timeoutPromise,
           ]);
 
-          // 로딩 페이지 닫기
+          // 로딩 페이지 닫기 및 비디오 재생
           await closeLoadingPage();
+          mainVideo.play().catch(() => {
+            console.error('비디오 재생 중 오류 발생');
+          });
         } catch (error) {
           // 에러 발생 시 로딩 페이지 닫기
           await closeLoadingPage();
         }
       });
 
-      // 사용자 상호작용 이벤트 리스너
-      document.body.addEventListener('click', () => {
-        if (mainVideo && mainVideo.paused) {
-          mainVideo.play().catch(() => {});
-        }
-      });
-
-      // 모바일 터치 이벤트 리스너
+      // 모바일 터치 이벤트 리스너 (비디오 재생용)
       document.body.addEventListener(
         'touchstart',
         () => {
           if (mainVideo && mainVideo.paused) {
-            mainVideo.play().catch(() => {});
+            mainVideo.play().catch(() => {
+              console.error('비디오 재생 중 오류 발생');
+            });
           }
         },
         { passive: true },
       );
-
-      // 추가 터치 이벤트 리스너 (스크롤 관련)
-      document.addEventListener('touchstart', () => {}, { passive: true });
-      document.addEventListener('touchmove', () => {}, { passive: true });
     </script>
     <!-- 햄버거 메뉴 스크립트 -->
     <script>
