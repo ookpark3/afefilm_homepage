@@ -165,6 +165,26 @@
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
     />
+    <style>
+      #log {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 16px;
+        z-index: 9999;
+        height: 100vh;
+        overflow-y: auto;
+        width: 90%;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
   </head>
   <!-- Google tag (gtag.js) -->
   <!-- Google Analytics 스크립트 -->
@@ -184,6 +204,7 @@
     gtag('config', 'G-WQM48G7TZJ'); // 특정 GA4 속성의 추적 ID 설정
   </script>
   <body>
+    <div id="log"></div>
     <!-- 로딩페이지 -->
     <div id="loading-page" class="loading-page">
       <picture>
@@ -418,15 +439,28 @@
     </footer>
     <!-- 로딩 및 쇼릴영상 스크립트 -->
     <script>
+      let secondsElapsed = 0;
+      let mainVideo;
+
+      function logMessage(message) {
+        const logElement = document.getElementById('log');
+        const logEntry = document.createElement('div');
+        logEntry.textContent = message;
+        logElement.appendChild(logEntry);
+        logElement.scrollTop = logElement.scrollHeight;
+      }
+
       // 페이지 로드 완료 시 실행되는 이벤트 리스너
       document.addEventListener('DOMContentLoaded', async function () {
+        logMessage('DOMContentLoaded 이벤트 발생');
         // 초기 스크롤 방지
         document.body.classList.add('no-scroll');
+        logMessage('body에 no-scroll 클래스 추가');
 
         // 필요한 DOM 요소 선택
         const loadingPage = document.getElementById('loading-page');
         const loadingImage = loadingPage.querySelector('img');
-        const mainVideo = document.createElement('video');
+        mainVideo = document.createElement('video');
         const videoContainer = document.querySelector('.video-container-reel');
 
         // 메인 비디오 요소 설정
@@ -436,6 +470,7 @@
         mainVideo.loop = true;
         mainVideo.preload = 'auto';
         videoContainer.appendChild(mainVideo);
+        logMessage('비디오 요소 생성 및 비디오 컨테이너에 추가');
 
         // 모바일 기기 여부 확인 함수
         function isMobile() {
@@ -449,21 +484,31 @@
             : 'https://afefilm.com/asset/main/afe-reel-web.mp4';
           if (mainVideo.src !== videoSource) {
             mainVideo.src = videoSource;
+            mainVideo.load();
+            logMessage(`비디오 소스 설정: ${videoSource}`);
           }
         }
 
         // 초기 비디오 소스 설정 및 리사이즈 이벤트 리스너 추가
         setVideoSource();
         window.addEventListener('resize', setVideoSource);
+        logMessage('비디오 소스 설정 및 resize 이벤트 리스너 추가');
 
         // 이미지 프리로드 함수
         function preloadImage(img) {
           return new Promise((resolve, reject) => {
             if (img.complete) {
               resolve();
+              logMessage('로딩 이미지 이미 로드됨');
             } else {
-              img.onload = resolve;
-              img.onerror = reject;
+              img.onload = () => {
+                resolve();
+                logMessage('로딩 이미지 로드 완료');
+              };
+              img.onerror = () => {
+                reject();
+                logMessage('로딩 이미지 로드 실패');
+              };
             }
           });
         }
@@ -472,79 +517,116 @@
         function closeLoadingPage() {
           return new Promise((resolve) => {
             loadingPage.style.opacity = '0';
-            // 비디오 재생 시도
             mainVideo.play().catch(() => {});
             setTimeout(() => {
               loadingPage.style.display = 'none';
               document.body.classList.remove('no-scroll');
               resolve();
+              logMessage('로딩 페이지 닫힘');
             }, 500);
           });
         }
 
         try {
-          // 로딩 이미지 프리로드
+          logMessage('이미지 프리로드 시작');
           await preloadImage(loadingImage);
-
-          // 최소 로딩 시간 보장 (3.9초)
+          logMessage('이미지 프리로드 완료');
           await new Promise((resolve) => setTimeout(resolve, 3900));
+          logMessage('3900ms 대기 완료');
 
-          // 메인 비디오 준비 상태 확인
           const mainVideoReadyPromise = new Promise((resolve) => {
+            let checkCount = 0;
+            const maxChecks = 20; // 최대 10초 (500ms * 20)
+
             const checkReadyState = () => {
-              if (mainVideo.readyState >= 0) {
-                console.log('비디오 준비 상태 확인');
+              if (mainVideo.readyState >= 3) {
+                console.log(`비디오 준비 완료 (시도 횟수: ${checkCount})`);
                 resolve();
+              } else if (checkCount < maxChecks) {
+                checkCount++;
+                setTimeout(checkReadyState, 500);
               } else {
-                requestAnimationFrame(checkReadyState);
+                console.log('비디오 준비 시간 초과');
+                resolve(); // 시간 초과 시에도 resolve 호출
               }
             };
+
+            mainVideo.addEventListener(
+              'canplay',
+              () => {
+                console.log('비디오 canplay 이벤트 발생');
+                resolve();
+              },
+              { once: true },
+            );
+
             checkReadyState();
           });
 
-          // 10초 타임아웃 설정
+          let timeoutId;
           const timeoutPromise = new Promise((resolve) => {
-            setTimeout(resolve, 10000);
+            timeoutId = setTimeout(() => {
+              logMessage('10초 타임아웃 발생');
+              resolve();
+            }, 10000);
           });
 
-          // 네트워크 상태 확인
           const networkStatusPromise = new Promise((resolve) => {
             if (navigator.onLine) {
               resolve();
+              logMessage('네트워크 연결됨');
             } else {
-              window.addEventListener('online', resolve, { once: true });
+              window.addEventListener(
+                'online',
+                () => {
+                  resolve();
+                  logMessage('네트워크 연결됨 (online 이벤트)');
+                },
+                { once: true },
+              );
             }
           });
 
-          // 비디오 준비 또는 타임아웃 대기
           await Promise.race([
-            Promise.all([mainVideoReadyPromise, networkStatusPromise]),
+            Promise.all([mainVideoReadyPromise, networkStatusPromise]).then(
+              () => {
+                clearTimeout(timeoutId);
+                logMessage('비디오 준비 완료 및 네트워크 연결됨');
+              },
+            ),
             timeoutPromise,
           ]);
 
-          // 로딩 페이지 닫기 및 비디오 재생
           await closeLoadingPage();
           mainVideo.play().catch(() => {
-            console.error('비디오 재생 중 오류 발생');
+            logMessage('비디오 재생 중 오류 발생');
           });
         } catch (error) {
-          // 에러 발생 시 로딩 페이지 닫기
+          logMessage('에러 발생: ' + error);
           await closeLoadingPage();
         }
       });
 
-      // 모바일 터치 이벤트 리스너 (비디오 재생용)
       document.body.addEventListener(
         'touchstart',
         () => {
           if (mainVideo && mainVideo.paused) {
             mainVideo.play().catch(() => {
-              console.error('비디오 재생 중 오류 발생');
+              logMessage('터치 이벤트 중 비디오 재생 오류 발생');
             });
           }
         },
         { passive: true },
       );
+
+      const logInterval = setInterval(() => {
+        secondsElapsed++;
+        logMessage(`${secondsElapsed}초 경과`);
+        if (secondsElapsed >= 15) {
+          clearInterval(logInterval);
+          logMessage('로그 메시지 15초 경과 후 중지');
+        }
+      }, 1000);
     </script>
     <!-- 햄버거 메뉴 스크립트 -->
     <script>

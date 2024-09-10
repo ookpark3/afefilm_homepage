@@ -712,6 +712,7 @@
     gap: 0.75rem;
     min-height: 10rem;
     aspect-ratio: 16 / 9;
+    padding: 1.25rem;
   }
 
   .about-3-1-2-1 {

@@ -171,14 +171,31 @@
           logMessage('3900ms 대기 완료');
 
           const mainVideoReadyPromise = new Promise((resolve) => {
+            let checkCount = 0;
+            const maxChecks = 20; // 최대 10초 (500ms * 20)
+
             const checkReadyState = () => {
-              if (mainVideo.readyState >= 2) {
+              if (mainVideo.readyState >= 3) {
+                console.log(`비디오 준비 완료 (시도 횟수: ${checkCount})`);
                 resolve();
-                logMessage('비디오 readyState 2 이상 준비 완료');
+              } else if (checkCount < maxChecks) {
+                checkCount++;
+                setTimeout(checkReadyState, 500);
               } else {
-                requestAnimationFrame(checkReadyState);
+                console.log('비디오 준비 시간 초과');
+                resolve(); // 시간 초과 시에도 resolve 호출
               }
             };
+
+            mainVideo.addEventListener(
+              'canplay',
+              () => {
+                console.log('비디오 canplay 이벤트 발생');
+                resolve();
+              },
+              { once: true },
+            );
+
             checkReadyState();
           });
 
