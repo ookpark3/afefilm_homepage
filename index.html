@@ -62,17 +62,17 @@
     <!-- 파비콘 -->
     <link
       rel="icon"
-      type="image/png"
+      type="image/webp"
       sizes="16x16"
-      href="./asset/afefavicon-16x16.png"
+      href="./asset/afefavicon-16x16.webp"
     />
     <link
       rel="icon"
-      type="image/png"
+      type="image/webp"
       sizes="32x32"
-      href="./asset/afefavicon-32x32.png"
+      href="./asset/afefavicon-32x32.webp"
     />
-    <link rel="apple-touch-icon" href="./asset/main/AFE logo.png" />
+    <link rel="apple-touch-icon" href="./asset/main/AFE logo.webp" />
 
     <!-- 스타일시트 -->
     <link rel="stylesheet" href="./style.css" />
@@ -104,7 +104,7 @@
         "@type": "Organization",
         "name": "AFE film",
         "url": "https://afefilm.com",
-        "logo": "https://afefilm.com/img/AfeLogo.jpg",
+        "logo": "https://afefilm.com/img/AfeLogo.webp",
         "description": "AFE film은 감각적인 영상제작업체 입니다.",
         "address": {
           "@type": "PostalAddress",
@@ -201,11 +201,25 @@
     </div>
     <!-- 노이즈효과 -->
     <div class="noise"></div>
+    <!-- 커서변경 -->
+    <div class="cursor">
+      <div class="cursor-ball">
+        <svg height="30" width="30">
+          <circle
+            cx="15"
+            cy="15"
+            r="12"
+            stroke-width="0"
+            style="fill: rgb(255, 255, 255)"
+          ></circle>
+        </svg>
+      </div>
+    </div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">
         <a href="./index.html">
-          <img src="./asset/main/AFE logo.png" alt="AFE logo" />
+          <img src="./asset/main/AFE logo.webp" alt="AFE logo" />
         </a>
       </div>
       <div class="header-menu">
@@ -300,7 +314,7 @@
           <a href="./about.html#marketing-anchor" class="main-4-2-3"
             >marketing</a
           >
-          <a onclick="alert('홈페이지 리뉴얼작업 중입니다.')" class="main-4-2-4"
+          <a onclick="alert('서비스 계획중입니다.')" class="main-4-2-4"
             >academy</a
           >
         </div>
@@ -313,11 +327,11 @@
           <div class="main-5-1-2">
             <div class="main-5-1-2-1 video-container">
               <img
-                src="/asset/main/main-5-1-2/1.jpg"
+                src="/asset/main/main-5-1-2/1.webp"
                 alt="Video thumbnail"
                 class="video-thumbnail"
               />
-              <div class="play-button">
+              <div class="play-button cursor-able">
                 <svg
                   class="play-icon"
                   width="64"
@@ -364,24 +378,24 @@
         <div class="main-6-2">
           <div class="scroll-container scroll-container-1">
             <img
-              src="./asset/main/main-6-2-1.png"
+              src="./asset/main/main-6-2-1.webp"
               alt="Client logo"
               class="scroll-image"
             />
             <img
-              src="./asset/main/main-6-2-1.png"
+              src="./asset/main/main-6-2-1.webp"
               alt="Client logo"
               class="scroll-image"
             />
           </div>
           <div class="scroll-container scroll-container-2">
             <img
-              src="./asset/main/main-6-2-2.png"
+              src="./asset/main/main-6-2-2.webp"
               alt="Client logo"
               class="scroll-image"
             />
             <img
-              src="./asset/main/main-6-2-2.png"
+              src="./asset/main/main-6-2-2.webp"
               alt="Client logo"
               class="scroll-image"
             />
@@ -650,7 +664,82 @@
         observer.observe(section);
       });
     </script>
+    <!-- 커서 스크립트 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // 모든 'button'과 'a' 태그 요소를 선택
+        const clickableElements = document.querySelectorAll('button, a');
 
+        // 각 요소에 'cursor-able' 클래스 추가
+        clickableElements.forEach((element) => {
+          element.classList.add('cursor-able');
+        });
+      });
+
+      const cursorBall = document.querySelector('.cursor-ball');
+      const cursorBallSvg = cursorBall.querySelector('svg');
+      let cursorX = 0,
+        cursorY = 0;
+      let targetX = 0,
+        targetY = 0;
+      let speed = 0.001; // 초기 속도를 낮춤
+      const maxSpeed = 0.3;
+      const minSpeed = 0.001;
+      const acceleration = 0.001; // 가속도를 낮춤
+
+      document.addEventListener('mousemove', (e) => {
+        targetX = e.pageX;
+        targetY = e.pageY;
+      });
+
+      function animateCursor() {
+        const dx = targetX - cursorX;
+        const dy = targetY - cursorY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // 거리에 따라 속도 조절
+        if (distance > 100) {
+          // 거리가 멀 때
+          speed = Math.min(speed + acceleration, maxSpeed); // 가속도 적용
+        } else if (distance > 50) {
+          // 중간 거리
+          speed = 0.2; // 일정한 속도 유지
+        } else {
+          // 가까운 거리
+          speed = Math.max(0.3, speed); // 빠른 속도로 따라오기
+        }
+
+        cursorX += dx * speed;
+        cursorY += dy * speed;
+
+        cursorBall.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+
+        requestAnimationFrame(animateCursor);
+      }
+
+      animateCursor();
+
+      // 이벤트 위임을 사용하여 동적으로 생성된 콘텐츠에도 반응하게 함
+      document.body.addEventListener('mouseover', (e) => {
+        if (e.target.closest('.cursor-able')) {
+          cursorBallSvg.style.transform = 'scale(4)';
+        }
+        // iframe에 마우스가 올라갔을 때 커서 볼 숨기기
+        if (e.target.tagName.toLowerCase() === 'iframe') {
+          cursorBall.style.opacity = '0';
+        }
+      });
+
+      document.body.addEventListener('mouseout', (e) => {
+        if (e.target.closest('.cursor-able')) {
+          cursorBallSvg.style.transform = 'scale(0.8)';
+        }
+        // iframe에서 마우스가 벗어났을 때 커서 볼 다시 보이기
+        if (e.target.tagName.toLowerCase() === 'iframe') {
+          cursorBall.style.opacity = '1';
+        }
+      });
+    </script>
     <script src="https://player.vimeo.com/api/player.js"></script>
     <!-- 비디오 클릭시 플레이 버튼 숨기기 -->
     <script>

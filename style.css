@@ -46,6 +46,42 @@ body {
   color: #f8f9fa;
 }
 
+/* 커서의 기본 스타일 */
+.cursor {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference; /* 색상 반전 효과 */
+  transform: translate(-50%, -50%);
+}
+
+/* 커서의 동그라미 */
+.cursor-ball {
+  position: absolute;
+  mix-blend-mode: difference;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+/* 커서의 안의 SVG */
+.cursor-ball svg {
+  width: 100%;
+  height: 100%;
+  fill: #fff; /* SVG 기본 색상을 흰색으로 설정 */
+  transition: all 0.3s ease;
+}
+
+/* 클릭 가능한 요소에 대한 스타일 */
+.cursor-able {
+  cursor: pointer;
+}
+
 /* Placeholder 스타일 */
 ::placeholder {
   font-family: 'Pretendard Variable', sans-serif;
@@ -96,7 +132,6 @@ textarea {
 }
 
 .header a:hover {
-  cursor: pointer;
   color: #00ff66;
 }
 
@@ -104,11 +139,10 @@ textarea {
   width: 5.25rem;
   height: 1.375rem;
   flex-shrink: 0;
-  cursor: pointer;
 }
 .header-logo a {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
 }
 
 .header-menu {
@@ -167,7 +201,7 @@ textarea {
   gap: 0.25rem;
   border-radius: 1.875rem;
   border: 0.0325rem solid #f8f9fa;
-  cursor: pointer;
+
   transition: all 0.3s;
 }
 
@@ -328,53 +362,7 @@ textarea {
   line-height: 140%; /* 4.2rem */
   text-transform: uppercase;
 }
-.big-circle {
-  position: relative;
-  width: 40%;
-  min-width: 40rem;
-  flex-shrink: 0;
-  border-radius: 50rem;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.green-circle {
-  width: 3rem;
-  height: 3rem;
-  flex-shrink: 0;
-  filter: blur(0rem);
-  background-color: #0f6;
-}
-.purple-circle {
-  width: 1.5rem;
-  height: 1.5rem;
-  flex-shrink: 0;
-  filter: blur(0rem);
-  background-color: #bd00ff;
-}
-.sky-circle {
-  width: 4rem;
-  height: 4rem;
-  flex-shrink: 0;
-  filter: blur(0rem);
-  background-color: #00d1ff;
-}
-.orbit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-.orbital {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  transform-origin: center center;
-}
 .no-scroll {
   overflow: hidden;
 }
@@ -383,7 +371,7 @@ textarea {
   display: none;
   background: none;
   border: none;
-  cursor: pointer;
+
   padding: 10px;
 }
 

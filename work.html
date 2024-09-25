@@ -46,17 +46,17 @@
     <!-- 파비콘 -->
     <link
       rel="icon"
-      type="image/png"
+      type="image/webp"
       sizes="16x16"
-      href="./asset/afefavicon-16x16.png"
+      href="./asset/afefavicon-16x16.webp"
     />
     <link
       rel="icon"
-      type="image/png"
+      type="image/webp"
       sizes="32x32"
-      href="./asset/afefavicon-32x32.png"
+      href="./asset/afefavicon-32x32.webp"
     />
-    <link rel="apple-touch-icon" href="./asset/main/AFE logo.png" />
+    <link rel="apple-touch-icon" href="./asset/main/AFE logo.webp" />
 
     <!-- 스타일시트 -->
     <link rel="stylesheet" href="./style.css" />
@@ -89,13 +89,13 @@
         "name": "AFE Film Work Portfolio",
         "description": "AFE의 다양한 작품을 확인하세요. 광고, 홍보 영상, 다큐멘터리, 아트필름 등 창의적이고 혁신적인 영상 프로젝트를 소개합니다.",
         "url": "https://www.afefilm.com/work.html",
-        "image": "https://www.afefilm.com/asset/work/work-cover.jpg",
+        "image": "https://www.afefilm.com/asset/work/work-cover.webp",
         "publisher": {
           "@type": "Organization",
           "name": "AFE film",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://afefilm.com/img/AfeLogo.jpg"
+            "url": "https://afefilm.com/img/AfeLogo.webp"
           }
         }
       }
@@ -110,9 +110,24 @@
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
 
     <!-- 성능 최적화를 위한 리소스 힌트 -->
-    <link rel="preload" href="./asset/work/1.png" as="image" type="image/png" />
-    <link rel="preload" href="./asset/work/2.png" as="image" type="image/png" />
-    <link rel="preload" href="./asset/work/3.png" as="image" type="image/png" />
+    <link
+      rel="preload"
+      href="./asset/work/1.webp"
+      as="image"
+      type="image/webp"
+    />
+    <link
+      rel="preload"
+      href="./asset/work/2.webp"
+      as="image"
+      type="image/webp"
+    />
+    <link
+      rel="preload"
+      href="./asset/work/3.webp"
+      as="image"
+      type="image/webp"
+    />
 
     <!-- 웹 폰트 최적화 -->
     <link
@@ -184,11 +199,25 @@
   <body>
     <!-- 노이즈효과 -->
     <div class="noise"></div>
+    <!-- 커서변경 -->
+    <div class="cursor">
+      <div class="cursor-ball">
+        <svg height="30" width="30">
+          <circle
+            cx="15"
+            cy="15"
+            r="12"
+            stroke-width="0"
+            style="fill: rgb(255, 255, 255)"
+          ></circle>
+        </svg>
+      </div>
+    </div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">
         <a href="./index.html">
-          <img src="./asset/main/AFE logo.png" alt="AFE logo" />
+          <img src="./asset/main/AFE logo.webp" alt="AFE logo" />
         </a>
       </div>
       <div class="header-menu">
@@ -252,19 +281,16 @@
         <div class="work-1-1">
           <p>Work</p>
           <div class="work-1-1-1">
-            <button onclick="alert('홈페이지 리뉴얼작업 중입니다.')">
-              ALL
-            </button>
-            <button onclick="alert('홈페이지 리뉴얼작업 중입니다.')">
+            <button class="cursor-able" data-type="ALL">ALL</button>
+            <button class="cursor-able" data-type="공공기관,공기관,강의">
               공공기관
             </button>
-            <button onclick="alert('홈페이지 리뉴얼작업 중입니다.')">
-              기업
-            </button>
-            <button onclick="alert('홈페이지 리뉴얼작업 중입니다.')">
-              콘텐츠
-            </button>
-            <button onclick="alert('홈페이지 리뉴얼작업 중입니다.')">
+            <button class="cursor-able" data-type="기업,광고">기업</button>
+            <button class="cursor-able" data-type="콘텐츠">콘텐츠</button>
+            <button
+              class="cursor-able"
+              data-type="아트필름,패션필름,뮤직비디오"
+            >
               아트필름
             </button>
           </div>
@@ -276,34 +302,11 @@
       <section class="work-1-2 section">
         <div class="work-1-2-1" id="thumbnails"></div>
         <div class="work-1-2-2">
-          <button
-            class="work-1-2-2-nav prev"
-            onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-          >
+          <button class="work-1-2-2-nav prev" id="prevPage">
             <img src="./asset/work/back-unactive.svg" alt="뒤로" />
           </button>
-          <button
-            class="page-button"
-            onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-          >
-            1
-          </button>
-          <button
-            class="page-button"
-            onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-          >
-            2
-          </button>
-          <button
-            class="page-button"
-            onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-          >
-            3
-          </button>
-          <button
-            class="work-1-2-2-nav next"
-            onclick="alert('홈페이지 리뉴얼작업 중입니다.')"
-          >
+
+          <button class="work-1-2-2-nav next cursor-able" id="nextPage">
             <img src="./asset/work/back-unactive.svg" alt="앞으로" />
           </button>
         </div>
@@ -390,18 +393,100 @@
       });
     </script>
 
-    <!-- 비디오 정보 모달창 -->
+    <!-- 커서 스크립트 -->
     <script>
-      let videos = [];
+      document.addEventListener('DOMContentLoaded', function () {
+        // 모든 'button'과 'a' 태그 요소를 선택
+        const clickableElements = document.querySelectorAll('button, a');
+
+        // 각 요소에 'cursor-able' 클래스 추가
+        clickableElements.forEach((element) => {
+          element.classList.add('cursor-able');
+        });
+      });
+
+      const cursorBall = document.querySelector('.cursor-ball');
+      const cursorBallSvg = cursorBall.querySelector('svg');
+      let cursorX = 0,
+        cursorY = 0;
+      let targetX = 0,
+        targetY = 0;
+      let speed = 0.001; // 초기 속도를 낮춤
+      const maxSpeed = 0.3;
+      const minSpeed = 0.001;
+      const acceleration = 0.001; // 가속도를 낮춤
+
+      document.addEventListener('mousemove', (e) => {
+        targetX = e.pageX;
+        targetY = e.pageY;
+      });
+
+      function animateCursor() {
+        const dx = targetX - cursorX;
+        const dy = targetY - cursorY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // 거리에 따라 속도 조절
+        if (distance > 100) {
+          // 거리가 멀 때
+          speed = Math.min(speed + acceleration, maxSpeed); // 가속도 적용
+        } else if (distance > 50) {
+          // 중간 거리
+          speed = 0.2; // 일정한 속도 유지
+        } else {
+          // 가까운 거리
+          speed = Math.max(0.3, speed); // 빠른 속도로 따라오기
+        }
+
+        cursorX += dx * speed;
+        cursorY += dy * speed;
+
+        cursorBall.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+
+        requestAnimationFrame(animateCursor);
+      }
+
+      animateCursor();
+
+      // 이벤트 위임을 사용하여 동적으로 생성된 콘텐츠에도 반응하게 함
+      document.body.addEventListener('mouseover', (e) => {
+        if (e.target.closest('.cursor-able')) {
+          cursorBallSvg.style.transform = 'scale(4)';
+        }
+        // iframe에 마우스가 올라갔을 때 커서 볼 숨기기
+        if (e.target.tagName.toLowerCase() === 'iframe') {
+          cursorBall.style.opacity = '0';
+        }
+      });
+
+      document.body.addEventListener('mouseout', (e) => {
+        if (e.target.closest('.cursor-able')) {
+          cursorBallSvg.style.transform = 'scale(0.8)';
+        }
+        // iframe에서 마우스가 벗어났을 때 커서 볼 다시 보이기
+        if (e.target.tagName.toLowerCase() === 'iframe') {
+          cursorBall.style.opacity = '1';
+        }
+      });
+    </script>
+
+    <!-- 비디오 페이지네이션 및 모달창 스크립트 -->
+    <script>
+      let originalVideos = []; // 원본 비디오 데이터를 저장할 새로운 변수
+      let filteredVideos = []; // 필터링된 비디오 데이터를 저장할 변수
       let currentPage = 1;
       let itemsPerPage = 9;
+      let totalPages = 1;
 
       // JSON 파일에서 비디오 데이터를 가져오는 함수
       async function fetchVideos() {
         try {
-          const response = await fetch('./videos.json');
-          videos = await response.json();
+          const response = await fetch('./asset/work/videos.json');
+          originalVideos = await response.json(); // 원본 데이터를 originalVideos에 저장
+          console.log(originalVideos);
+
           setItemsPerPage();
+          filterVideos('ALL'); // 초기 로드 시 모든 비디오 표시
         } catch (error) {
           console.error('Failed to fetch videos:', error);
         }
@@ -410,11 +495,11 @@
       // 화면 크기에 따라 itemsPerPage 설정
       function setItemsPerPage() {
         itemsPerPage = window.innerWidth <= 1024 ? 8 : 9;
-        createThumbnails();
+        createThumbnails(filteredVideos);
       }
 
       // 동적으로 썸네일 생성
-      function createThumbnails() {
+      function createThumbnails(videos) {
         const thumbnailsContainer = document.getElementById('thumbnails');
         thumbnailsContainer.innerHTML = ''; // 기존 썸네일 제거
         const startIndex = (currentPage - 1) * itemsPerPage;
@@ -423,13 +508,13 @@
 
         pageVideos.forEach((video, index) => {
           const thumbnailDiv = document.createElement('div');
-          thumbnailDiv.className = 'thumbnail-container';
+          thumbnailDiv.className = 'thumbnail-container cursor-able';
           thumbnailDiv.dataset.videoId = video.id;
 
           thumbnailDiv.innerHTML = `
-            <img src="${video.image}" alt="${video.title}" />
-            <div class="thumbnail-title">${video.title}</div>
-          `;
+                <img src="${video.image}" alt="${video.title}" />
+                <div class="thumbnail-title">${video.title}</div>
+              `;
 
           thumbnailDiv.addEventListener('click', () =>
             openVideoModal(startIndex + index),
@@ -437,28 +522,129 @@
           thumbnailsContainer.appendChild(thumbnailDiv);
         });
 
-        updatePagination();
+        updatePagination(videos.length);
       }
 
       // 페이지네이션 업데이트
-      function updatePagination() {
-        const totalPages = Math.ceil(videos.length / itemsPerPage);
-        // 여기에 페이지네이션 UI 업데이트 로직 추가
+      function updatePagination(totalItems) {
+        totalPages = Math.ceil(totalItems / itemsPerPage);
+        const paginationContainer = document.querySelector('.work-1-2-2');
+
+        // 기존 페이지 버튼 제거
+        const existingButtons =
+          paginationContainer.querySelectorAll('.page-button');
+        existingButtons.forEach((button) => button.remove());
+
+        let startPage = Math.max(1, currentPage - 1);
+        let endPage = Math.min(totalPages, startPage + 2);
+
+        // 페이지 버튼이 3개 미만일 경우 조정
+        if (endPage - startPage < 2) {
+          startPage = Math.max(1, endPage - 2);
+        }
+
+        const prevButton = document.getElementById('prevPage');
+        const nextButton = document.getElementById('nextPage');
+
+        for (let i = startPage; i <= endPage; i++) {
+          const pageButton = createPageButton(i);
+          if (i === currentPage) {
+            pageButton.classList.add('active');
+          }
+          paginationContainer.insertBefore(pageButton, nextButton);
+        }
+
+        // 이전/다음 페이지 버튼 상태 업데이트
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === totalPages;
+      }
+
+      // 페이지 버튼 생성 함수
+      function createPageButton(pageNumber) {
+        const button = document.createElement('button');
+        button.textContent = pageNumber;
+        button.classList.add('page-button', 'cursor-able');
+        button.addEventListener('click', () => changePage(pageNumber));
+        return button;
       }
 
       // 페이지 변경 함수
       function changePage(newPage) {
         currentPage = newPage;
-        createThumbnails();
+        createThumbnails(filteredVideos);
+        updatePagination(filteredVideos.length);
+        const section = document.querySelector('.work-1-2');
+        window.scrollTo(0, section.offsetTop - 100);
       }
+
+      // 이전 페이지 버튼
+      document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage > 1) {
+          changePage(currentPage - 1);
+        }
+      });
+
+      // 다음 페이지 버튼
+      document.getElementById('nextPage').addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          changePage(currentPage + 1);
+        }
+      });
 
       // 윈도우 리사이즈 이벤트 리스너
       window.addEventListener('resize', setItemsPerPage);
+
+      // 비디오 필터링 함수
+      function filterVideos(types) {
+        const typeArray = types.split(',');
+        filteredVideos = originalVideos.filter((video) => {
+          // originalVideos에서 필터링
+          if (types === 'ALL') return true;
+          return typeArray.some((type) => video.type.includes(type));
+        });
+
+        displayVideos(filteredVideos);
+        updateActiveButtons(types);
+      }
+
+      // 필터링된 비디오 표시 함수
+      function displayVideos(videos) {
+        currentPage = 1;
+        createThumbnails(videos);
+        updatePagination(videos.length);
+      }
+
+      // 활성 버튼 업데이트 함수
+      function updateActiveButtons(types) {
+        document.querySelectorAll('.work-1-1-1 button').forEach((btn) => {
+          btn.classList.remove('active');
+        });
+
+        if (types !== 'ALL') {
+          document
+            .querySelector(`.work-1-1-1 button[data-type="${types}"]`)
+            .classList.add('active');
+        } else {
+          document
+            .querySelector('.work-1-1-1 button[data-type="ALL"]')
+            .classList.add('active');
+        }
+      }
 
       // 페이지 로드 시 초기화
       document.addEventListener('DOMContentLoaded', async () => {
         await fetchVideos(); // JSON 파일에서 데이터 가져오기
         setItemsPerPage();
+        updatePagination(filteredVideos.length);
+
+        // 필터 버튼에 이벤트 리스너 추가
+        document.querySelectorAll('.work-1-1-1 button').forEach((button) => {
+          button.classList.add('cursor-able');
+          button.addEventListener('click', () => {
+            const types = button.getAttribute('data-type');
+            filterVideos(types);
+          });
+        });
       });
 
       const modal = document.getElementById('videoModal');
@@ -471,7 +657,7 @@
 
       // 모달 열기 함수
       function openVideoModal(index) {
-        const video = videos[index];
+        const video = filteredVideos[index];
         videoTitle.textContent = video.title;
         videoPlayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${video.id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         productionDate.textContent = `${video.productionDate}`;
@@ -496,6 +682,7 @@
       }
 
       closeBtn.onclick = closeModal;
+      closeBtn.classList.add('cursor-able');
 
       window.onclick = (event) => {
         if (event.target == modal) {

@@ -48,17 +48,17 @@
     <!-- 파비콘 -->
     <link
       rel="icon"
-      type="image/png"
+      type="image/webp"
       sizes="16x16"
-      href="./asset/afefavicon-16x16.png"
+      href="./asset/afefavicon-16x16.webp"
     />
     <link
       rel="icon"
-      type="image/png"
+      type="image/webp"
       sizes="32x32"
-      href="./asset/afefavicon-32x32.png"
+      href="./asset/afefavicon-32x32.webp"
     />
-    <link rel="apple-touch-icon" href="./asset/main/AFE logo.png" />
+    <link rel="apple-touch-icon" href="./asset/main/AFE logo.webp" />
 
     <!-- 스타일시트 -->
     <link rel="stylesheet" href="./style.css" />
@@ -117,9 +117,9 @@
     <link rel="preconnect" href="https://dapi.kakao.com" />
     <link
       rel="preload"
-      href="./asset/contact/contact.png"
+      href="./asset/contact/contact.webp"
       as="image"
-      type="image/png"
+      type="image/webp"
     />
 
     <!-- 추가 SEO 메타 태그 -->
@@ -184,11 +184,25 @@
   <body>
     <!-- 노이즈효과 -->
     <div class="noise"></div>
+    <!-- 커서변경 -->
+    <div class="cursor">
+      <div class="cursor-ball">
+        <svg height="30" width="30">
+          <circle
+            cx="15"
+            cy="15"
+            r="12"
+            stroke-width="0"
+            style="fill: rgb(255, 255, 255)"
+          ></circle>
+        </svg>
+      </div>
+    </div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">
         <a href="./index.html">
-          <img src="./asset/main/AFE logo.png" alt="AFE logo" />
+          <img src="./asset/main/AFE logo.webp" alt="AFE logo" />
         </a>
       </div>
       <div class="header-menu">
@@ -457,6 +471,72 @@
         observer.observe(section);
       });
     </script>
+    <!-- 커서 스크립트 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const clickableElements = document.querySelectorAll('button, a, label');
+        // 각 요소에 'cursor-able' 클래스 추가
+        clickableElements.forEach((element) => {
+          element.classList.add('cursor-able');
+        });
+      });
+
+      const cursorBall = document.querySelector('.cursor-ball');
+      const cursorBallSvg = cursorBall.querySelector('svg');
+      let cursorX = 0,
+        cursorY = 0;
+      let targetX = 0,
+        targetY = 0;
+      let speed = 0.001; // 초기 속도를 낮춤
+      const maxSpeed = 0.3;
+      const minSpeed = 0.001;
+      const acceleration = 0.001; // 가속도를 낮춤
+
+      document.addEventListener('mousemove', (e) => {
+        targetX = e.pageX;
+        targetY = e.pageY;
+      });
+
+      function animateCursor() {
+        const dx = targetX - cursorX;
+        const dy = targetY - cursorY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // 거리에 따라 속도 조절
+        if (distance > 100) {
+          // 거리가 멀 때
+          speed = Math.min(speed + acceleration, maxSpeed); // 가속도 적용
+        } else if (distance > 50) {
+          // 중간 거리
+          speed = 0.2; // 일정한 속도 유지
+        } else {
+          // 가까운 거리
+          speed = Math.max(0.3, speed); // 빠른 속도로 따라오기
+        }
+
+        cursorX += dx * speed;
+        cursorY += dy * speed;
+
+        cursorBall.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+
+        requestAnimationFrame(animateCursor);
+      }
+
+      animateCursor();
+
+      // 이벤트 위임을 사용하여 동적으로 생성된 콘텐츠에도 반응하게 함
+      document.body.addEventListener('mouseover', (e) => {
+        if (e.target.closest('.cursor-able')) {
+          cursorBallSvg.style.transform = 'scale(4)';
+        }
+      });
+
+      document.body.addEventListener('mouseout', (e) => {
+        if (e.target.closest('.cursor-able')) {
+          cursorBallSvg.style.transform = 'scale(0.8)';
+        }
+      });
+    </script>
     <!-- 카카오 지도 -->
     <script
       type="text/javascript"
@@ -515,7 +595,7 @@
           '<a href="' +
           info.place_url +
           '" target="_blank">' +
-          '<img src="asset/contact/picker.png" id="picker" alt="Location Marker" style="cursor:pointer; width: 67px; height: 81px; filter: none !important; position: relative; z-index: 1;">' +
+          '<img src="asset/contact/picker.webp" id="picker" alt="Location Marker" style="cursor:pointer; width: 67px; height: 81px; filter: none !important; position: relative; z-index: 1;">' +
           '</a>';
         var overlay = new kakao.maps.CustomOverlay({
           content: content,

@@ -8,14 +8,14 @@
   "theme_color": "#111111",
   "icons": [
     {
-      "src": "/asset/afefavicon-192x192.png",
+      "src": "/asset/afefavicon-192x192.webp",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "/asset/afefavicon-512x512.png",
+      "src": "/asset/afefavicon-512x512.webp",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/webp"
     }
   ]
 }

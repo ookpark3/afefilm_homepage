@@ -29,29 +29,35 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-}
-.work-1-1-1 button {
-  color: #fff;
-  background-color: transparent;
-  font-family: Pretendard Variable;
-  text-align: center;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 100%; /* 1.25rem */
-  letter-spacing: -0.0625rem;
-  border: 1px solid #fff;
-  padding: 0.5rem 1.5rem;
-  border-radius: 1.25rem;
-  cursor: pointer;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
-}
 
-.work-1-1-1 button:hover {
-  background-color: #fff;
-  color: #111;
+  & button {
+    color: #fff;
+    background-color: transparent;
+    font-family: Pretendard Variable;
+    text-align: center;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 1.25rem */
+    letter-spacing: -0.0625rem;
+    border: 1px solid #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1.25rem;
+
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+
+    &.active {
+      background-color: #fff;
+      color: #111;
+    }
+
+    &:hover {
+      background-color: #fff;
+      color: #111;
+    }
+  }
 }
 
 .work-1-2 {
@@ -68,16 +74,17 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1fr;
+  grid-template-rows: repeat(3, 1fr);
   gap: 0.5rem;
   aspect-ratio: 16 / 9;
+  min-height: 60vh; /* 최소 높이 설정 */
 }
 .work-1-2-1 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  cursor: pointer;
+
   transition: filter 0.3s ease;
 }
 
@@ -95,12 +102,19 @@
   font-weight: 500;
   line-height: 100%; /* 1rem */
   letter-spacing: -0.05rem;
-}
-.work-1-2-2 button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: #fff;
+
+  & button {
+    border: none;
+    background-color: transparent;
+
+    color: #ffffff50;
+    transition: color 0.3s ease;
+
+    &:hover,
+    &.active {
+      color: #fff;
+    }
+  }
 }
 
 /* 첫 번째 이미지 좌우 반전 */
@@ -114,7 +128,7 @@
   position: fixed;
   opacity: 0;
   visibility: hidden;
-  z-index: 9999;
+  z-index: 9000;
   left: 0;
   top: 0;
   width: 100%;
@@ -141,7 +155,7 @@
   position: relative;
   color: #ffffff;
   gap: 1.5rem;
-  overflow-y: auto;
+  overflow-y: hidden;
   margin: auto;
 }
 .modal-content-1 {
@@ -153,7 +167,6 @@
 
 .close {
   color: #aaa;
-  cursor: pointer;
 
   border: 1px solid #ffffff;
   padding: 1rem;
@@ -226,7 +239,6 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .thumbnail-container img {
@@ -326,6 +338,7 @@
     padding: 1rem 1.25rem;
     & .work-1-2-1 {
       grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 1fr);
       aspect-ratio: auto;
       grid-auto-rows: minmax(8rem, auto);
     }

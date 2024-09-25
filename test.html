@@ -2,267 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Page</title>
+    <title>Custom Cursor Example</title>
     <style>
-      body {
-        margin: 0;
-      }
-      /* 스크롤 방지를 위한 클래스 */
-      body.no-scroll {
-        overflow: hidden;
-      }
-      /* 로딩 페이지 스타일 */
-      .loading-page {
+      .cursor-ball {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        transition: opacity 0.5s;
-        background-color: #000;
-      }
-      /* 비디오 컨테이너 스타일 */
-      .video-container-reel {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #000;
-      }
-      /* 메인 비디오 스타일 */
-      .main-2-1 {
-        width: 100%;
-        height: 100%;
-      }
-      #log {
-        position: fixed;
-        top: 50%;
-        left: 50%;
+        pointer-events: none;
+        width: 30px;
+        height: 30px;
         transform: translate(-50%, -50%);
-        color: #fff;
-        font-size: 16px;
-        z-index: 9999; /* 최대한 보이도록 z-index 설정 */
-        height: 100vh;
-        overflow-y: auto;
-        width: 90%;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 10px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-
-        align-items: center;
+        transition: transform 0.1s linear; /* 부드러운 이동을 위한 transition */
+      }
+      .cursor-ball svg {
+        transition: transform 0.3s ease; /* SVG 스케일 변화에 대한 transition */
       }
     </style>
   </head>
   <body>
-    <!-- 로딩 페이지 -->
-    <div id="loading-page" class="loading-page">
-      <picture>
-        <!-- WebP 이미지 소스 -->
-        <source
-          srcset="https://d1iub2snqs2x58.cloudfront.net/afe-loading.webp"
-          type="image/webp"
-        />
-        <!-- 대체 GIF 이미지 -->
-        <img
-          src="https://d1iub2snqs2x58.cloudfront.net/afe-loading.gif"
-          alt="Content is loading, please wait."
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
+    <div class="cursor-ball">
+      <svg width="30" height="30">
+        <circle cx="15" cy="15" r="12" fill="white"></circle>
+      </svg>
     </div>
-    <!-- 비디오 컨테이너 -->
-    <div class="video-container-reel"></div>
-    <div id="log"></div>
+
+    <div
+      class="cursor-able"
+      data-cursor="Click me!"
+      style="margin: 20px; padding: 10px; background-color: lightblue"
+    >
+      Hover over me!
+    </div>
+    <div
+      class="cursor-able"
+      data-cursor="Hello!"
+      style="margin: 20px; padding: 10px; background-color: lightcoral"
+    >
+      Hover over me too!
+    </div>
 
     <script>
-      let secondsElapsed = 0;
-      let mainVideo;
+      const cursorBall = document.querySelector('.cursor-ball');
+      const cursorBallSvg = cursorBall.querySelector('svg');
 
-      function logMessage(message) {
-        const logElement = document.getElementById('log');
-        const logEntry = document.createElement('div');
-        logEntry.textContent = message;
-        logElement.appendChild(logEntry);
-        logElement.scrollTop = logElement.scrollHeight; // 자동 스크롤
-      }
-
-      document.addEventListener('DOMContentLoaded', async function () {
-        logMessage('DOMContentLoaded 이벤트 발생');
-        document.body.classList.add('no-scroll');
-        logMessage('body에 no-scroll 클래스 추가');
-
-        const loadingPage = document.getElementById('loading-page');
-        const loadingImage = loadingPage.querySelector('img');
-        mainVideo = document.createElement('video');
-        const videoContainer = document.querySelector('.video-container-reel');
-
-        mainVideo.classList.add('main-2-1');
-        mainVideo.muted = true;
-        mainVideo.playsInline = true;
-        mainVideo.loop = true;
-        videoContainer.appendChild(mainVideo);
-        logMessage('비디오 요소 생성 및 비디오 컨테이너에 추가');
-
-        function isMobile() {
-          return window.innerWidth <= 1024;
-        }
-
-        function setVideoSource() {
-          const videoSource = isMobile()
-            ? 'https://afefilm.com/asset/main/afe-reel-mobile.mp4'
-            : 'https://afefilm.com/asset/main/afe-reel-web.mp4';
-          if (mainVideo.src !== videoSource) {
-            mainVideo.src = videoSource;
-            mainVideo.load();
-            logMessage(`비디오 소스 설정: ${videoSource}`);
-          }
-        }
-
-        setVideoSource();
-        window.addEventListener('resize', setVideoSource);
-        logMessage('비디오 소스 설정 및 resize 이벤트 리스너 추가');
-
-        function preloadImage(img) {
-          return new Promise((resolve, reject) => {
-            if (img.complete) {
-              resolve();
-              logMessage('로딩 이미지 이미 로드됨');
-            } else {
-              img.onload = () => {
-                resolve();
-                logMessage('로딩 이미지 로드 완료');
-              };
-              img.onerror = () => {
-                reject();
-                logMessage('로딩 이미지 로드 실패');
-              };
-            }
-          });
-        }
-
-        function closeLoadingPage() {
-          return new Promise((resolve) => {
-            loadingPage.style.opacity = '0';
-            mainVideo.play().catch(() => {});
-            setTimeout(() => {
-              loadingPage.style.display = 'none';
-              document.body.classList.remove('no-scroll');
-              resolve();
-              logMessage('로딩 페이지 닫힘');
-            }, 500);
-          });
-        }
-
-        try {
-          logMessage('이미지 프리로드 시작');
-          await preloadImage(loadingImage);
-          logMessage('이미지 프리로드 완료');
-          await new Promise((resolve) => setTimeout(resolve, 3900));
-          logMessage('3900ms 대기 완료');
-
-          const mainVideoReadyPromise = new Promise((resolve) => {
-            let checkCount = 0;
-            const maxChecks = 20; // 최대 10초 (500ms * 20)
-
-            const checkReadyState = () => {
-              if (mainVideo.readyState >= 3) {
-                console.log(`비디오 준비 완료 (시도 횟수: ${checkCount})`);
-                resolve();
-              } else if (checkCount < maxChecks) {
-                checkCount++;
-                setTimeout(checkReadyState, 500);
-              } else {
-                console.log('비디오 준비 시간 초과');
-                resolve(); // 시간 초과 시에도 resolve 호출
-              }
-            };
-
-            mainVideo.addEventListener(
-              'canplay',
-              () => {
-                console.log('비디오 canplay 이벤트 발생');
-                resolve();
-              },
-              { once: true },
-            );
-
-            checkReadyState();
-          });
-
-          let timeoutId;
-          const timeoutPromise = new Promise((resolve) => {
-            timeoutId = setTimeout(() => {
-              logMessage('10초 타임아웃 발생');
-              resolve();
-            }, 10000);
-          });
-
-          const networkStatusPromise = new Promise((resolve) => {
-            if (navigator.onLine) {
-              resolve();
-              logMessage('네트워크 연결됨');
-            } else {
-              window.addEventListener(
-                'online',
-                () => {
-                  resolve();
-                  logMessage('네트워크 연결됨 (online 이벤트)');
-                },
-                { once: true },
-              );
-            }
-          });
-
-          await Promise.race([
-            Promise.all([mainVideoReadyPromise, networkStatusPromise]).then(
-              () => {
-                clearTimeout(timeoutId);
-                logMessage('비디오 준비 완료 및 네트워크 연결됨');
-              },
-            ),
-            timeoutPromise,
-          ]);
-
-          await closeLoadingPage();
-          mainVideo.play().catch(() => {
-            logMessage('비디오 재생 중 오류 발생');
-          });
-        } catch (error) {
-          logMessage('에러 발생: ' + error);
-          await closeLoadingPage();
-        }
+      document.addEventListener('mousemove', (e) => {
+        cursorBall.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       });
 
-      document.body.addEventListener(
-        'touchstart',
-        () => {
-          if (mainVideo && mainVideo.paused) {
-            mainVideo.play().catch(() => {
-              logMessage('터치 이벤트 중 비디오 재생 오류 발생');
-            });
-          }
-        },
-        { passive: true },
-      );
-
-      const logInterval = setInterval(() => {
-        secondsElapsed++;
-        logMessage(`${secondsElapsed}초 경과`);
-        if (secondsElapsed >= 15) {
-          clearInterval(logInterval);
-          logMessage('로그 메시지 15초 경과 후 중지');
-        }
-      }, 1000);
+      document.querySelectorAll('.cursor-able').forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+          cursorBallSvg.style.transform = 'scale(4)';
+        });
+        item.addEventListener('mouseleave', () => {
+          cursorBallSvg.style.transform = 'scale(0.8)';
+        });
+      });
     </script>
   </body>
 </html>

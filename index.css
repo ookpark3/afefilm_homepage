@@ -131,7 +131,7 @@
   font-weight: 300;
   line-height: 140%; /* 2.1rem */
   text-decoration: none;
-  cursor: pointer;
+
   transition:
     background-color 0.3s,
     color 0.3s;
@@ -214,7 +214,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  cursor: pointer;
+
   z-index: 3;
   transition: opacity 0.25s ease-out;
 }
@@ -271,7 +271,7 @@
   height: 2.5rem;
   padding: 0 2.5rem; /* 변경: 좌우 패딩만 유지 */
   flex-shrink: 0;
-  cursor: pointer;
+
   transition:
     background-color 0.3s,
     color 0.3s;

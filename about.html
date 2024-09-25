@@ -48,17 +48,17 @@
     <!-- 파비콘 -->
     <link
       rel="icon"
-      type="image/png"
+      type="image/webp"
       sizes="16x16"
-      href="./asset/afefavicon-16x16.png"
+      href="./asset/afefavicon-16x16.webp"
     />
     <link
       rel="icon"
-      type="image/png"
+      type="image/webp"
       sizes="32x32"
-      href="./asset/afefavicon-32x32.png"
+      href="./asset/afefavicon-32x32.webp"
     />
-    <link rel="apple-touch-icon" href="./asset/main/AFE logo.png" />
+    <link rel="apple-touch-icon" href="./asset/main/AFE logo.webp" />
 
     <!-- 스타일시트 -->
     <link rel="stylesheet" href="./style.css" />
@@ -90,7 +90,7 @@
         "@type": "Organization",
         "name": "AFE film",
         "url": "https://afefilm.com",
-        "logo": "https://afefilm.com/img/AfeLogo.jpg",
+        "logo": "https://afefilm.com/img/AfeLogo.webp",
         "description": "AFE film은 감각적인 영상제작업체입니다. 우리의 비전과 미션에 대해 알아보세요.",
         "address": {
           "@type": "PostalAddress",
@@ -184,11 +184,25 @@
   <body>
     <!-- 노이즈효과 -->
     <div class="noise"></div>
+    <!-- 커서변경 -->
+    <div class="cursor">
+      <div class="cursor-ball">
+        <svg height="30" width="30">
+          <circle
+            cx="15"
+            cy="15"
+            r="12"
+            stroke-width="0"
+            style="fill: rgb(255, 255, 255)"
+          ></circle>
+        </svg>
+      </div>
+    </div>
     <!-- 헤더 페이지 -->
     <header class="header" aria-label="헤더 페이지">
       <div class="header-logo">
         <a href="./index.html">
-          <img src="./asset/main/AFE logo.png" alt="AFE logo" />
+          <img src="./asset/main/AFE logo.webp" alt="AFE logo" />
         </a>
       </div>
       <div class="header-menu">
@@ -280,8 +294,8 @@
           </a>
         </div>
         <div class="about-1-2">
-          <img src="./asset/about/about-1.jpeg" alt="about-1" />
-          <img src="./asset/about/about-2.png" alt="about-2" />
+          <img src="./asset/about/about-1.webp" alt="about-1" />
+          <img src="./asset/about/about-2.webp" alt="about-2" />
         </div>
       </section>
       <!-- 프로세스 색션 -->
@@ -292,14 +306,14 @@
             <p>Processes</p>
           </div>
           <div class="about-2-1-2">
-            <p class="tab active" data-tab="planning">기획</p>
-            <p class="tab" data-tab="shooting">촬영</p>
-            <p class="tab" data-tab="editing">편집</p>
+            <p class="tab cursor-able active" data-tab="planning">기획</p>
+            <p class="tab cursor-able" data-tab="shooting">촬영</p>
+            <p class="tab cursor-able" data-tab="editing">편집</p>
           </div>
           <div class="about-2-1-3" id="process-content">
             <div class="about-2-1-3-item">
               <img
-                src="./asset/about/planning/planning-1.png"
+                src="./asset/about/planning/planning-1.webp"
                 class="about-2-1-3-1-img"
                 alt="about-3"
               />
@@ -311,7 +325,7 @@
             </div>
             <div class="about-2-1-3-item">
               <img
-                src="./asset/about/planning/planning-2.png"
+                src="./asset/about/planning/planning-2.webp"
                 class="about-2-1-3-1-img"
                 alt="about-3"
               />
@@ -323,7 +337,7 @@
             </div>
             <div class="about-2-1-3-item">
               <img
-                src="./asset/about/planning/planning-3.png"
+                src="./asset/about/planning/planning-3.webp"
                 class="about-2-1-3-1-img"
                 alt="about-3"
               />
@@ -335,7 +349,7 @@
             </div>
             <div class="about-2-1-3-item">
               <img
-                src="./asset/about/planning/planning-4.png"
+                src="./asset/about/planning/planning-4.webp"
                 class="about-2-1-3-1-img"
                 alt="about-3"
               />
@@ -347,7 +361,7 @@
             </div>
             <div class="about-2-1-3-item">
               <img
-                src="./asset/about/planning/planning-5.png"
+                src="./asset/about/planning/planning-5.webp"
                 class="about-2-1-3-1-img"
                 alt="about-3"
               />
@@ -441,13 +455,13 @@
 
         <div class="about-4-2">
           <div class="about-4-2-1">
-            <p class="tab active" data-tab="search">검색 광고</p>
-            <p class="tab" data-tab="social">소셜 미디어 마케팅</p>
+            <p class="tab cursor-able active" data-tab="search">검색 광고</p>
+            <p class="tab cursor-able" data-tab="social">소셜 미디어 마케팅</p>
           </div>
           <div class="about-4-2-2" id="marketing-content">
             <div class="about-4-2-2-item">
               <img
-                src="./asset/about/search/search-1.png"
+                src="./asset/about/search/search-1.webp"
                 class="about-4-2-2-img"
                 alt="about-3"
               />
@@ -459,7 +473,7 @@
             </div>
             <div class="about-4-2-2-item">
               <img
-                src="./asset/about/search/search-2.png"
+                src="./asset/about/search/search-2.webp"
                 class="about-4-2-2-img"
                 alt="about-3"
               />
@@ -471,7 +485,7 @@
             </div>
             <div class="about-4-2-2-item">
               <img
-                src="./asset/about/search/search-3.png"
+                src="./asset/about/search/search-3.webp"
                 class="about-4-2-2-img"
                 alt="about-3"
               />
@@ -483,7 +497,7 @@
             </div>
             <div class="about-4-2-2-item">
               <img
-                src="./asset/about/search/search-4.png"
+                src="./asset/about/search/search-4.webp"
                 class="about-4-2-2-img"
                 alt="about-3"
               />
@@ -495,7 +509,7 @@
             </div>
             <div class="about-4-2-2-item">
               <img
-                src="./asset/about/search/search-5.png"
+                src="./asset/about/search/search-5.webp"
                 class="about-4-2-2-img"
                 alt="about-3"
               />
@@ -569,7 +583,74 @@
         observer.observe(section);
       });
     </script>
+    <!-- 커서 스크립트 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // 모든 'button'과 'a' 태그 요소를 선택
+        const clickableElements = document.querySelectorAll('button, a');
 
+        // 각 요소에 'cursor-able' 클래스 추가
+        clickableElements.forEach((element) => {
+          element.classList.add('cursor-able');
+        });
+      });
+
+      const cursorBall = document.querySelector('.cursor-ball');
+      const cursorBallSvg = cursorBall.querySelector('svg');
+      let cursorX = 0,
+        cursorY = 0;
+      let targetX = 0,
+        targetY = 0;
+      let speed = 0.001; // 초기 속도를 낮춤
+      const maxSpeed = 0.3;
+      const minSpeed = 0.001;
+      const acceleration = 0.001; // 가속도를 낮춤
+
+      document.addEventListener('mousemove', (e) => {
+        targetX = e.pageX;
+        targetY = e.pageY;
+      });
+
+      function animateCursor() {
+        const dx = targetX - cursorX;
+        const dy = targetY - cursorY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // 거리에 따라 속도 조절
+        if (distance > 100) {
+          // 거리가 멀 때
+          speed = Math.min(speed + acceleration, maxSpeed); // 가속도 적용
+        } else if (distance > 50) {
+          // 중간 거리
+          speed = 0.2; // 일정한 속도 유지
+        } else {
+          // 가까운 거리
+          speed = Math.max(0.3, speed); // 빠른 속도로 따라오기
+        }
+
+        cursorX += dx * speed;
+        cursorY += dy * speed;
+
+        cursorBall.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+
+        requestAnimationFrame(animateCursor);
+      }
+
+      animateCursor();
+
+      // 이벤트 위임을 사용하여 동적으로 생성된 콘텐츠에도 반응하게 함
+      document.body.addEventListener('mouseover', (e) => {
+        if (e.target.closest('.cursor-able')) {
+          cursorBallSvg.style.transform = 'scale(4)';
+        }
+      });
+
+      document.body.addEventListener('mouseout', (e) => {
+        if (e.target.closest('.cursor-able')) {
+          cursorBallSvg.style.transform = 'scale(0.8)';
+        }
+      });
+    </script>
     <!-- 첫 번째 이미지 스크롤 스크립트 -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -617,21 +698,21 @@
       const tabContents = {
         planning: {
           images: [
-            './asset/about/planning/planning-1.png',
-            './asset/about/planning/planning-2.png',
-            './asset/about/planning/planning-3.png',
-            './asset/about/planning/planning-4.png',
-            './asset/about/planning/planning-5.png',
+            './asset/about/planning/planning-1.webp',
+            './asset/about/planning/planning-2.webp',
+            './asset/about/planning/planning-3.webp',
+            './asset/about/planning/planning-4.webp',
+            './asset/about/planning/planning-5.webp',
           ],
           texts: ['고객 미팅', '기획안', '캐스팅', '스케줄링', '스토리보드'],
         },
         shooting: {
           images: [
-            './asset/about/shooting/shooting-1.png',
-            './asset/about/shooting/shooting-2.png',
-            './asset/about/shooting/shooting-3.png',
-            './asset/about/shooting/shooting-4.png',
-            './asset/about/shooting/shooting-5.png',
+            './asset/about/shooting/shooting-1.webp',
+            './asset/about/shooting/shooting-2.webp',
+            './asset/about/shooting/shooting-3.webp',
+            './asset/about/shooting/shooting-4.webp',
+            './asset/about/shooting/shooting-5.webp',
           ],
           texts: [
             '현장 세팅',
@@ -643,11 +724,11 @@
         },
         editing: {
           images: [
-            './asset/about/editing/editing-1.png',
-            './asset/about/editing/editing-2.png',
-            './asset/about/editing/editing-3.png',
-            './asset/about/editing/editing-4.png',
-            './asset/about/editing/editing-5.png',
+            './asset/about/editing/editing-1.webp',
+            './asset/about/editing/editing-2.webp',
+            './asset/about/editing/editing-3.webp',
+            './asset/about/editing/editing-4.webp',
+            './asset/about/editing/editing-5.webp',
           ],
           texts: [
             '컷 편집',
@@ -659,11 +740,11 @@
         },
         search: {
           images: [
-            './asset/about/search/search-1.png',
-            './asset/about/search/search-2.png',
-            './asset/about/search/search-3.png',
-            './asset/about/search/search-4.png',
-            './asset/about/search/search-5.png',
+            './asset/about/search/search-1.webp',
+            './asset/about/search/search-2.webp',
+            './asset/about/search/search-3.webp',
+            './asset/about/search/search-4.webp',
+            './asset/about/search/search-5.webp',
           ],
           texts: [
             '목표 분석',
@@ -675,11 +756,11 @@
         },
         social: {
           images: [
-            './asset/about/social/social-1.png',
-            './asset/about/social/social-2.png',
-            './asset/about/social/social-3.png',
-            './asset/about/social/social-4.png',
-            './asset/about/social/social-5.png',
+            './asset/about/social/social-1.webp',
+            './asset/about/social/social-2.webp',
+            './asset/about/social/social-3.webp',
+            './asset/about/social/social-4.webp',
+            './asset/about/social/social-5.webp',
           ],
           texts: [
             '목표 분석',

@@ -61,7 +61,7 @@
   padding: 10px 20px;
   background-color: transparent;
   border: 1px solid #fff;
-  cursor: pointer;
+
   transition: all 0.3s ease;
   text-decoration: none; /* 하이퍼링크 밑줄 제거 */
   & svg {
@@ -171,7 +171,7 @@
 }
 .about-2-1-2 .tab {
   color: #969696;
-  cursor: pointer;
+
   transition: all 0.3s ease;
   position: relative;
   padding-bottom: 10px;
@@ -317,7 +317,7 @@
   padding: 1rem 2rem;
   background-color: transparent;
   border: 1px solid #fff;
-  cursor: pointer;
+
   transition: all 0.3s ease;
   text-decoration: none;
   & svg {
@@ -364,7 +364,7 @@
   padding: 0 30rem;
   background:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url(./public/asset/about/about-3-1-2-1.png) 0px -570px / 100% 320% no-repeat;
+    url(./public/asset/about/about-3-1-2-1.webp) 0px -570px / 100% 320% no-repeat;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
@@ -387,7 +387,7 @@
   background-size: cover;
   background:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url(./public/asset/about/about-3-1-2-2.png) center -400px / 100% auto no-repeat;
+    url(./public/asset/about/about-3-1-2-2.webp) center -400px / 100% auto no-repeat;
   min-height: 25rem;
   height: auto;
   padding: 2rem 30rem;
@@ -492,7 +492,7 @@
 }
 .about-4-2-1 .tab {
   color: #969696;
-  cursor: pointer;
+
   transition: all 0.3s ease;
   position: relative;
   padding-bottom: 5px;
@@ -718,12 +718,12 @@
   .about-3-1-2-1 {
     background:
       linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-      url(./public/asset/about/about-3-1-2-1.png) center / cover no-repeat;
+      url(./public/asset/about/about-3-1-2-1.webp) center / cover no-repeat;
   }
   .about-3-1-2-2 {
     background:
       linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-      url(./public/asset/about/about-3-1-2-2.png) center / cover no-repeat;
+      url(./public/asset/about/about-3-1-2-2.webp) center / cover no-repeat;
   }
   .about-3-1-2-1 p,
   .about-3-1-2-2 p {
