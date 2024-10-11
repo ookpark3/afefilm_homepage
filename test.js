@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   // 디바이스에 따른 비디오 소스 설정
   function setVideoSource() {
     const videoSource = isMobile()
-      ? './asset/main/afe-reel-mobile.mp4'
-      : './asset/main/afe-reel-web.mp4';
+      ? '/asset/main/afe-reel-mobile.mp4'
+      : '/asset/main/afe-reel-web.mp4';
     if (mainVideo.src !== videoSource) {
       mainVideo.src = videoSource;
     }

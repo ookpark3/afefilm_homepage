@@ -4,4 +4,7 @@ Allow: /
 User-agent: Yeti
 Allow: /
 
+User-agent: *
+Disallow: /404.html
+
 Sitemap: https://www.afefilm.com/sitemap.xml
