@@ -341,7 +341,7 @@
     & .work-1-2-1 {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(4, 1fr);
-      aspect-ratio: auto;
+      aspect-ratio: 0.8;
       grid-auto-rows: minmax(8rem, auto);
     }
     & .work-1-2-2 {

@@ -213,6 +213,15 @@
     </div>
     <!-- 노이즈효과 -->
     <div class="noise"></div>
+    <!-- 인스타그램 로고 -->
+    <a
+      href="https://www.instagram.com/afe_.official/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="instagram-logo"
+    >
+      <img src="/asset/insta.webp" alt="Instagram logo" />
+    </a>
     <!-- 커서변경 -->
     <div class="cursor">
       <div class="cursor-ball">
@@ -321,15 +330,11 @@
       <section class="main-4 section" aria-label="Our Services 페지">
         <h2 class="main-4-1">Our Services</h2>
         <div class="main-4-2">
-          <a href="/kr/about#film-production" class="main-4-2-1">영상 제작</a>
-          <a href="/kr/about#rental-anchor" class="main-4-2-2">렌탈</a>
-          <a href="/kr/about#marketing-anchor" class="main-4-2-3">마케팅</a>
-          <!-- <a
-            href="#"
-            onclick="event.preventDefault(); alert('서비스 준비중입니다.');"
-            class="main-4-2-4 cursor-able"
-            >academy</a
-          > -->
+          <a href="/kr/about#film-production" class="main-4-2-1"
+            >Film Production</a
+          >
+          <a href="/kr/about#rental-anchor" class="main-4-2-2">Rental</a>
+          <a href="/kr/about#marketing-anchor" class="main-4-2-3">Marketing</a>
         </div>
       </section>
       <!-- <hr class="section-divider" aria-label="섹션 구분선" /> -->
@@ -757,7 +762,7 @@
     </script>
     <script src="https://player.vimeo.com/api/player.js"></script>
     <!-- 비디오 클릭시 플레이 버튼 숨기기 -->
-    <script>
+    <!-- <script>
       document.addEventListener('DOMContentLoaded', function () {
         const videoContainer = document.querySelector('.video-container');
         const playButton = document.querySelector('.play-button');
@@ -786,7 +791,7 @@
           e.stopPropagation();
         });
       });
-    </script>
+    </script> -->
 
     <!-- 로고 가로로 무한스크롤 -->
     <script>
@@ -873,6 +878,54 @@
 
         // 초기 상태 설정
         updateHeader(window.scrollY);
+      });
+    </script>
+
+    <!-- 인스타그램 로고 스크롤 효과 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const instagramLogo = document.querySelector('.instagram-logo');
+        let lastScrollY = window.scrollY;
+        let lastSpeed = 0;
+        let lastTime = Date.now();
+
+        function updateLogoPosition() {
+          const currentTime = Date.now();
+          const currentScrollY = window.scrollY;
+          const timeDiff = currentTime - lastTime;
+          const scrollDiff = currentScrollY - lastScrollY;
+
+          // 스크롤 속도 계산 (픽셀/초)
+          const currentSpeed =
+            timeDiff > 0 ? (scrollDiff / timeDiff) * 1000 : 0;
+
+          // 속도의 지수 이동 평균을 사용하여 부드럽게 만듦
+          const smoothedSpeed = lastSpeed * 0.9 + currentSpeed * 0.1;
+
+          // 반응성 조절 및 초기 움직임 범위 제한
+          const sensitivity = 0.03; // 낮은 값일수록 반응성이 약해짐
+          const minMove = 2; // 최소 이동 거리
+          const maxMove = 30; // 최대 이동 거리
+
+          let moveDistance = smoothedSpeed * sensitivity;
+          moveDistance =
+            Math.sign(moveDistance) *
+            Math.min(Math.max(Math.abs(moveDistance), minMove), maxMove);
+
+          // 부드러운 애니메이션 효과 적용
+          instagramLogo.style.transition =
+            'transform 0.4s cubic-bezier(0.1, 0.15, 0.30, 1.0)';
+          instagramLogo.style.transform = `translateY(${-moveDistance}px)`;
+
+          lastScrollY = currentScrollY;
+          lastSpeed = smoothedSpeed;
+          lastTime = currentTime;
+
+          requestAnimationFrame(updateLogoPosition);
+        }
+
+        // 초기 위치 설정 및 애니메이션 시작
+        updateLogoPosition();
       });
     </script>
   </body>

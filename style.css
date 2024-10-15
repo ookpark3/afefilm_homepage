@@ -457,6 +457,7 @@ textarea {
     }
   }
 }
+/* 노이즈 효과 */
 .noise {
   position: fixed;
   left: 0;
@@ -469,6 +470,23 @@ textarea {
   background-image: url('/asset/noise.gif');
   background-repeat: repeat;
   visibility: visible;
+}
+
+/* 인스타그램 로고 */
+.instagram-logo {
+  position: fixed;
+  bottom: 50px;
+  right: 10%;
+  z-index: 1000;
+}
+
+.instagram-logo img {
+  width: 30px;
+  height: 30px;
+  transition: all 0.3s;
+}
+.instagram-logo:hover img {
+  transform: scale(1.2);
 }
 @media (max-width: 1024px) {
   .cursor,
@@ -541,5 +559,9 @@ textarea {
     & .footer-1-2-2 {
       display: none;
     }
+  }
+
+  .instagram-logo {
+    right: 10%;
   }
 }
