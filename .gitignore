@@ -1,24 +1,37 @@
-# Logs
-logs
-*.log
+# Node.js 관련
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# 빌드 결과물
+dist/
+dist-ssr/
+build/
+
+# 환경변수 파일
+.env
+*.local
+
+# OS에서 생성되는 파일들
+.DS_Store
+Thumbs.db
+
+# 로그 파일
+logs/
+*.log
 pnpm-debug.log*
 lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# 대용량 미디어 파일 (필요 없는 경우)
+public/asset/main/*.mp4
