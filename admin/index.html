@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>AFE Admin</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="admin-container">
+      <header>
+        <h1>AFE 작품 관리</h1>
+        <button onclick="logout()" class="logout-btn">로그아웃</button>
+      </header>
+
+      <main>
+        <section class="project-form">
+          <h2>새 프로젝트 등록</h2>
+          <form id="projectForm">
+            <div class="form-group">
+              <label for="title">제목</label>
+              <input type="text" id="title" name="title" required />
+            </div>
+
+            <div class="form-group">
+              <label for="production_year">제작연도</label>
+              <input
+                type="text"
+                id="production_year"
+                name="production_year"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="client">클라이언트</label>
+              <input type="text" id="client" name="client" required />
+            </div>
+
+            <div class="form-group">
+              <label for="youtube_url">유튜브 URL</label>
+              <input type="url" id="youtube_url" name="youtube_url" required />
+            </div>
+
+            <div class="form-group">
+              <label for="category">카테고리</label>
+              <select id="category" name="category" required>
+                <option value="공공기관">공공기관</option>
+                <option value="기업">기업</option>
+                <option value="콘텐츠">콘텐츠</option>
+                <option value="아트필름">아트필름</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="score">우선순위</label>
+              <input
+                type="number"
+                id="score"
+                name="score"
+                min="1"
+                max="100"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="image">썸네일 이미지</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                required
+              />
+              <div id="imagePreview"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="type">타입</label>
+              <input type="text" id="type" name="type" required />
+            </div>
+
+            <button type="submit">등록</button>
+          </form>
+        </section>
+
+        <section class="project-list">
+          <h2>프로젝트 목록</h2>
+          <div class="table-container">
+            <table id="projectsTable">
+              <thead>
+                <tr>
+                  <th>썸네일</th>
+                  <th>제목</th>
+                  <th>카테고리</th>
+                  <th>우선순위</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- JavaScript로 동적 생성 -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

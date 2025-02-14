@@ -3,55 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 - 페이지를 찾을 수 없습니다</title>
+    <title>404 - 페이지를 찾을 수 없습니다 | Page Not Found</title>
+    <meta name="robots" content="noindex" />
     <style>
       body {
         font-family: Arial, sans-serif;
         text-align: center;
         background-color: #f0f0f0;
         color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* 화면의 높이를 100%로 설정하여 중앙에 배치 */
+        margin: 0;
+        opacity: 0;
+        animation: fadeIn 1.5s ease-in-out forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
       h1 {
+        margin: 2rem 0;
         font-size: 50px;
-        margin-top: 50px;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
       }
       p {
         font-size: 20px;
+        margin-top: 10px;
+        animation: slideIn 1s ease forwards;
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
       a {
         color: #3498db;
         text-decoration: none;
         border-bottom: 2px solid #3498db;
+        transition:
+          color 0.3s,
+          border-color 0.3s;
       }
       a:hover {
         color: #2c3e50;
         border-bottom: 2px solid #2c3e50;
       }
       .container {
-        margin: 0 auto;
-        padding: 50px;
+        padding: 200px;
         max-width: 600px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 살짝의 그림자를 추가해 집중도를 높임 */
       }
       .button {
         display: inline-block;
-        margin-top: 20px;
+        margin: 2rem 0;
         padding: 10px 20px;
         background-color: #3498db;
         color: white;
         text-decoration: none;
         border-radius: 5px;
+        transition:
+          background-color 0.3s,
+          transform 0.3s;
       }
       .button:hover {
         background-color: #2980b9;
+        transform: scale(1.1);
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>404</h1>
+      <h1 aria-label="404 Error Page Not Found">404</h1>
       <p>죄송합니다, 찾고 계신 페이지를 찾을 수 없습니다.</p>
+      <p>Sorry, the page you are looking for cannot be found.</p>
       <p>아래 버튼을 눌러 홈으로 돌아가세요.</p>
-      <a href="/" class="button">홈으로 돌아가기</a>
+      <p>Click the button below to return to the homepage.</p>
+      <a href="/" class="button" id="homeButton" aria-label="Go to Homepage"
+        >홈으로 돌아가기 | Go to Homepage</a
+      >
     </div>
+    <script>
+      var userLang = navigator.language || navigator.userLanguage;
+      var homeButton = document.getElementById('homeButton');
+      if (userLang.startsWith('ko')) {
+        homeButton.href = '/kr/';
+      } else {
+        homeButton.href = '/en/';
+      }
+    </script>
   </body>
 </html>

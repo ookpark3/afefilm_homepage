@@ -156,11 +156,12 @@
   letter-spacing: -0.0375rem;
 }
 .about-2-1-2 {
-  width: 25%;
+  width: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   margin-bottom: 1.5rem;
+  gap: 2rem;
   text-align: center;
   font-family: Pretendard Variable;
   font-size: 2.25rem;
@@ -171,7 +172,6 @@
 }
 .about-2-1-2 .tab {
   color: #969696;
-
   transition: all 0.3s ease;
   position: relative;
   padding-bottom: 10px;
@@ -641,7 +641,7 @@
     }
   }
   .about-2-1-2 {
-    width: 40%;
+    width: 60%;
     font-size: 1rem;
     font-style: normal;
     font-weight: 500;
