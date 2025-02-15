@@ -1,4 +1,4 @@
-import { app, db, storage, auth } from './firebase';
+import { app, db, storage, auth } from './firebase.js';
 import {
   collection,
   addDoc,
@@ -78,7 +78,7 @@ function initMultiSelect() {
 }
 
 // 상수 정의 이동
-const ALLOWED_EMAILS = ['ookpark3@gmail.com'];
+const ALLOWED_EMAILS = ['ookpark3@gmail.com', 'afefilm82@gmail.com'];
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const REQUIRED_FIELDS = [
   'videoId',
