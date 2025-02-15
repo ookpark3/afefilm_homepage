@@ -57,7 +57,7 @@
       ]
     },
     {
-      "src": "/(.*\\.(png|jpg|jpeg))",
+      "source": "/(.*\\.(png|jpg|jpeg))",
       "headers": {
         "Content-Type": "image/webp"
       }
