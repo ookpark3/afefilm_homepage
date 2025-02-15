@@ -2,11 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "public/**",
+      "src": "**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
+    {
+      "src": "/admin/(.*\\.html)",
+      "dest": "/admin/$1",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "src": "/admin/(.*\\.(js|css|png|jpg|webp|svg))",
+      "dest": "/admin/$1"
+    },
     {
       "handle": "filesystem"
     },
@@ -16,6 +27,40 @@
         "cache-control": "public, max-age=0, must-revalidate"
       },
       "dest": "/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/kr/",
+      "headers": {
+        "Location": "/kr/"
+      },
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/admin/(.*\\.html)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html"
+        }
+      ]
+    },
+    {
+      "source": "/admin/(.*\\.js)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/javascript"
+        }
+      ]
+    },
+    {
+      "src": "/(.*\\.(png|jpg|jpeg))",
+      "headers": {
+        "Content-Type": "image/webp"
+      }
     }
   ]
 }
