@@ -447,7 +447,30 @@
     </script>
 
     <!-- 비디오 페이지네이션 및 모달창 스크립트 -->
-    <script>
+    <script type="module">
+      // Firebase 초기화
+      import { initializeApp } from 'firebase/app';
+      import {
+        getFirestore,
+        collection,
+        query,
+        orderBy,
+        getDocs,
+      } from 'firebase/firestore';
+
+      const firebaseConfig = {
+        apiKey: 'AIzaSyBojnMbMLnSzUtbMe8CtOya2nJ1bLEjT5w',
+        authDomain: 'afefilmdb.firebaseapp.com',
+        projectId: 'afefilmdb',
+        storageBucket: 'afefilmdb.appspot.com',
+        messagingSenderId: '197138650449',
+        appId: '1:197138650449:web:5bc69676959c0a88e46f70',
+        measurementId: 'G-DYG08RPJLD',
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
       // 원본 비디오 데이터를 저장할 변수
       let originalVideos = [];
       // 필터링된 비디오 데이터를 저장할 변수
@@ -459,15 +482,26 @@
       // 전체 페이지 수
       let totalPages = 1;
 
-      // JSON 파일에서 비디오 데이터를 가져오는 함수
+      // 비디오 데이터를 가져오는 함수 수정
       async function fetchVideos() {
         try {
-          const response = await fetch('/asset/work/videos.json');
-          originalVideos = await response.json(); // 원본 데이터를 originalVideos에 저장
-          // console.log(originalVideos);
+          const videosRef = collection(db, 'projects');
+          const q = query(videosRef, orderBy('score', 'desc'));
+          const querySnapshot = await getDocs(q);
+
+          originalVideos = querySnapshot.docs.map((doc) => ({
+            id: doc.data().videoId,
+            title: doc.data().title,
+            productionDate: doc.data().productionDate,
+            client: doc.data().client,
+            score: doc.data().score,
+            image: doc.data().thumbnail,
+            type: doc.data().type,
+            category: doc.data().category,
+          }));
 
           setItemsPerPage();
-          filterVideos('공공기관');
+          filterVideos('공공기관'); // 초기 필터 설정
         } catch (error) {
           console.error('Failed to fetch videos:', error);
         }
