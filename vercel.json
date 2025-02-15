@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/admin/(.*)",
+      "dest": "/admin/$1"
+    },
+    {
       "src": "/asset/work/Thumbnails/(.*)",
       "headers": {
         "cache-control": "public, max-age=31536000, immutable",
