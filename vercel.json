@@ -58,9 +58,12 @@
     },
     {
       "source": "/(.*\\.(png|jpg|jpeg))",
-      "headers": {
-        "Content-Type": "image/webp"
-      }
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/webp"
+        }
+      ]
     }
   ]
 }
