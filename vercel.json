@@ -31,10 +31,7 @@
     {
       "src": "/",
       "dest": "/kr/",
-      "headers": {
-        "Location": "/kr/"
-      },
-      "statusCode": 301
+      "status": 301
     }
   ],
   "headers": [
