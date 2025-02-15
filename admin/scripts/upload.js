@@ -401,7 +401,7 @@ class ContentManager {
             <div class="content-info">
                 <h3>${content.title}</h3>
                 <div class="content-details">
-                    <p><strong>점수:</strong> ${content.score}</p>
+                    <p><strong>누출순위:</strong> ${content.score}</p>
                     <p><strong>제목:</strong> ${content.title}</p>
                     <p><strong>클라이언트:</strong> ${content.client}</p>
                     <p><strong>제작연도:</strong> ${content.productionDate}</p>
@@ -474,7 +474,7 @@ class ContentManager {
                             <input type="text" id="modal-client" required>
                         </div>
                         <div class="form-group">
-                            <label for="modal-score">점수</label>
+                            <label for="modal-score">노출순위</label>
                             <input type="number" id="modal-score" required>
                         </div>
                         
@@ -717,7 +717,7 @@ class ContentManager {
 
       // 점수 범위 검증
       if (formData.score < 1 || formData.score > 9) {
-        throw new Error('점수는 1에서 9 사이여야 합니다.');
+        throw new Error('노출순위는 1에서 9 사이여야 합니다.');
       }
 
       // Firestore 업데이트
