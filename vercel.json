@@ -2,30 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "**",
+      "src": "public/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "src": "/admin/(.*\\.html)",
-      "dest": "/admin/$1",
-      "headers": {
-        "content-type": "text/html; charset=utf-8"
-      }
-    },
-    {
-      "src": "/admin/(.*\\.(js|css|png|jpg|webp|svg))",
-      "dest": "/admin/$1"
-    },
-    {
-      "src": "/asset/work/Thumbnails/(.*)",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable",
-        "content-disposition": "inline"
-      },
-      "dest": "/asset/work/Thumbnails/$1"
-    },
     {
       "handle": "filesystem"
     },
@@ -35,26 +16,6 @@
         "cache-control": "public, max-age=0, must-revalidate"
       },
       "dest": "/$1"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/admin/(.*\\.html)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/html"
-        }
-      ]
-    },
-    {
-      "source": "/admin/(.*\\.js)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/javascript"
-        }
-      ]
     }
   ]
 }
