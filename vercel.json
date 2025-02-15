@@ -9,7 +9,10 @@
   "routes": [
     {
       "src": "/admin/(.*\\.html)",
-      "dest": "/admin/$1"
+      "dest": "/admin/$1",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      }
     },
     {
       "src": "/admin/(.*\\.(js|css|png|jpg|webp|svg))",
@@ -32,6 +35,26 @@
         "cache-control": "public, max-age=0, must-revalidate"
       },
       "dest": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/admin/(.*\\.html)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html"
+        }
+      ]
+    },
+    {
+      "source": "/admin/(.*\\.js)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/javascript"
+        }
+      ]
     }
   ]
 }
