@@ -21,6 +21,7 @@ export default defineConfig({
         enWork: path.resolve(__dirname, 'en/work.html'), // 영어 워크 페이지
         enAbout: path.resolve(__dirname, 'en/about.html'), // 영어 어바웃 페이지
         enContact: path.resolve(__dirname, 'en/contact.html'), // 영어 연락처 페이지
+        admin: path.resolve(__dirname, 'admin/upload.html'), // 관리자 업로드 페이지
       },
       output: {
         assetFileNames: (assetInfo) => {
