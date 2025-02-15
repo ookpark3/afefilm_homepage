@@ -11,7 +11,7 @@
       "src": "/admin/(.*\\.html)",
       "dest": "/admin/$1",
       "headers": {
-        "content-type": "text/html; charset=utf-8"
+        "Content-Type": "text/html; charset=utf-8"
       }
     },
     {
@@ -19,12 +19,15 @@
       "dest": "/admin/$1"
     },
     {
-      "handle": "filesystem"
+      "src": "/(.*\\.(png|jpg|jpeg))",
+      "headers": {
+        "Content-Type": "image/webp"
+      }
     },
     {
       "src": "/(.*)",
       "headers": {
-        "cache-control": "public, max-age=0, must-revalidate"
+        "Cache-Control": "public, max-age=0, must-revalidate"
       },
       "dest": "/$1"
     },
@@ -32,35 +35,9 @@
       "src": "/",
       "dest": "/kr/",
       "status": 301
-    }
-  ],
-  "headers": [
-    {
-      "source": "/admin/(.*\\.html)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/html"
-        }
-      ]
     },
     {
-      "source": "/admin/(.*\\.js)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.(png|jpg|jpeg))",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/webp"
-        }
-      ]
+      "handle": "filesystem"
     }
   ]
 }
