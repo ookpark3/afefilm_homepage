@@ -3,7 +3,7 @@
   <!-- 한국어 메인 페이지 -->
   <url>
     <loc>https://afefilm.com/kr/</loc>
-    <lastmod>2024-10-01</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,7 +11,7 @@
   <!-- 한국어 About 페이지 -->
   <url>
     <loc>https://afefilm.com/kr/about</loc>
-    <lastmod>2024-10-01</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -19,7 +19,7 @@
   <!-- 한국어 Work 페이지 -->
   <url>
     <loc>https://afefilm.com/kr/work</loc>
-    <lastmod>2024-10-01</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -27,7 +27,7 @@
   <!-- 한국어 Contact 페이지 -->
   <url>
     <loc>https://afefilm.com/kr/contact</loc>
-    <lastmod>2024-10-01</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -35,7 +35,7 @@
   <!-- 영어 메인 페이지 -->
   <url>
     <loc>https://afefilm.com/en/</loc>
-    <lastmod>2024-10-01</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -43,7 +43,7 @@
   <!-- 영어 About 페이지 -->
   <url>
     <loc>https://afefilm.com/en/about</loc>
-    <lastmod>2024-10-01</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -51,7 +51,7 @@
   <!-- 영어 Work 페이지 -->
   <url>
     <loc>https://afefilm.com/en/work</loc>
-    <lastmod>2024-10-01</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -59,7 +59,7 @@
   <!-- 영어 Contact 페이지 -->
   <url>
     <loc>https://afefilm.com/en/contact</loc>
-    <lastmod>2024-10-01</lastmod>
+    <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

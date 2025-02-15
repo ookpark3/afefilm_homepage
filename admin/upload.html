@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>콘텐츠 업로드</title>
+    <link rel="stylesheet" href="./styles/admin.css" />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- 기존 업로드 폼 -->
+      <div class="upload-container">
+        <h2>신규 콘텐츠 업로드</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+          <!-- 영상 메타데이터 섹션 -->
+          <div class="form-group">
+            <label for="videoId">YouTube 영상 링크</label>
+            <input
+              type="text"
+              id="videoId"
+              name="videoId"
+              placeholder="https://youtube.com/... 또는 영상 ID 입력"
+              required
+              value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="title">영상 제목</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                required
+                value="영상 제목"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="productionDate">제작년도</label>
+              <input
+                type="number"
+                id="productionDate"
+                name="productionDate"
+                min="2010"
+                max="2025"
+                required
+                value="2025"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="client">클라이언트</label>
+              <input
+                type="text"
+                id="client"
+                name="client"
+                required
+                value="클라이언트"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="score">점수 (1-9)</label>
+              <input
+                type="number"
+                id="score"
+                name="score"
+                min="1"
+                max="9"
+                required
+                value="5"
+              />
+            </div>
+          </div>
+
+          <!-- 타입 및 카테고리 선택 -->
+          <div class="form-container">
+            <div class="form-group">
+              <label>유형 선택 (다중 선택 가능)</label>
+              <div class="multi-select-container">
+                <div class="available-options">
+                  <div class="option" data-value="콘텐츠">콘텐츠</div>
+                  <div class="option" data-value="광고">광고</div>
+                  <div class="option" data-value="뮤직비디오">뮤직비디오</div>
+                  <div class="option" data-value="공기관">공기관</div>
+                  <div class="option" data-value="스케치">스케치</div>
+                </div>
+                <input type="hidden" id="type" name="type" multiple />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>카테고리 선택 (다중 선택 가능)</label>
+              <div class="multi-select-container">
+                <div class="available-options">
+                  <div class="option" data-value="콘텐츠">콘텐츠</div>
+                  <div class="option" data-value="기업">기업</div>
+                  <div class="option" data-value="공공기관">공공기관</div>
+                  <div class="option" data-value="아트필름">아트필름</div>
+                </div>
+                <input type="hidden" id="category" name="category" multiple />
+              </div>
+            </div>
+          </div>
+
+          <!-- WebP 썸네일 업로드 섹션 -->
+          <div class="form-group">
+            <label for="thumbnail">썸네일 이미지 (WebP 변환 자동 처리)</label>
+            <div id="dropZone" class="drop-zone">
+              <div class="drop-content">
+                <span class="material-icons">📎</span>
+                <span>파일 끌어오기 또는 클릭</span>
+                <small>최대 5MB의 이미지 파일</small>
+              </div>
+              <input
+                type="file"
+                id="thumbnail"
+                name="thumbnail"
+                accept="image/*"
+                required
+              />
+              <div class="preview-container"></div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="submitBtn">업로드</button>
+            <button id="logoutBtn" class="btn-logout">로그아웃</button>
+            <div class="upload-progress">
+              <div class="progress-bar" id="progressBar"></div>
+              <span id="progressText">0%</span>
+            </div>
+          </div>
+        </form>
+
+        <!-- 결과 표시 영역 추가 -->
+        <div id="testResult" class="test-result"></div>
+      </div>
+
+      <!-- 콘텐츠 목록 섹션 추가 -->
+      <div class="content-list-container">
+        <h2>콘텐츠 목록</h2>
+
+        <!-- 필터 섹션 -->
+        <div class="filters">
+          <select id="yearFilter">
+            <option value="">전체 연도</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+          <select id="typeFilter">
+            <option value="">전체 유형</option>
+            <option value="콘텐츠">콘텐츠</option>
+            <option value="광고">광고</option>
+            <option value="뮤직비디오">뮤직비디오</option>
+            <option value="공기관">공기관</option>
+            <option value="스케치">스케치</option>
+          </select>
+          <select id="categoryFilter">
+            <option value="">전체 카테고리</option>
+            <option value="콘텐츠">콘텐츠</option>
+            <option value="기업">기업</option>
+            <option value="공공기관">공공기관</option>
+            <option value="아트필름">아트필름</option>
+          </select>
+        </div>
+
+        <!-- 콘텐츠 목록 -->
+        <div id="contentList" class="content-grid">
+          <!-- JavaScript로 동적 생성 -->
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+          <button id="prevPage">이전</button>
+          <span id="currentPage">1</span> / <span id="totalPages">1</span>
+          <button id="nextPage">다음</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./scripts/upload.js"></script>
+  </body>
+</html>
