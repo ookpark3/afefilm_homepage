@@ -1014,6 +1014,9 @@ const AUTH_ERRORS = {
 };
 
 const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: 'select_account', // 항상 계정 선택 화면 표시
+});
 
 // 인증 상태 리스너
 const initAuth = () => {
@@ -1037,6 +1040,19 @@ const handleUnauthorizedAccess = async () => {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
 
+    // 추가된 유효성 검사
+    if (!user.emailVerified) {
+      await signOut(auth);
+      throw new Error('이메일 인증이 완료되지 않은 계정입니다');
+    }
+
+    const domain = user.email.split('@')[1];
+    if (domain !== 'gmail.com') {
+      // 필요시 도메인 조건 변경
+      await signOut(auth);
+      throw new Error('허용되지 않은 도메인입니다');
+    }
+
     if (!ALLOWED_EMAILS.includes(user.email)) {
       await signOut(auth);
       throw new Error(AUTH_ERRORS.invalid_email);
@@ -1045,6 +1061,11 @@ const handleUnauthorizedAccess = async () => {
     console.log('✅ 성공적으로 로그인:', user.email);
     window.location.reload();
   } catch (error) {
+    // 개선된 오류 처리
+    if (error.code === 'auth/cancelled-popup-request') {
+      console.log('사용자가 팝업을 취소했습니다');
+      return;
+    }
     handleAuthError(error);
   }
 };
@@ -1052,8 +1073,11 @@ const handleUnauthorizedAccess = async () => {
 // 에러 처리
 const handleAuthError = (error) => {
   const errorMap = {
-    'auth/popup-blocked': AUTH_ERRORS.popup_blocked,
+    'auth/popup-blocked':
+      '팝업이 차단되었습니다. 브라우저 설정에서 팝업을 허용해주세요',
     'auth/unauthorized-domain': '허용되지 않은 도메인입니다',
+    'auth/cancelled-popup-request': '로그인 창이 닫혔습니다. 다시 시도해주세요',
+    'auth/popup-closed-by-user': '로그인 창이 닫혔습니다. 다시 시도해주세요',
   };
 
   alert(errorMap[error.code] || AUTH_ERRORS.default);
