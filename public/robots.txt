@@ -1,7 +1,9 @@
 User-agent: *
 Allow: /
-
-User-agent: *
 Disallow: /404.html
+Disallow: /admin/      # 관리자 페이지 차단
+Disallow: /admin/*     # 모든 하위 관리자 경로 차단
+Disallow: /upload      # 업로드 관련 경로 차단
+Disallow: /api/        # API 엔드포인트 차단
 
 Sitemap: https://afefilm.com/sitemap.xml
