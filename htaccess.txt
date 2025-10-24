@@ -1,0 +1,89 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 네이버 소유 확인 HTML 파일에 대한 예외 처리
+    RewriteCond %{REQUEST_URI} ^/naver0f6462585491596e56a12ff6a0c48920.html$ [NC]
+    RewriteRule ^ - [L]
+
+        # Language-based redirection
+    # Check for Korean language
+    RewriteCond %{HTTP:Accept-Language} ^ko [NC]
+    RewriteRule ^$ /kr/ [L,R=301]
+
+    # Default to English
+    RewriteRule ^$ /en/ [L,R=301]
+
+    # www 제거하고, www 없는 URL로 리디렉션
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+    # en 또는 kr 경로를 en/ 또는 kr/로 리디렉션
+    RewriteRule ^(en|kr)$ /$1/ [R=301,L]
+
+    # 404 페이지는 무한 리디렉션 방지를 위해 예외 처리
+    RewriteCond %{REQUEST_URI} !^/404.html$ [NC]
+
+    # 정적 파일 및 404 페이지에 대한 예외 처리
+    RewriteCond %{REQUEST_URI} !^/(404|kr|en)(/|$) [NC]
+    RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|webp|svg|ico|json|pdf|mp4|mov)$ [NC]
+
+    # /index 요청 시 루트(/)로 리디렉션
+    RewriteRule ^index(\.html)?$ / [R=301,L]
+
+    # /kr/index, /en/index 요청을 /kr/ 또는 /en/로 리디렉션
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/(kr|en)/index(\.html)? [NC]
+    RewriteRule ^(kr|en)/index(\.html)?$ /%1/ [R=301,L]
+
+    # en 또는 kr 폴더가 없는 경우에만 /kr/로 리디렉션
+    RewriteCond %{REQUEST_URI} !^/(kr|en|404)\b [NC]
+    RewriteRule ^([^/]+)\.html$ /kr/$1 [R=301,L]
+
+    # .html 확장자 생략 및 처리
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*/)?([^/]+)$ $1$2.html [L]
+
+    # .html 확장자를 제거한 URL로 리디렉션
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+    RewriteRule ^ %1 [R=301,L]
+
+    # HTTP 요청을 HTTPS로 리디렉션
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+</IfModule>
+
+
+# 404 페이지 설정
+ErrorDocument 404 /404.html
+
+
+
+# 캐시 제어 설정
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+</IfModule>
+
+# Gzip 압축 활성화
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json image/webp
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+
+    # 더 범용적인 Content-Security-Policy 설정
+    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' https: data:;"
+
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
