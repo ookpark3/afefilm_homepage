@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '🔎 multi-select 컨테이너 개수:',
     document.querySelectorAll('.multi-select-container').length,
   );
+  initializeYearControls();
   initMultiSelect();
   initFileDrop();
   console.log('🔧 uploadLogic 초기화 시작');
@@ -87,6 +88,34 @@ const REQUIRED_FIELDS = [
   'client',
   'score',
 ];
+
+function initializeYearControls() {
+  const currentYear = new Date().getFullYear();
+  const startYear = 2019;
+  const productionDateInput = document.getElementById('productionDate');
+  const yearFilter = document.getElementById('yearFilter');
+
+  if (productionDateInput) {
+    productionDateInput.max = String(currentYear);
+    productionDateInput.placeholder = String(currentYear);
+  }
+
+  if (yearFilter) {
+    const currentValue = yearFilter.value;
+    yearFilter.innerHTML = '<option value="">전체 연도</option>';
+
+    for (let year = startYear; year <= currentYear; year++) {
+      const option = document.createElement('option');
+      option.value = String(year);
+      option.textContent = String(year);
+      yearFilter.appendChild(option);
+    }
+
+    if (currentValue) {
+      yearFilter.value = currentValue;
+    }
+  }
+}
 
 // WebP 변환 함수 수정
 async function convertToWebP(file, title, quality = 0.8) {
